@@ -19,7 +19,7 @@ public enum Couleur {
     @Override
     public String toString() {
         return "Couleur{" +
-                "nom='" + nom + '\'' +
+                "nom = '" + nom + '\'' +
                 '}';
     }
 }
