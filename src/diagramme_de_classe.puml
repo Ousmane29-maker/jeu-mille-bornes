@@ -1,0 +1,9 @@
+@startuml
+class PaquetDeCartes {
++PaquetDeCartes()
+}
+class Carte {
++Carte()
+}
+PaquetDeCartes -- "*" Carte
+@enduml
