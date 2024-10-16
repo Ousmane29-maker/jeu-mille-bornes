@@ -4,14 +4,8 @@ import jeu.cartes.Couleur;
 import jeu.cartes.PaquetDeCartes;
 import jeu.fabriques.FabriqueCartes;
 import org.junit.jupiter.api.*;
-import java.util.Arrays ;
 
-import java.util.Collection;
-import java.util.Collections;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class TestPaquetDeCartes {
 
@@ -23,6 +17,8 @@ class TestPaquetDeCartes {
     void testConstructeurVide() {
         PaquetDeCartes pdc = new PaquetDeCartes() ;
         assertEquals(pdc.getNbCartes(), 0) ;
+        assertThrows(AssertionError.class, () -> pdc.getCarte(2)) ;
+        assertThrows(AssertionError.class, () -> pdc.getCarte(-1)) ;
 
     }
     @Test
@@ -37,6 +33,8 @@ class TestPaquetDeCartes {
     }
     @Test
     void testConstructeurAvecPdcEnParam(){
+        PaquetDeCartes pdcNull = null ;
+        assertThrows(AssertionError.class, () -> new  PaquetDeCartes(pdcNull));
         PaquetDeCartes pdc1 = FabriqueCartes.getPaquet1Vert1Jaune() ;
         PaquetDeCartes pdc2 = new PaquetDeCartes(pdc1) ;
         //Pas de partage donc l'adresse des objets sont diff
@@ -56,6 +54,7 @@ class TestPaquetDeCartes {
     void testAjouterAvecPdc() {
         PaquetDeCartes pdc1 = new PaquetDeCartes() ;
         PaquetDeCartes pdc2 = FabriqueCartes.getPaquet1Vert1Jaune();
+        assertThrows(AssertionError.class, () -> pdc1.ajouter((PaquetDeCartes) null));
         pdc1.ajouter(pdc2);
         assertEquals(pdc1.getNbCartes(),2);
         assertEquals(pdc1.getCarte(0).getCouleur(), Couleur.VERT);
@@ -113,6 +112,7 @@ void testRetourner(){
         Carte carte1 = new Carte(Couleur.VERT) ;
         Carte carte2 = new Carte(Couleur.BLEU) ;
         PaquetDeCartes pdc = new PaquetDeCartes(carte1, carte2) ;
+        assertThrows(AssertionError.class, () -> pdc.enlever((Carte) null));
         assertEquals(pdc.getNbCartes(), 2);
         pdc.enlever(carte1);
         assertTrue(pdc.getSommet().equals(carte2));

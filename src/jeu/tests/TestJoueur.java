@@ -34,6 +34,14 @@ class TestJoueur {
     }
 
     @Test
+    void testConstrDeCopie() {
+        Joueur jNull = null;
+        assertThrows(AssertionError.class, () -> new Joueur(jNull)) ;
+
+    }
+
+
+    @Test
     void testAjouterNull() {
         Jeu jeu = new Jeu();
         Joueur j = new Joueur(jeu, "JoueurA");
