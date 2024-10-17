@@ -31,4 +31,15 @@ public class CollectionJoueurs {
         assert(no >= 0 && no < this.size()) : "Le parametre no doit etre compris entre 0 et size()" ;
         return this.cj.get(no) ;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder str =  new StringBuilder() ;
+        str.append("CollectionJoueurs { \n") ;
+        for (Joueur joueur : cj) {
+            str.append(joueur).append('\n') ;
+        }
+        str.append("} \n") ;
+        return str.toString() ;
+    }
 }

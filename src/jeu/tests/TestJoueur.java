@@ -34,9 +34,25 @@ class TestJoueur {
     }
 
     @Test
-    void testConstrDeCopie() {
+    void testConstrDeCopieAvecParamNull() {
         Joueur jNull = null;
         assertThrows(AssertionError.class, () -> new Joueur(jNull)) ;
+
+    }
+    @Test
+    void testConstrDeCopie() {
+        Jeu jeu = new Jeu() ;
+        Joueur j1 = new Joueur(jeu, "Joueur1") ;
+        j1.ajouterMain(new Carte(Couleur.ROUGE));
+        j1.ajouterMain(new Carte(Couleur.VERT));
+        Joueur j2 = new Joueur(j1) ;
+        assertEquals(j2.getNbCartesMain(), j1.getNbCartesMain());
+        assertEquals(j2.getMain().getCarte(0).getCouleur(), Couleur.ROUGE);
+        assertEquals(j2.getMain().getCarte(1).getCouleur(), Couleur.VERT);
+        assertEquals(j2.getNom(), j1.getNom());
+
+        //Pas de Partage
+        assertFalse(j2.getMain() == j1.getMain());
 
     }
 

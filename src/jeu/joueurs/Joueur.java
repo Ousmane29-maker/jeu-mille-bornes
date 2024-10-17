@@ -17,9 +17,12 @@ public class Joueur {
 
     public Joueur(Joueur j){
         assert(j != null) :"Le parametre j ne doit pas etre null" ;
-            //Pas De Partage
-//        this.nom = j.getNom() ;
-//        this.main = j.getMain() ;
+        //Pas De Partage ici
+        this.nom = j.getNom() ; // copie du nom
+        //copie profonde du paquet (en utilisant le constructeur de copie profonde dans PaquetDeCartes)
+        this.main = new PaquetDeCartes(j.getMain()) ;
+        // copie profonde du jeu
+        this.jeu = new Jeu(j.jeu) ;
 
     }
 
@@ -47,5 +50,19 @@ public class Joueur {
     public void setJeu(Jeu jeu) {
         assert (jeu != null) : "Le parametre jeu ne doit pas etre null " ;
         this.jeu = jeu ;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder() ;
+        str.append("Joueur{ \n nom = ") ;
+        str.append(this.nom) ;
+        str.append("\nmain = ");
+        str.append(this.main) ;
+        str.append("jeu = ");
+        str.append(this.jeu) ;
+        str.append("} \n") ;
+
+        return str.toString() ;
     }
 }

@@ -28,7 +28,7 @@ class TestCollectionJoueurs {
         assertThrows(AssertionError.class, () -> new CollectionJoueurs(collectionJoueurs1)) ;
     }
 
-    @Test
+   @Test
     void testAConstrDeCopie(){
         CollectionJoueurs cj1 = new CollectionJoueurs(2) ;
         Jeu jeu = new Jeu() ;
@@ -40,6 +40,9 @@ class TestCollectionJoueurs {
         assertEquals(cj2.size(), 2);
         assertEquals(cj2.get(0).getNom(),"joueur1");
         assertEquals(cj2.get(1).getNom(),"joueur2");
+        // Pas de partage
+       assertFalse(cj2.get(0).getMain() == cj1.get(0).getMain());
+       assertFalse(cj2.get(1).getMain() == cj1.get(1).getMain());
     }
     @Test
     void testAjouter1joueurs(){
