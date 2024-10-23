@@ -12,6 +12,7 @@ public class Joueur {
     public Joueur(Jeu jeu, String nom){
         assert(jeu != null && nom != null) : "Les parametres jeu et nom ne doivent pas etre null" ;
         this.nom = nom ;
+        this.jeu = jeu ;
         this.main = new PaquetDeCartes() ;
     }
 
@@ -21,8 +22,7 @@ public class Joueur {
         this.nom = j.getNom() ; // copie du nom
         //copie profonde du paquet (en utilisant le constructeur de copie profonde dans PaquetDeCartes)
         this.main = new PaquetDeCartes(j.getMain()) ;
-        // copie profonde du jeu
-        this.jeu = new Jeu(j.jeu) ;
+        this.jeu = j.jeu; // Copie uniquement la référence au jeu
 
     }
 
