@@ -1,24 +1,20 @@
 package jeu.cartes;
 
-public class Carte {
-    private Couleur couleur ;
+import jeu.joueurs.Joueur;
 
-    public Carte(Couleur couleur) {
-        this.couleur = couleur ;
+public abstract class Carte {
+    public abstract boolean peutEtrePoseeSurMonJeu(Joueur j);
+    public abstract boolean peutEtrePoseeSurJeuAdversaire(Joueur j) ;
+
+    public abstract boolean match(String s) ;
+
+    boolean estUneAttaque(){
+        return false ;
     }
 
-    public void setCouleur(Couleur couleur) {
-        this.couleur = couleur;
+    boolean estUneParade(){
+        return false ;
     }
 
-    public Couleur getCouleur() {
-        return couleur;
-    }
 
-    @Override
-    public String toString() {
-        return "Carte{" +
-                "couleur = " + couleur +
-                '}';
-    }
 }

@@ -1,12 +1,13 @@
 package jeu.joueurs;
 import jeu.Jeu;
-import jeu.cartes.Carte;
-import jeu.cartes.PaquetDeCartes;
+import jeu.cartes.*;
 
 public class Joueur {
 
     private String nom ;
     private PaquetDeCartes main ;
+
+    private Bottes bottes ;
 
     private Jeu jeu ;
     public Joueur(Jeu jeu, String nom){
@@ -64,5 +65,37 @@ public class Joueur {
         str.append("} \n") ;
 
         return str.toString() ;
+    }
+
+    // PeutPoser Attaque
+    public boolean estPossiblePoser(Crevaison crevaison) {
+        return false ;
+    }
+    public boolean estPossiblePoser(FeuRouge feuRouge) {
+        return false ;
+    }
+    public boolean estPossiblePoser(Accident accident) {
+        return false ;
+    }
+    public boolean estPossiblePoser(PanneDEssence panneDEssence) {
+        return false ;
+    }
+
+    //peutRecevoir Attaque
+    //faut il tester si la bataille est null aussi ?? puisqu'on ne npeut pas avoir deux attaques simultanement ??
+    public boolean peutRecevoir(Accident accident) {
+        return !bottes.estAsDuVolant() ;
+    }
+
+    public boolean peutRecevoir(FeuRouge feuRouge) {
+        return !bottes.estPrioritaire() ;
+    }
+
+    public boolean peutRecevoir(Crevaison crevaison) {
+        return !bottes.estIncrevable();
+    }
+
+    public boolean peutRecevoir(PanneDEssence panneDEssence) {
+        return !bottes.estCiterneDEssence();
     }
 }
