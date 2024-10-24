@@ -6,6 +6,14 @@ public class Bottes {
     private boolean estCiterneDEssence ;
     private boolean estIncrevable ;
 
+    public Bottes(){
+        this.estAsDuVolant = false ;
+        this.estPrioritaire = false ;
+        this.estCiterneDEssence = false ;
+        this.estIncrevable = false ;
+
+    }
+
     public void setEstAsDuVolant() {
         this.estAsDuVolant = !this.estAsDuVolant;
     }

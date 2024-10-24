@@ -5,11 +5,13 @@ import jeu.joueurs.Joueur;
 public class Accident extends Attaque{
     @Override
     public boolean peutEtrePoseeSurMonJeu(Joueur j) {
+        assert (j != null) : "le parametre j ne doit pas etre null" ;
         return j.estPossiblePoser(this) ;
     }
 
     @Override
     public boolean peutEtrePoseeSurJeuAdversaire(Joueur j) {
+        assert (j != null) : "le parametre j ne doit pas etre null" ;
        return j.peutRecevoir(this) ;
     }
 

@@ -8,11 +8,11 @@ public abstract class Carte {
 
     public abstract boolean match(String s) ;
 
-    boolean estUneAttaque(){
+    public boolean estUneAttaque(){
         return false ;
     }
 
-    boolean estUneParade(){
+    public boolean estUneParade(){
         return false ;
     }
 

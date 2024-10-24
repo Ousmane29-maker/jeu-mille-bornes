@@ -1,7 +1,7 @@
 package jeu;
 
 import jeu.cartes.Carte;
-import jeu.cartes.PaquetDeCartes;
+//import jeu.cartes.PaquetDeCartes;
 import jeu.joueurs.CollectionJoueurs;
 import jeu.joueurs.Joueur;
 
@@ -11,15 +11,15 @@ public class Jeu {
 
     private Joueur joueurCourant ;
 
-    private PaquetDeCartes talon ;
+//    private PaquetDeCartes talon ;
     public Jeu() {
         this.collection = new CollectionJoueurs(2) ; //nombre de joueur par defaut : 2
-        this.talon = new PaquetDeCartes() ; //A definir apres
+//        this.talon = new PaquetDeCartes() ; //A definir apres
     }
     public Jeu(Jeu jeu) {
         assert (jeu != null) : "Le parametre jeu ne doit pas etre egale a null" ;
         //copie profonde
-        this.talon = new PaquetDeCartes(jeu.talon) ;
+//        this.talon = new PaquetDeCartes(jeu.talon) ;
         this.collection = new CollectionJoueurs(jeu.getNbJoueurs()) ;
 
         for(int i = 0; i < jeu.getNbJoueurs(); i++){
@@ -43,6 +43,6 @@ public class Jeu {
     }
     public void jeter(Carte c){
         assert (c !=null) : "le parametre c ne doit pas etre egale a null" ; //l'assert est deja fait dans enlever
-        this.talon.enlever(c);
+//        this.talon.enlever(c);
     }
 }

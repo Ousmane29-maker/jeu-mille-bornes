@@ -1,4 +1,11 @@
 package jeu.cartes;
 
-public class Parade {
+import jeu.joueurs.Joueur;
+
+public abstract class Parade extends Carte{
+
+    public boolean estUneParade(){
+        return true ;
+    }
+
 }
