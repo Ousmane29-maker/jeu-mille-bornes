@@ -1,6 +1,18 @@
 package jeu.joueurs;
 import jeu.Jeu;
 import jeu.cartes.*;
+import jeu.cartes.attaques.Accident;
+import jeu.cartes.attaques.Crevaison;
+import jeu.cartes.attaques.FeuRouge;
+import jeu.cartes.attaques.PanneDEssence;
+import jeu.cartes.bottes.AsDuVolant;
+import jeu.cartes.bottes.CiterneDEssence;
+import jeu.cartes.bottes.Increvable;
+import jeu.cartes.bottes.Prioritaire;
+import jeu.cartes.parades.Essence;
+import jeu.cartes.parades.FeuVert;
+import jeu.cartes.parades.Reparation;
+import jeu.cartes.parades.RoueDeSecours;
 
 public class Joueur {
 
@@ -20,6 +32,15 @@ public class Joueur {
         this.bataille = null ;
 //        this.main = new PaquetDeCartes() ;
     }
+
+    public Joueur(Jeu jeu, String nom, Bottes bottes, Carte bataille){
+        assert(jeu != null && nom != null) : "Les parametres jeu et nom ne doivent pas etre null" ;
+        this.nom = nom ;
+        this.jeu = jeu ;
+        this.bottes = bottes;
+        this.bataille =  bataille;
+    }
+
 
     public Joueur(Joueur j){
         assert(j != null) :"Le parametre j ne doit pas etre null" ;
@@ -71,19 +92,6 @@ public class Joueur {
         return str.toString() ;
     }
 
-    // PeutPoser Attaque
-    public boolean estPossiblePoser(Crevaison crevaison) {
-        return false ;
-    }
-    public boolean estPossiblePoser(FeuRouge feuRouge) {
-        return false ;
-    }
-    public boolean estPossiblePoser(Accident accident) {
-        return false ;
-    }
-    public boolean estPossiblePoser(PanneDEssence panneDEssence) {
-        return false ;
-    }
 
     //peutRecevoir Attaque
     public boolean peutRecevoir(Accident accident) {
@@ -97,67 +105,45 @@ public class Joueur {
     public boolean peutRecevoir(Crevaison crevaison) {
         return !bottes.estIncrevable();
     }
-
     public boolean peutRecevoir(PanneDEssence panneDEssence) {
         return !bottes.estCiterneDEssence();
     }
 
     //estPossiblePoser Parade
     public boolean estPossiblePoser(FeuVert feuVert) {
-        // A completer
-        return false ;
+        return bataille != null && this.bataille.match("FeuRouge") ;
     }
 
     public boolean estPossiblePoser(Reparation reparation) {
-        // A completer
-        return false ;
+        return bataille != null && this.bataille.match("Accident") ;
     }
 
     public boolean estPossiblePoser(Essence essence) {
-        // A completer
-        return false ;
+        return bataille != null && this.bataille.match("PanneDEssence") ;
     }
     public boolean estPossiblePoser(RoueDeSecours roueDeSecours) {
+        return bataille != null && this.bataille.match("Crevaison") ;
+    }
+
+    // estPossiblePoser Botte
+    public boolean estPossiblePoser(Increvable increvable) {
         // A completer
         return false ;
     }
 
-    // peutRecevoir Parade
-    public boolean peutRecevoir(Reparation reparation) {
+    public boolean estPossiblePoser(AsDuVolant asDuVolant) {
         // A completer
         return false ;
     }
 
-    public boolean peutRecevoir(FeuVert feuVert) {
+    public boolean estPossiblePoser(Prioritaire prioritaire) {
+        // A completer
+        return false ;
+    }
+    public boolean estPossiblePoser(CiterneDEssence citerneDEssence) {
         // A completer
         return false ;
     }
 
-    public boolean peutRecevoir(Essence essence) {
-        // A completer
-        return false ;
-    }
-    public boolean peutRecevoir(RoueDeSecours roueDeSecours) {
-        // A completer
-        return false ;
-    }
 
-//    public void setBataille(Carte bataille) {
-//        this.bataille = bataille;
-//    }
-
-    public void setBottes(String s) {
-        if(s.equals("estAsDuVolant")){
-            this.bottes.setEstAsDuVolant();
-        }
-        if(s.equals("estIncrevable")){
-            this.bottes.setEstIncrevable();
-        }
-        if(s.equals("estCiterneDEssence")){
-            this.bottes.setEstCiterneDEssence();
-        }
-        if(s.equals("estPrioritaire")){
-            this.bottes.setEstPrioritaire();
-        }
-    }
 }

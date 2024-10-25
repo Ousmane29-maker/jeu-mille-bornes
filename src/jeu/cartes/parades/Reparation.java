@@ -1,0 +1,13 @@
+package jeu.cartes.parades;
+
+import jeu.cartes.parades.Parade;
+import jeu.joueurs.Joueur;
+
+public class Reparation extends Parade {
+    @Override
+    public boolean peutEtrePoseeSurMonJeu(Joueur j) {
+        return j.estPossiblePoser(this) ;
+    }
+
+
+}
