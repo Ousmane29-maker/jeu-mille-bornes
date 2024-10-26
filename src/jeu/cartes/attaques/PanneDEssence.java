@@ -1,6 +1,8 @@
 package jeu.cartes.attaques;
 
+import jeu.cartes.Carte;
 import jeu.cartes.attaques.Attaque;
+import jeu.cartes.bottes.AsDuVolant;
 import jeu.joueurs.Joueur;
 
 public class PanneDEssence extends Attaque {
@@ -13,5 +15,10 @@ public class PanneDEssence extends Attaque {
     @Override
     public boolean match(String s) {
         return s.equals("PanneDEssence");
+    }
+
+    @Override
+    public Carte copie() {
+        return new PanneDEssence();
     }
 }

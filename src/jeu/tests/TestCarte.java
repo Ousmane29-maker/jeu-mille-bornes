@@ -6,6 +6,7 @@ import jeu.cartes.attaques.Accident;
 import jeu.cartes.attaques.Crevaison;
 import jeu.cartes.attaques.FeuRouge;
 import jeu.cartes.attaques.PanneDEssence;
+import jeu.cartes.bornes.*;
 import jeu.cartes.bottes.AsDuVolant;
 import jeu.cartes.bottes.CiterneDEssence;
 import jeu.cartes.bottes.Increvable;
@@ -263,6 +264,61 @@ public class TestCarte {
         assertTrue(increvable.peutEtrePoseeSurMonJeu(j));
         assertTrue(citerneDEssence.peutEtrePoseeSurMonJeu(j));
         assertTrue(asDuVolant.peutEtrePoseeSurMonJeu(j));
+    }
+
+    @Test
+    public void TestBornesPeutEtrePoseeSurJeuAdversaire(){
+        Jeu jeu = new Jeu() ;
+        Joueur j = new Joueur(jeu, "joueur_A") ;
+        Borne25 borne25 = new Borne25() ;
+        Borne50 borne50 = new Borne50() ;
+        Borne75 borne75 = new Borne75() ;
+        Borne100 borne100 = new Borne100() ;
+        Borne200 borne200 = new Borne200() ;
+
+        assertThrows(AssertionError.class, () -> borne25.peutEtrePoseeSurJeuAdversaire(null)) ;
+        assertThrows(AssertionError.class, () -> borne50.peutEtrePoseeSurJeuAdversaire(null)) ;
+        assertThrows(AssertionError.class, () -> borne75.peutEtrePoseeSurJeuAdversaire(null)) ;
+        assertThrows(AssertionError.class, () -> borne100.peutEtrePoseeSurJeuAdversaire(null)) ;
+        assertThrows(AssertionError.class, () -> borne200.peutEtrePoseeSurJeuAdversaire(null)) ;
+
+        assertFalse(borne25.peutEtrePoseeSurJeuAdversaire(j));
+        assertFalse(borne50.peutEtrePoseeSurJeuAdversaire(j));
+        assertFalse(borne75.peutEtrePoseeSurJeuAdversaire(j));
+        assertFalse(borne100.peutEtrePoseeSurJeuAdversaire(j));
+        assertFalse(borne200.peutEtrePoseeSurJeuAdversaire(j));
+
+    }
+
+    @Test
+    public void TestBornesPeutEtrePoseeSurMonJeu(){
+        Jeu jeu = new Jeu() ;
+        Joueur j = new Joueur(jeu, "joueur_A") ;
+        Borne25 borne25 = new Borne25() ;
+        Borne50 borne50 = new Borne50() ;
+        Borne75 borne75 = new Borne75() ;
+        Borne100 borne100 = new Borne100() ;
+        Borne200 borne200 = new Borne200() ;
+
+        assertThrows(AssertionError.class, () -> borne25.peutEtrePoseeSurJeuAdversaire(null)) ;
+        assertThrows(AssertionError.class, () -> borne50.peutEtrePoseeSurJeuAdversaire(null)) ;
+        assertThrows(AssertionError.class, () -> borne75.peutEtrePoseeSurJeuAdversaire(null)) ;
+        assertThrows(AssertionError.class, () -> borne100.peutEtrePoseeSurJeuAdversaire(null)) ;
+        assertThrows(AssertionError.class, () -> borne200.peutEtrePoseeSurJeuAdversaire(null)) ;
+
+        assertTrue(borne25.peutEtrePoseeSurMonJeu(j));
+        assertTrue(borne50.peutEtrePoseeSurMonJeu(j));
+        assertTrue(borne75.peutEtrePoseeSurMonJeu(j));
+        assertTrue(borne100.peutEtrePoseeSurMonJeu(j));
+        assertTrue(borne200.peutEtrePoseeSurMonJeu(j));
+
+        j.setLimitationVitesse();
+        assertTrue(borne25.peutEtrePoseeSurMonJeu(j));
+        assertTrue(borne50.peutEtrePoseeSurMonJeu(j));
+        assertFalse(borne75.peutEtrePoseeSurMonJeu(j));
+        assertFalse(borne100.peutEtrePoseeSurMonJeu(j));
+        assertFalse(borne200.peutEtrePoseeSurMonJeu(j));
+
     }
 
 

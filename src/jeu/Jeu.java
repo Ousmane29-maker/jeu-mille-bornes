@@ -2,6 +2,7 @@ package jeu;
 
 import jeu.cartes.Carte;
 //import jeu.cartes.PaquetDeCartes;
+import jeu.cartes.PaquetDeCartes;
 import jeu.joueurs.CollectionJoueurs;
 import jeu.joueurs.Joueur;
 
@@ -9,17 +10,28 @@ public class Jeu {
 
     private CollectionJoueurs collection ;
 
-    private Joueur joueurCourant ;
+    private int joueurQuiJoue ;
 
-//    private PaquetDeCartes talon ;
+    private int joueurQuiDistribue ;
+
+    private PaquetDeCartes talon ;
+
+    private PaquetDeCartes pioche ;
     public Jeu() {
         this.collection = new CollectionJoueurs(2) ; //nombre de joueur par defaut : 2
-//        this.talon = new PaquetDeCartes() ; //A definir apres
+        this.pioche = new PaquetDeCartes() ; // A definir apres
+        this.talon = new PaquetDeCartes() ;
     }
     public Jeu(Jeu jeu) {
         assert (jeu != null) : "Le parametre jeu ne doit pas etre egale a null" ;
+
+        this.joueurQuiJoue = jeu.joueurQuiJoue ;
+        this.joueurQuiDistribue = jeu.joueurQuiDistribue ;
+
         //copie profonde
-//        this.talon = new PaquetDeCartes(jeu.talon) ;
+        this.talon = new PaquetDeCartes(jeu.talon) ;
+        this.pioche = new PaquetDeCartes(jeu.pioche) ;
+
         this.collection = new CollectionJoueurs(jeu.getNbJoueurs()) ;
 
         for(int i = 0; i < jeu.getNbJoueurs(); i++){
@@ -27,9 +39,6 @@ public class Jeu {
             Joueur newJ = new Joueur(j) ; // copie d'un joueur
             newJ.setJeu(this); // on modifie son jeu en le remplacant par this(la copie de jeu qu'on est entrain d'effectue)
             this.add(newJ); // on ajoute newJ dans la collection de copie
-//            if(j.estJoueurActuel(){
-//                this.joueurCourant = newJ ; //definir newJ comme joueur courant
-//            }
         }
     }
 
@@ -38,11 +47,25 @@ public class Jeu {
         this.collection.ajouter(j);
     }
 
+    public int getJoueurQuiJoue() {
+        return joueurQuiJoue;
+    }
+
+
+    public int getJoueurQuiDistribue() {
+        return joueurQuiDistribue;
+    }
+
+    public void setJoueurQuiJoue() {
+        this.joueurQuiJoue = (this.joueurQuiJoue + 1) % this.getNbJoueurs();
+    }
+
     public int getNbJoueurs() {
         return this.collection.size();
     }
     public void jeter(Carte c){
         assert (c !=null) : "le parametre c ne doit pas etre egale a null" ; //l'assert est deja fait dans enlever
-//        this.talon.enlever(c);
+        this.talon.ajouter(c); // la carte est jetee dans le talon
+        //faut il enlever la carte aussi dans la main du joueur courant ??????
     }
 }

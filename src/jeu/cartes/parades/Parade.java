@@ -20,4 +20,5 @@ public abstract class Parade extends Carte {
         return false;
     }
 
+
 }

@@ -17,4 +17,5 @@ public abstract class Carte {
     }
 
 
+    public abstract Carte copie();
 }

@@ -5,6 +5,9 @@ import jeu.cartes.attaques.Accident;
 import jeu.cartes.attaques.Crevaison;
 import jeu.cartes.attaques.FeuRouge;
 import jeu.cartes.attaques.PanneDEssence;
+import jeu.cartes.bornes.Borne100;
+import jeu.cartes.bornes.Borne200;
+import jeu.cartes.bornes.Borne75;
 import jeu.cartes.bottes.AsDuVolant;
 import jeu.cartes.bottes.CiterneDEssence;
 import jeu.cartes.bottes.Increvable;
@@ -17,20 +20,23 @@ import jeu.cartes.parades.RoueDeSecours;
 public class Joueur {
 
     private String nom ;
-//    private PaquetDeCartes main ;
+    private PaquetDeCartes main ;
 
     private Bottes bottes ;
 
     private Carte bataille ;
 
     private Jeu jeu ;
+    private boolean limitationVitesse;
+
     public Joueur(Jeu jeu, String nom){
         assert(jeu != null && nom != null) : "Les parametres jeu et nom ne doivent pas etre null" ;
         this.nom = nom ;
         this.jeu = jeu ;
         this.bottes = new Bottes() ;
         this.bataille = null ;
-//        this.main = new PaquetDeCartes() ;
+        this.limitationVitesse = false ;
+        this.main = new PaquetDeCartes() ;
     }
 
     public Joueur(Jeu jeu, String nom, Bottes bottes, Carte bataille){
@@ -47,30 +53,30 @@ public class Joueur {
         //Pas De Partage ici
         this.nom = j.getNom() ; // copie du nom
         //copie profonde du paquet (en utilisant le constructeur de copie profonde dans PaquetDeCartes)
-//        this.main = new PaquetDeCartes(j.getMain()) ;
+        this.main = new PaquetDeCartes(j.getMain()) ;
         this.jeu = j.jeu; // Copie uniquement la référence au jeu
 
     }
 
-//    public PaquetDeCartes getMain(){
-//        return this.main ;
-//    }
+    public PaquetDeCartes getMain(){
+        return this.main ;
+    }
 
-//    public int getNbCartesMain(){
-//        return this.main.getNbCartes() ;
-//    }
+    public int getNbCartesMain(){
+        return this.main.getNbCartes() ;
+    }
     public String getNom() {
         return nom;
     }
 
     public void ajouterMain(Carte carte){
         assert(carte != null) : " La carte ne doit pas etre null" ;
-//        this.main.ajouter(carte);
+        this.main.ajouter(carte);
     }
 
     public void retirerMain(Carte carte){
         assert(carte != null) : " La carte ne doit pas etre null" ;
-//        this.main.enlever(carte);
+        this.main.enlever(carte);
     }
 
     public void setJeu(Jeu jeu) {
@@ -78,19 +84,19 @@ public class Joueur {
         this.jeu = jeu ;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder str = new StringBuilder() ;
-        str.append("Joueur{ \n nom = ") ;
-        str.append(this.nom) ;
-        str.append("\nmain = ");
-//        str.append(this.main) ;
-        str.append("jeu = ");
-        str.append(this.jeu) ;
-        str.append("} \n") ;
-
-        return str.toString() ;
-    }
+//    @Override
+//    public String toString() {
+//        StringBuilder str = new StringBuilder() ;
+//        str.append("Joueur{ \n nom = ") ;
+//        str.append(this.nom) ;
+//        str.append("\nmain = ");
+////        str.append(this.main) ;
+//        str.append("jeu = ");
+//        str.append(this.jeu) ;
+//        str.append("} \n") ;
+//
+//        return str.toString() ;
+//    }
 
 
     //peutRecevoir Attaque
@@ -146,4 +152,22 @@ public class Joueur {
     }
 
 
+    // estPossiblePoser Bornes
+    public boolean estPossiblePoser(Borne200 borne200) {
+        //Important : au cours d’une partie, vous ne pouvez
+        //poser que 2 cartes « 200 » sur votre Zone de Jeu.
+        //A gerer apres gestion de paquets de cartesn, voir y'a combien de cartes de 200 (ca doit etre < 2)
+        return !this.limitationVitesse ;
+    }
+
+    public boolean estPossiblePoser(Borne100 borne200) {
+        return !this.limitationVitesse ;
+    }
+    public boolean estPossiblePoser(Borne75 borne200) {
+        return !this.limitationVitesse ;
+    }
+
+    public void setLimitationVitesse() {
+        this.limitationVitesse = !this.limitationVitesse ;
+    }
 }

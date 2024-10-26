@@ -1,30 +1,44 @@
-//package jeu.fabriques;
-//
-//import jeu.cartes.Carte;
-//import jeu.cartes.Couleur;
-//import jeu.cartes.PaquetDeCartes;
-//
-//public class FabriqueCartes {
-//
-//    public static PaquetDeCartes getPaquetVide(){
-//        return  new PaquetDeCartes() ;
-//    }
-//
-//    public static PaquetDeCartes getPaquet1Vert(){
-//        PaquetDeCartes pdc = new PaquetDeCartes() ;
-//        pdc.ajouter(new Carte(Couleur.VERT));
-//        return pdc ;
-//    }
-//    public static PaquetDeCartes getPaquet1Jaune(){
-//        PaquetDeCartes pdc = new PaquetDeCartes() ;
-//        pdc.ajouter(new Carte(Couleur.JAUNE));
-//        return pdc ;
-//    }
-//    public static PaquetDeCartes getPaquet1Vert1Jaune(){
-//        PaquetDeCartes pdc = new PaquetDeCartes() ;
-//        pdc.ajouter(new Carte(Couleur.VERT));
-//        pdc.ajouter(new Carte(Couleur.JAUNE));
-//        return pdc ;
-//    }
-//
-//}
+package jeu.fabriques;
+
+import jeu.cartes.Carte;
+import jeu.cartes.Couleur;
+import jeu.cartes.PaquetDeCartes;
+import jeu.cartes.attaques.Accident;
+import jeu.cartes.attaques.FeuRouge;
+import jeu.cartes.bornes.Borne25;
+import jeu.cartes.bornes.Borne75;
+import jeu.cartes.bottes.AsDuVolant;
+import jeu.cartes.bottes.CiterneDEssence;
+import jeu.cartes.bottes.Increvable;
+import jeu.cartes.bottes.Prioritaire;
+import jeu.cartes.parades.FeuVert;
+
+public class FabriqueCartes {
+
+    public static PaquetDeCartes getPaquetVide(){
+        return  new PaquetDeCartes() ;
+    }
+
+    public static PaquetDeCartes getPaquetBottes(){
+        PaquetDeCartes pdc = new PaquetDeCartes() ;
+        pdc.ajouter(new Prioritaire());
+        pdc.ajouter(new Increvable());
+        pdc.ajouter(new CiterneDEssence());
+        pdc.ajouter(new AsDuVolant());
+        return pdc ;
+    }
+
+    public static PaquetDeCartes getPaquet1Accident(){
+        PaquetDeCartes pdc = new PaquetDeCartes() ;
+        pdc.ajouter(new Accident());
+        return pdc ;
+    }
+
+    public static PaquetDeCartes getPaquet1FeuRouge1FeuVert(){
+        PaquetDeCartes pdc = new PaquetDeCartes() ;
+        pdc.ajouter(new FeuRouge());
+        pdc.ajouter(new FeuVert());
+        return pdc ;
+    }
+
+}

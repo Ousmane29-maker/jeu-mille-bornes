@@ -1,5 +1,6 @@
 package jeu.cartes.attaques;
 
+import jeu.cartes.Carte;
 import jeu.cartes.attaques.Attaque;
 import jeu.joueurs.Joueur;
 
@@ -13,5 +14,10 @@ public class Accident extends Attaque {
     @Override
     public boolean match(String s) {
         return s.equals("Accident");
+    }
+
+    @Override
+    public Carte copie() {
+        return new Accident();
     }
 }
