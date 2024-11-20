@@ -1,12 +1,8 @@
 package jeu.fabriques;
 
-import jeu.cartes.Carte;
-import jeu.cartes.Couleur;
 import jeu.cartes.PaquetDeCartes;
 import jeu.cartes.attaques.Accident;
 import jeu.cartes.attaques.FeuRouge;
-import jeu.cartes.bornes.Borne25;
-import jeu.cartes.bornes.Borne75;
 import jeu.cartes.bottes.AsDuVolant;
 import jeu.cartes.bottes.CiterneDEssence;
 import jeu.cartes.bottes.Increvable;

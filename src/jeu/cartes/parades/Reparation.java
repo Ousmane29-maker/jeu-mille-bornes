@@ -11,7 +11,7 @@ public class Reparation extends Parade {
     }
 
     @Override
-    public Carte copie() {
+    public Carte clone() {
         return new Reparation();
     }
 

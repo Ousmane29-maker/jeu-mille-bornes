@@ -17,7 +17,7 @@ public class Accident extends Attaque {
     }
 
     @Override
-    public Carte copie() {
+    public Carte clone() {
         return new Accident();
     }
 }

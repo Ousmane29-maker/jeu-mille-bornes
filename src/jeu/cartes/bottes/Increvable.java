@@ -6,7 +6,7 @@ import jeu.joueurs.Joueur;
 public class Increvable extends Botte{
 
     @Override
-    public Carte copie() {
+    public Carte clone() {
         return new Increvable();
     }
 

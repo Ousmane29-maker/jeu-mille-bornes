@@ -12,7 +12,7 @@ public class FeuVert extends Parade {
 
 
     @Override
-    public Carte copie() {
+    public Carte clone() {
         return new FeuVert();
     }
 }

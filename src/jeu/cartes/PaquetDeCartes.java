@@ -1,7 +1,5 @@
 package jeu.cartes;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -34,7 +32,7 @@ public class PaquetDeCartes {
         assert (pdc != null) : "le parametre pdc ne doit pas etre egale null" ;
         this.pdc = new LinkedList<>() ;
         for(Carte carte : pdc.pdc){
-            this.pdc.add(carte.copie()) ; // on utilise une methode copie pour copier profondement les cartes
+            this.pdc.add(carte.clone()) ; // on utilise une methode copie pour copier profondement les cartes
         }
     }
 

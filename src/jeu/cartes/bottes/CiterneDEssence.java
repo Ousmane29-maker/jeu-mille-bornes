@@ -7,7 +7,7 @@ public class CiterneDEssence extends Botte{
 
 
     @Override
-    public Carte copie() {
+    public Carte clone() {
         return new CiterneDEssence();
     }
 

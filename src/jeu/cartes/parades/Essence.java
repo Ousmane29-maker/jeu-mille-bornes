@@ -11,7 +11,7 @@ public class Essence extends Parade {
     }
 
     @Override
-    public Carte copie() {
+    public Carte clone() {
         return new Essence();
     }
 

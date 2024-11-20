@@ -66,6 +66,5 @@ public class Jeu {
     public void jeter(Carte c){
         assert (c !=null) : "le parametre c ne doit pas etre egale a null" ; //l'assert est deja fait dans enlever
         this.talon.ajouter(c); // la carte est jetee dans le talon
-        //faut il enlever la carte aussi dans la main du joueur courant ??????
     }
 }

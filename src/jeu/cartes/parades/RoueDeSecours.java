@@ -1,8 +1,6 @@
 package jeu.cartes.parades;
 
 import jeu.cartes.Carte;
-import jeu.cartes.bornes.Borne200;
-import jeu.cartes.parades.Parade;
 import jeu.joueurs.Joueur;
 
 public class RoueDeSecours extends Parade {
@@ -12,7 +10,7 @@ public class RoueDeSecours extends Parade {
     }
 
     @Override
-    public Carte copie() {
+    public Carte clone() {
         return new RoueDeSecours();
     }
 

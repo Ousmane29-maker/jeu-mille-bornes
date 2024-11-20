@@ -7,7 +7,7 @@ import jeu.joueurs.Joueur;
 public class Prioritaire extends Botte{
 
     @Override
-    public Carte copie() {
+    public Carte clone() {
         return new Prioritaire();
     }
 

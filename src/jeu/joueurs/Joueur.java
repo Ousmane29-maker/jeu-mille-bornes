@@ -5,9 +5,7 @@ import jeu.cartes.attaques.Accident;
 import jeu.cartes.attaques.Crevaison;
 import jeu.cartes.attaques.FeuRouge;
 import jeu.cartes.attaques.PanneDEssence;
-import jeu.cartes.bornes.Borne100;
-import jeu.cartes.bornes.Borne200;
-import jeu.cartes.bornes.Borne75;
+import jeu.cartes.bornes.Bornes;
 import jeu.cartes.bottes.AsDuVolant;
 import jeu.cartes.bottes.CiterneDEssence;
 import jeu.cartes.bottes.Increvable;
@@ -151,23 +149,21 @@ public class Joueur {
         return false ;
     }
 
+//
+//    // estPossiblePoser Bornes
+//    public boolean estPossiblePoser(Borne200 borne200) {
+//        //Important : au cours d’une partie, vous ne pouvez
+//        //poser que 2 cartes « 200 » sur votre Zone de Jeu.
+//        //A gerer apres gestion de paquets de cartesn, voir y'a combien de cartes de 200 (ca doit etre < 2)
+//        return !this.limitationVitesse ;
+//    }
 
-    // estPossiblePoser Bornes
-    public boolean estPossiblePoser(Borne200 borne200) {
-        //Important : au cours d’une partie, vous ne pouvez
-        //poser que 2 cartes « 200 » sur votre Zone de Jeu.
-        //A gerer apres gestion de paquets de cartesn, voir y'a combien de cartes de 200 (ca doit etre < 2)
-        return !this.limitationVitesse ;
-    }
-
-    public boolean estPossiblePoser(Borne100 borne200) {
-        return !this.limitationVitesse ;
-    }
-    public boolean estPossiblePoser(Borne75 borne200) {
-        return !this.limitationVitesse ;
-    }
 
     public void setLimitationVitesse() {
         this.limitationVitesse = !this.limitationVitesse ;
+    }
+
+    public boolean estPossiblePoser(Bornes bornes) {
+        return !this.limitationVitesse || bornes.getKms() <= 50; // a verifier
     }
 }

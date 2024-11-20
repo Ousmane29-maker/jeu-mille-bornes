@@ -270,11 +270,11 @@ public class TestCarte {
     public void TestBornesPeutEtrePoseeSurJeuAdversaire(){
         Jeu jeu = new Jeu() ;
         Joueur j = new Joueur(jeu, "joueur_A") ;
-        Borne25 borne25 = new Borne25() ;
-        Borne50 borne50 = new Borne50() ;
-        Borne75 borne75 = new Borne75() ;
-        Borne100 borne100 = new Borne100() ;
-        Borne200 borne200 = new Borne200() ;
+        Bornes borne25 = new Bornes(25) ;
+        Bornes borne50 = new Bornes(50) ;
+        Bornes borne75 = new Bornes(75) ;
+        Bornes borne100 = new Bornes(100) ;
+        Bornes borne200 = new Bornes(200) ;
 
         assertThrows(AssertionError.class, () -> borne25.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertThrows(AssertionError.class, () -> borne50.peutEtrePoseeSurJeuAdversaire(null)) ;
@@ -294,11 +294,11 @@ public class TestCarte {
     public void TestBornesPeutEtrePoseeSurMonJeu(){
         Jeu jeu = new Jeu() ;
         Joueur j = new Joueur(jeu, "joueur_A") ;
-        Borne25 borne25 = new Borne25() ;
-        Borne50 borne50 = new Borne50() ;
-        Borne75 borne75 = new Borne75() ;
-        Borne100 borne100 = new Borne100() ;
-        Borne200 borne200 = new Borne200() ;
+        Bornes borne25 = new Bornes(25) ;
+        Bornes borne50 = new Bornes(50) ;
+        Bornes borne75 = new Bornes(75) ;
+        Bornes borne100 = new Bornes(100) ;
+        Bornes borne200 = new Bornes(200) ;
 
         assertThrows(AssertionError.class, () -> borne25.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertThrows(AssertionError.class, () -> borne50.peutEtrePoseeSurJeuAdversaire(null)) ;

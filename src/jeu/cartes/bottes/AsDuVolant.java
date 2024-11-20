@@ -6,7 +6,7 @@ import jeu.joueurs.Joueur;
 public class AsDuVolant extends Botte{
 
     @Override
-    public Carte copie() {
+    public Carte clone() {
         return new AsDuVolant();
     }
 
