@@ -67,4 +67,19 @@ public class Jeu {
         assert (c !=null) : "le parametre c ne doit pas etre egale a null" ; //l'assert est deja fait dans enlever
         this.talon.ajouter(c); // la carte est jetee dans le talon
     }
+
+    public void jouer(String coup){
+        assert coupPossible(coup) : "le coup doit etre valide";
+        Joueur joueurCourant = collection.get(joueurQuiJoue) ;
+        joueurCourant.jouer(coup) ;
+    }
+
+    public boolean coupPossible(String coup){
+        Joueur joueurCourant = collection.get(joueurQuiJoue) ;
+        return joueurCourant.coupPossible(coup) ;
+    }
+
+    public Joueur getJoueeur(int indiceJoueur) {
+        return collection.get(indiceJoueur) ;
+    }
 }

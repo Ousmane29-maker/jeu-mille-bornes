@@ -17,69 +17,70 @@ import jeu.cartes.parades.RoueDeSecours;
 
 public class Joueur {
 
-    private String nom ;
-    private PaquetDeCartes main ;
+    private String nom;
+    private PaquetDeCartes main;
 
-    private Bottes bottes ;
+    private Bottes bottes;
 
-    private Carte bataille ;
+    private Carte bataille;
 
-    private Jeu jeu ;
+    private Jeu jeu;
     private boolean limitationVitesse;
 
-    public Joueur(Jeu jeu, String nom){
-        assert(jeu != null && nom != null) : "Les parametres jeu et nom ne doivent pas etre null" ;
-        this.nom = nom ;
-        this.jeu = jeu ;
-        this.bottes = new Bottes() ;
-        this.bataille = null ;
-        this.limitationVitesse = false ;
-        this.main = new PaquetDeCartes() ;
+    public Joueur(Jeu jeu, String nom) {
+        assert (jeu != null && nom != null) : "Les parametres jeu et nom ne doivent pas etre null";
+        this.nom = nom;
+        this.jeu = jeu;
+        this.bottes = new Bottes();
+        this.bataille = null;
+        this.limitationVitesse = false;
+        this.main = new PaquetDeCartes();
     }
 
-    public Joueur(Jeu jeu, String nom, Bottes bottes, Carte bataille){
-        assert(jeu != null && nom != null) : "Les parametres jeu et nom ne doivent pas etre null" ;
-        this.nom = nom ;
-        this.jeu = jeu ;
+    public Joueur(Jeu jeu, String nom, Bottes bottes, Carte bataille) {
+        assert (jeu != null && nom != null) : "Les parametres jeu et nom ne doivent pas etre null";
+        this.nom = nom;
+        this.jeu = jeu;
         this.bottes = bottes;
-        this.bataille =  bataille;
+        this.bataille = bataille;
     }
 
 
-    public Joueur(Joueur j){
-        assert(j != null) :"Le parametre j ne doit pas etre null" ;
+    public Joueur(Joueur j) {
+        assert (j != null) : "Le parametre j ne doit pas etre null";
         //Pas De Partage ici
-        this.nom = j.getNom() ; // copie du nom
+        this.nom = j.getNom(); // copie du nom
         //copie profonde du paquet (en utilisant le constructeur de copie profonde dans PaquetDeCartes)
-        this.main = new PaquetDeCartes(j.getMain()) ;
+        this.main = new PaquetDeCartes(j.getMain());
         this.jeu = j.jeu; // Copie uniquement la référence au jeu
 
     }
 
-    public PaquetDeCartes getMain(){
-        return this.main ;
+    public PaquetDeCartes getMain() {
+        return this.main;
     }
 
-    public int getNbCartesMain(){
-        return this.main.getNbCartes() ;
+    public int getNbCartesMain() {
+        return this.main.getNbCartes();
     }
+
     public String getNom() {
         return nom;
     }
 
-    public void ajouterMain(Carte carte){
-        assert(carte != null) : " La carte ne doit pas etre null" ;
+    public void ajouterMain(Carte carte) {
+        assert (carte != null) : " La carte ne doit pas etre null";
         this.main.ajouter(carte);
     }
 
-    public void retirerMain(Carte carte){
-        assert(carte != null) : " La carte ne doit pas etre null" ;
+    public void retirerMain(Carte carte) {
+        assert (carte != null) : " La carte ne doit pas etre null";
         this.main.enlever(carte);
     }
 
     public void setJeu(Jeu jeu) {
-        assert (jeu != null) : "Le parametre jeu ne doit pas etre null " ;
-        this.jeu = jeu ;
+        assert (jeu != null) : "Le parametre jeu ne doit pas etre null ";
+        this.jeu = jeu;
     }
 
 //    @Override
@@ -99,71 +100,118 @@ public class Joueur {
 
     //peutRecevoir Attaque
     public boolean peutRecevoir(Accident accident) {
-        return !bottes.estAsDuVolant() ;
+        return !bottes.estAsDuVolant();
     }
 
     public boolean peutRecevoir(FeuRouge feuRouge) {
-        return !bottes.estPrioritaire() ;
+        return !bottes.estPrioritaire();
     }
 
     public boolean peutRecevoir(Crevaison crevaison) {
         return !bottes.estIncrevable();
     }
+
     public boolean peutRecevoir(PanneDEssence panneDEssence) {
         return !bottes.estCiterneDEssence();
     }
 
     //estPossiblePoser Parade
     public boolean estPossiblePoser(FeuVert feuVert) {
-        return bataille != null && this.bataille.match("FeuRouge") ;
+        return bataille != null && this.bataille.match("FeuRouge");
     }
 
     public boolean estPossiblePoser(Reparation reparation) {
-        return bataille != null && this.bataille.match("Accident") ;
+        return bataille != null && this.bataille.match("Accident");
     }
 
     public boolean estPossiblePoser(Essence essence) {
-        return bataille != null && this.bataille.match("PanneDEssence") ;
+        return bataille != null && this.bataille.match("PanneDEssence");
     }
+
     public boolean estPossiblePoser(RoueDeSecours roueDeSecours) {
-        return bataille != null && this.bataille.match("Crevaison") ;
+        return bataille != null && this.bataille.match("Crevaison");
     }
 
-    // estPossiblePoser Botte
-    public boolean estPossiblePoser(Increvable increvable) {
-        // A completer
-        return false ;
-    }
 
-    public boolean estPossiblePoser(AsDuVolant asDuVolant) {
-        // A completer
-        return false ;
-    }
-
-    public boolean estPossiblePoser(Prioritaire prioritaire) {
-        // A completer
-        return false ;
-    }
-    public boolean estPossiblePoser(CiterneDEssence citerneDEssence) {
-        // A completer
-        return false ;
-    }
-
-//
-//    // estPossiblePoser Bornes
-//    public boolean estPossiblePoser(Borne200 borne200) {
 //        //Important : au cours d’une partie, vous ne pouvez
 //        //poser que 2 cartes « 200 » sur votre Zone de Jeu.
 //        //A gerer apres gestion de paquets de cartesn, voir y'a combien de cartes de 200 (ca doit etre < 2)
-//        return !this.limitationVitesse ;
-//    }
 
 
     public void setLimitationVitesse() {
-        this.limitationVitesse = !this.limitationVitesse ;
+        this.limitationVitesse = !this.limitationVitesse;
     }
 
     public boolean estPossiblePoser(Bornes bornes) {
         return !this.limitationVitesse || bornes.getKms() <= 50; // a verifier
     }
+
+    public void setBataille(Carte newBataille) {
+        this.bataille = newBataille;
+    }
+
+    public void setBottes(Bottes newBottes) {
+        this.bottes = newBottes;
+    }
+
+    public void jouer(String coup) {
+        // A faire
+    }
+
+    public boolean coupPossible(String coup) {
+        // Vérifie que le coup a au moins 2 caractere et que le deuxieme correspond bien a un entier
+        if (coup == null || coup.length() < 2 || !Character.isDigit(coup.charAt(1))) {
+            return false;
+        }
+        // Vérifie les trois  de coups possibles
+        return coupJxPossible(coup) || coupPxPossible(coup) || coupPxyPossible(coup);
+    }
+
+
+    private boolean coupJxPossible(String coup) {
+        // le joueur souhaite jeter la carte a l'indice x
+        if (coup.length() == 2 && coup.charAt((0)) == 'J') {
+            int indiceCarte = coup.charAt(1) - '1';
+            if (indiceCarte >= 0 && indiceCarte < getNbCartesMain()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean coupPxPossible(String coup) {
+        // le joueur souhaite poser la carte a l'indice x sur son jeu
+        if (coup.length() == 2 && coup.charAt((0)) == 'P') {
+                int indiceCarte = coup.charAt(1) - '1';
+                if (indiceCarte >= 0 && indiceCarte < getNbCartesMain()) {
+                    Carte carte = getMain().getCarte(indiceCarte);
+                    return carte.peutEtrePoseeSurMonJeu(this);
+                }
+        }
+        return false;
+    }
+
+    private boolean coupPxyPossible(String coup){
+        // le joueur souhaite poser la carte x sur son adversaire y
+        if (coup.length() == 3 && coup.charAt((0)) == 'P') {
+            int indiceCarte = coup.charAt(1) - '1';
+            if (indiceCarte >= 0 && indiceCarte < getNbCartesMain()) {
+                // ici x est valide
+                if(Character.isDigit(coup.charAt(2))) {
+                    //ici y corresopond bien a un entier
+                    int indiceJoueur = coup.charAt(2) - '1';
+                    // indice joueur doit etre valide et different de l'indice du joueur actuel
+                    if (indiceJoueur >= 0 && indiceJoueur < jeu.getNbJoueurs() && indiceJoueur != jeu.getJoueurQuiJoue()) {
+                        Carte carte = getMain().getCarte(indiceCarte);
+                        Joueur joueurAdverse = jeu.getJoueeur(indiceJoueur);
+                        return carte.peutEtrePoseeSurJeuAdversaire(joueurAdverse);
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    //est ce que bataille doit etre force a etre une attaque ??
+
 }
