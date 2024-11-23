@@ -16,6 +16,26 @@ public abstract class Carte {
         return false ;
     }
 
+    public boolean estUneBorne() {
+        return false ;
+    }
 
+    public boolean estUneLimitationDeVitesse() {
+        return false;
+    }
+    public boolean estUneFinLimitationDeVitesse() {
+        return  false ;
+    }
+
+    public boolean estUneBotte() {
+        return false ;
+    }
     public abstract Carte clone();
+
+    public void activerBotte(Bottes bottes) {
+        // Ne fait rien par défaut, sera surchargée par les Bottes et ... oui
+    }
+
+
+
 }

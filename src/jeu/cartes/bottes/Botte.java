@@ -17,4 +17,9 @@ public abstract class Botte extends Carte {
     public boolean match(String s) {
         return false;
     }
+
+    @Override
+    public boolean estUneBotte() {
+        return true ;
+    }
 }

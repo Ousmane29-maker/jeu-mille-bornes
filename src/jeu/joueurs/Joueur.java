@@ -20,6 +20,10 @@ public class Joueur {
     private String nom;
     private PaquetDeCartes main;
 
+    int bornes;
+    private int cartes200Jouees; // Compteur pour les cartes "200 km"
+
+
     private Bottes bottes;
 
     private Carte bataille;
@@ -31,6 +35,8 @@ public class Joueur {
         assert (jeu != null && nom != null) : "Les parametres jeu et nom ne doivent pas etre null";
         this.nom = nom;
         this.jeu = jeu;
+        this.bornes = 0;
+        this.cartes200Jouees = 0;
         this.bottes = new Bottes();
         this.bataille = null;
         this.limitationVitesse = false;
@@ -132,6 +138,13 @@ public class Joueur {
         return bataille != null && this.bataille.match("Crevaison");
     }
 
+    public boolean estPossiblePoser(FinLimitationDeVitesse finLimitationDeVitesse) {
+        return limitationVitesse ;
+    }
+    public boolean peuRecevoir(LimitationDeVitesse limitationDeVitesse) {
+        return !limitationVitesse ;
+    }
+
 
 //        //Important : au cours d’une partie, vous ne pouvez
 //        //poser que 2 cartes « 200 » sur votre Zone de Jeu.
@@ -143,8 +156,18 @@ public class Joueur {
     }
 
     public boolean estPossiblePoser(Bornes bornes) {
-        return !this.limitationVitesse || bornes.getKms() <= 50; // a verifier
+        // Vérifier la limitation de vitesse
+        if (this.limitationVitesse && bornes.getKms() > 50) {
+            return false;
+        }
+        // Vérifier si c'est une carte "200 km" et si elle a déjà été jouée 2 fois
+        if (bornes.getKms() == 200 && this.cartes200Jouees >= 2) {
+            return false;
+        }
+        // Si aucune règle ne bloque, la carte peut être posée bien surrr
+        return true;
     }
+
 
     public void setBataille(Carte newBataille) {
         this.bataille = newBataille;
@@ -155,8 +178,57 @@ public class Joueur {
     }
 
     public void jouer(String coup) {
-        // A faire
+        // le assert est deja fait dans jeu
+        int indiceCarte = coup.charAt(1) - '1' ;        Carte carte = getMain().getCarte(indiceCarte) ;
+        if(coup.charAt(0) == 'J'){
+            jouerJeter(carte);
+        } else if (coup.length() == 2) {
+            jouerPoserSurMonJeu(carte) ;
+        }else {
+            int indiceJoueurAdverse = coup.charAt(2) - '1' ;
+            Joueur joueurAdverse = jeu.getJoueeur(indiceJoueurAdverse);
+            jouerJeuAdverse(carte, joueurAdverse) ;
+        }
     }
+
+    private void jouerJeuAdverse(Carte carte, Joueur joueurAdverse) {
+        if(carte.estUneAttaque()){
+            joueurAdverse.setBataille(carte);
+        } else if (carte.estUneLimitationDeVitesse()) {
+            joueurAdverse.setLimitationVitesse() ;
+        }
+        // Retire la carte de la main
+        getMain().enlever(carte);
+    }
+
+    private void jouerPoserSurMonJeu(Carte carte) {
+        if (carte.estUneParade()) {
+            // Pose une parade
+            setBataille(carte);
+        } else if (carte.estUneBorne()) {
+            // Gérer les Bornes
+            Bornes bornes = (Bornes) carte;
+            if (bornes.getKms() == 200) {
+                this.cartes200Jouees++;
+            }
+            this.bornes += bornes.getKms(); // la distance parcourue
+        } else if (carte.estUneBotte()) {
+            // Active une botte
+            carte.activerBotte(this.bottes);
+        } else if (carte.estUneFinLimitationDeVitesse()) {
+            setLimitationVitesse();
+        }
+
+        // Retire la carte de la main
+        getMain().enlever(carte);
+    }
+
+
+    private void jouerJeter(Carte carte) {
+        getMain().enlever(carte); // l'enlever de la main du joueur
+        jeu.jeter(carte); // le jeter dans le talon
+    }
+
 
     public boolean coupPossible(String coup) {
         // Vérifie que le coup a au moins 2 caractere et que le deuxieme correspond bien a un entier
@@ -212,6 +284,14 @@ public class Joueur {
         return false;
     }
 
+
+
     //est ce que bataille doit etre force a etre une attaque ??
+
+    /*Attention : un joueur ne peut pas être attaqué simultanément avec 2
+    attaques à l’exception de la Limite de Vitesse qui peut être jouée en plus
+    d’une autre carte Attaque.
+    Doit on annuler l'attaque en cours et prendre la nouvelle attaque , en modifiant la carte batataille de son adversaire ??
+     */
 
 }

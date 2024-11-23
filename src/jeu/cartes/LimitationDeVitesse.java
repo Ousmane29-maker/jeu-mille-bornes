@@ -1,25 +1,23 @@
-package jeu.cartes.bornes;
+package jeu.cartes;
 
-import jeu.cartes.Carte;
 import jeu.joueurs.Joueur;
 
-public class Bornes extends Carte {
-
-    private int kms ;
-
-    public Bornes(int kms) {
-        this.kms =kms ;
+public class LimitationDeVitesse extends Carte {
+    @Override
+    public boolean estUneLimitationDeVitesse() {
+        return true;
     }
 
+    @Override
     public boolean peutEtrePoseeSurMonJeu(Joueur j) {
         assert (j != null) : "le parametre j ne doit pas etre null" ;
-        return j.estPossiblePoser(this);
+        return false;
     }
 
     @Override
     public boolean peutEtrePoseeSurJeuAdversaire(Joueur j) {
         assert (j != null) : "le parametre j ne doit pas etre null" ;
-        return false;
+        return j.peuRecevoir(this) ;
     }
 
     @Override
@@ -29,15 +27,7 @@ public class Bornes extends Carte {
 
     @Override
     public Carte clone() {
-        return new Bornes(this.getKms());
+        return new LimitationDeVitesse();
     }
 
-    @Override
-    public boolean estUneBorne() {
-        return true;
-    }
-
-    public int getKms() {
-        return kms;
-    }
 }
