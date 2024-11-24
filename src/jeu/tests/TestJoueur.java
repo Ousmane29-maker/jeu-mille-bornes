@@ -220,6 +220,8 @@ class TestJoueur {
         Joueur j2 = jeu.getJoueur(1);
         j1.jouer("P12");
         assertTrue(j2.getBataille().match("Accident"));
+        assertEquals(0, j1.getMain().getNbCartes()) ;
+        assertEquals(1, j2.getMain().getNbCartes()) ;
     }
 
 }

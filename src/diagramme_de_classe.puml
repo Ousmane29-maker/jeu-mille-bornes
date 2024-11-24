@@ -1,9 +1,170 @@
 @startuml
+class Bornes {
+-int kms
+}
+abstract class Carte{}
+abstract class Parade{}
+abstract class Botte{}
+abstract class Attaque{}
+
+class CollectionJoueurs {
+    + CollectionJoueurs(int nbJoueurs)
+    + CollectionJoueurs(CollectionJoueurs cj)
+    + void ajouter(Joueur j)
+    + int size()
+    + Joueur get(int no)
+    + String toString()
+}
+
+class Joueur {
+    - String nom
+    - int bornes
+    - int cartes200Jouees
+    - boolean limitationVitesse
+    - int cartes200Jouees
+    + void Joueur(Jeu jeu, String nom)
+    + void Joueur(Jeu jeu, String nom, Bottes bottes, Carte bataille)
+    + void Joueur(Joueur j)
+    + PaquetDeCartes getMain()
+    + int getNbCartesMain()
+    + String getNom()
+    + void ajouterMain(Carte carte)
+    + void retirerMain(Carte carte)
+    + void setJeu(Jeu jeu)
+    + boolean peutRecevoir(Accident accident)
+    + boolean peutRecevoir(FeuRouge feuRouge)
+    + boolean peutRecevoir(Crevaison crevaison)
+    + boolean peutRecevoir(PanneDEssence panneDEssence)
+    + boolean peuRecevoir(LimitationDeVitesse limitationDeVitesse)
+    + boolean estPossiblePoser(FeuVert feuVert)
+    + boolean estPossiblePoser(Reparation reparation)
+    + boolean estPossiblePoser(Essence essence)
+    + boolean estPossiblePoser(RoueDeSecours roueDeSecours)
+    + boolean estPossiblePoser(FinLimitationDeVitesse finLimitationDeVitesse)
+    + void setLimitationVitesse()
+    + boolean estPossiblePoser(Bornes bornes)
+    + void setBataille(Carte newBataille)
+    + void setBottes(Bottes newBottes)
+    + void jouer(String coup)
+    + boolean coupPossible(String coup)
+    + Carte getBataille()
+    - void jouerJeuAdverse(Carte carte, Joueur joueurAdverse)
+    - void jouerPoserSurMonJeu(Carte carte)
+    - void activerBotte(Carte carte)
+    - void jouerJeter(Carte carte)
+    - boolean coupJxPossible(String coup)
+    - boolean coupPxPossible(String coup)
+    - boolean coupPxyPossible(String coup)
+}
+
+class Jeu {
+    - int joueurQuiJoue
+    - int joueurQuiDistribue
+    + Jeu()
+    + Jeu(Joueur j)
+    + void jeter(Carte c)
+    + void add(Joueur j)
+    + int getNbJoueurs()
+    + int getJoueurQuiDistribue()
+    + int getJoueurQuiJoue()
+    + void setJoueurQuiJoue()
+    + Joueur getJoueur(int indiceJoueur)
+    + String toString()
+    + void jouer(String coup)
+    + boolean coupPossible(String coup)
+}
+
 class PaquetDeCartes {
-+PaquetDeCartes()
+    + PaquetDeCartes()
 }
+
 class Carte {
-+Carte()
+    + boolean peutEtrePoseeSurMonJeu(Joueur j)
+    + boolean peutEtrePoseeSurJeuAdversaire(Joueur j)
+    + boolean match(String s)
+    + boolean estUneAttaque()
+    + boolean estUneParade()
 }
+
+class Bottes {
+    - boolean estAsDuVolant
+    - boolean estPrioritaire
+    - boolean estCiterneDEssence
+    - boolean estIncrevable
+    + boolean estAsDuVolant()
+    + boolean estPrioritaire()
+    + boolean estCiterneDEssence()
+    + boolean estIncrevable()
+    + void setPrioritaire()
+    + void setAsDuVolant()
+    + void setCiterneDEssence()
+    + void setIncrevable()
+}
+
+class CollectionJeux {
+    + CollectionJeux()
+    + void add(Jeu jeu)
+    + void add(CollectionJeux cj)
+    + void remove(Jeu jeu)
+    + void remove(CollectionJeux cj)
+    + int size()
+}
+
+class FabriqueJeux {
+    + {static} CollectionJeux creerJeuUnJoueur(nom : String, cT : Carte[], cM : Carte[], b : Bottes[])
+    + {static} CollectionJeux getMB1JReparationCorrect()
+    + {static} CollectionJeux getMB1JAccidentCorrect()
+    + {static} CollectionJeux getMB1JFeuVertCorrectSansAsDuVolant()
+    + {static} CollectionJeux getMB2JAccidentCorrect()
+    - {static} Jeu combiner(jeu1 : Jeu, jeu2 : Jeu)
+}
+
+class FabriqueBottes {
+    + {static} Bottes[] getToutesLesBottesPossibles()
+    + {static} Bottes[] getToutesLesBottesPossiblesSaufAsDuVolant()
+    - {static} Bottes creerBottes(estAsDuVolant : boolean, estPrioritaire : boolean, estCiterneDEssence : boolean, estIncrevable : boolean)
+}
+
+class FabriqueCartes {
+    + {static} PaquetDeCartes getPaquetVide()
+    + {static} PaquetDeCartes getPaquetBottes()
+    + {static} PaquetDeCartes getPaquet1Accident()
+    + {static} PaquetDeCartes getPaquet1FeuRouge1FeuVert()
+}
+
+' Relations entre les classes
+CollectionJoueurs -- "*" Joueur : cj
+Jeu -- "1" CollectionJoueurs
+Joueur "1" -- Jeu : joueurCourant
+Joueur -- "1" Jeu
+Jeu -- "1" PaquetDeCartes : talon
+Jeu -- "1" PaquetDeCartes : pioche
 PaquetDeCartes -- "*" Carte
+Joueur -- "1" Carte : bataille
+Joueur -- "1" Bottes : bottes
+
+'pour les cartes
+LimitationDeVitesse --|> Carte
+FinLimitationDeVitesse --|> Carte
+
+Parade -right-|> Carte
+Botte -up-|> Carte
+Attaque -left-|> Carte
+Bornes -up-|> Carte
+
+FeuRouge -up-|> Attaque
+Crevaison -up-|> Attaque
+PanneDEssence -up-|> Attaque
+Accident -up-|> Attaque
+
+FeuVert -up-|> Parade
+RoueDeSecours -up-|> Parade
+Essence -up-|> Parade
+Reparation -up-|> Parade
+
+Prioritaire -up-|> Botte
+Increvable -up-|> Botte
+CiterneDEssence -up-|> Botte
+AsDuVolant -up-|> Botte
+
 @enduml

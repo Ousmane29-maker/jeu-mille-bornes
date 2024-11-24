@@ -70,12 +70,14 @@ public class Jeu {
 
     public void jouer(String coup){
         assert coupPossible(coup) : "le coup doit etre valide";
-        Joueur joueurCourant = collection.get(joueurQuiJoue) ;
+        Joueur joueurCourant = getJoueur(joueurQuiJoue) ;
         joueurCourant.jouer(coup) ;
+
+        // c'est ici que l'on doit changer le joueur courant ???
     }
 
     public boolean coupPossible(String coup){
-        Joueur joueurCourant = collection.get(joueurQuiJoue) ;
+        Joueur joueurCourant = getJoueur(joueurQuiJoue) ;
         return joueurCourant.coupPossible(coup) ;
     }
 

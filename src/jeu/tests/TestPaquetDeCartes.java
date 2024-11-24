@@ -1,6 +1,5 @@
 package jeu.tests;
 import jeu.cartes.Carte ;
-import jeu.cartes.Couleur;
 import jeu.cartes.PaquetDeCartes;
 import jeu.cartes.attaques.Accident;
 import jeu.cartes.attaques.Crevaison;
