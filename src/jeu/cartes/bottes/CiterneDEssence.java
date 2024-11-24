@@ -12,9 +12,10 @@ public class CiterneDEssence extends Botte{
         return new CiterneDEssence();
     }
 
+
     @Override
-    public void activerBotte(Bottes bottes) {
-        bottes.setEstCiterneDEssence(); // Active Citerne d'Essence
+    public boolean match(String s) {
+        return s.equals("CiterneDEssence");
     }
 
 }

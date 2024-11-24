@@ -11,9 +11,10 @@ public class Increvable extends Botte{
         return new Increvable();
     }
 
+
     @Override
-    public void activerBotte(Bottes bottes) {
-        bottes.setEstIncrevable(); // Active Increvable
+    public boolean match(String s) {
+        return s.equals("Increvable");
     }
 
 }

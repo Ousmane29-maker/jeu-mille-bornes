@@ -1,9 +1,10 @@
 package jeu;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class CollectionJeux {
+public class CollectionJeux implements Iterable<Jeu> {
 
     private ArrayList<Jeu> jeux;
 
@@ -46,4 +47,8 @@ public class CollectionJeux {
     }
 
 
+    @Override
+    public Iterator<Jeu> iterator() {
+        return jeux.iterator();
+    }
 }

@@ -12,9 +12,10 @@ public class Prioritaire extends Botte{
         return new Prioritaire();
     }
 
+
     @Override
-    public void activerBotte(Bottes bottes) {
-        bottes.setEstPrioritaire(); // Active Prioritaire
+    public boolean match(String s) {
+        return s.equals("Prioritaire");
     }
 
 }

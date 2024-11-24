@@ -14,4 +14,8 @@ public class RoueDeSecours extends Parade {
         return new RoueDeSecours();
     }
 
+    @Override
+    public boolean match(String s) {
+        return s.equals("RoueDeSecours");
+    }
 }

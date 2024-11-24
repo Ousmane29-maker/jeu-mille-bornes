@@ -79,7 +79,8 @@ public class Jeu {
         return joueurCourant.coupPossible(coup) ;
     }
 
-    public Joueur getJoueeur(int indiceJoueur) {
+    public Joueur getJoueur(int indiceJoueur) {
         return collection.get(indiceJoueur) ;
     }
+
 }

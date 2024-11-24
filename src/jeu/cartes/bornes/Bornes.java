@@ -24,17 +24,12 @@ public class Bornes extends Carte {
 
     @Override
     public boolean match(String s) {
-        return false;
+        return s.equals("Bornes");
     }
 
     @Override
     public Carte clone() {
         return new Bornes(this.getKms());
-    }
-
-    @Override
-    public boolean estUneBorne() {
-        return true;
     }
 
     public int getKms() {

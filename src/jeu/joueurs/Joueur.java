@@ -7,7 +7,6 @@ import jeu.cartes.attaques.FeuRouge;
 import jeu.cartes.attaques.PanneDEssence;
 import jeu.cartes.bornes.Bornes;
 import jeu.cartes.bottes.AsDuVolant;
-import jeu.cartes.bottes.CiterneDEssence;
 import jeu.cartes.bottes.Increvable;
 import jeu.cartes.bottes.Prioritaire;
 import jeu.cartes.parades.Essence;
@@ -186,15 +185,17 @@ public class Joueur {
             jouerPoserSurMonJeu(carte) ;
         }else {
             int indiceJoueurAdverse = coup.charAt(2) - '1' ;
-            Joueur joueurAdverse = jeu.getJoueeur(indiceJoueurAdverse);
+            Joueur joueurAdverse = jeu.getJoueur(indiceJoueurAdverse);
             jouerJeuAdverse(carte, joueurAdverse) ;
         }
     }
 
     private void jouerJeuAdverse(Carte carte, Joueur joueurAdverse) {
+
         if(carte.estUneAttaque()){
             joueurAdverse.setBataille(carte);
-        } else if (carte.estUneLimitationDeVitesse()) {
+
+        } else if (carte.match("LimitationDeVitesse")) {
             joueurAdverse.setLimitationVitesse() ;
         }
         // Retire la carte de la main
@@ -205,7 +206,7 @@ public class Joueur {
         if (carte.estUneParade()) {
             // Pose une parade
             setBataille(carte);
-        } else if (carte.estUneBorne()) {
+        } else if (carte.match("Bornes")) {
             // Gérer les Bornes
             Bornes bornes = (Bornes) carte;
             if (bornes.getKms() == 200) {
@@ -214,14 +215,26 @@ public class Joueur {
             this.bornes += bornes.getKms(); // la distance parcourue
         } else if (carte.estUneBotte()) {
             // Active une botte
-            carte.activerBotte(this.bottes);
-        } else if (carte.estUneFinLimitationDeVitesse()) {
+            this.activerBotte(carte);
+        } else if (carte.match("FinLimitationDeVitesse")) {
             setLimitationVitesse();
         }
 
         // Retire la carte de la main
         getMain().enlever(carte);
     }
+
+    private void activerBotte(Carte carte) {
+        switch (carte) {
+            case AsDuVolant ignored -> this.bottes.setEstAsDuVolant();
+            case Essence ignored -> this.bottes.setEstCiterneDEssence();
+            case Prioritaire ignored -> this.bottes.setEstPrioritaire();
+            case Increvable ignored -> this.bottes.setEstIncrevable();
+            default -> System.out.println("Carte non reconnue pour l'activation de botte, j'espère qu'on ne viendra jamais ici !");
+        }
+
+    }
+
 
 
     private void jouerJeter(Carte carte) {
@@ -275,7 +288,7 @@ public class Joueur {
                     // indice joueur doit etre valide et different de l'indice du joueur actuel
                     if (indiceJoueur >= 0 && indiceJoueur < jeu.getNbJoueurs() && indiceJoueur != jeu.getJoueurQuiJoue()) {
                         Carte carte = getMain().getCarte(indiceCarte);
-                        Joueur joueurAdverse = jeu.getJoueeur(indiceJoueur);
+                        Joueur joueurAdverse = jeu.getJoueur(indiceJoueur);
                         return carte.peutEtrePoseeSurJeuAdversaire(joueurAdverse);
                     }
                 }
@@ -284,6 +297,9 @@ public class Joueur {
         return false;
     }
 
+    public Carte getBataille() {
+        return bataille ;
+    }
 
 
     //est ce que bataille doit etre force a etre une attaque ??

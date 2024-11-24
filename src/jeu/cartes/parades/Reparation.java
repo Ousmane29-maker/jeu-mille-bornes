@@ -15,4 +15,9 @@ public class Reparation extends Parade {
         return new Reparation();
     }
 
+    @Override
+    public boolean match(String s) {
+        return s.equals("Reparation");
+    }
+
 }

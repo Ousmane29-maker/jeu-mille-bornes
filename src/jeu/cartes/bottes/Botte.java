@@ -13,10 +13,6 @@ public abstract class Botte extends Carte {
         assert (j != null) : "le parametre j ne doit pas etre null" ;
         return true ;
     }
-    @Override
-    public boolean match(String s) {
-        return false;
-    }
 
     @Override
     public boolean estUneBotte() {

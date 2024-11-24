@@ -4,7 +4,7 @@ import jeu.cartes.Bottes;
 
 public class FabriqueBottes {
 
-    public Bottes[] getToutesLesBottesPossibles() {
+    public static Bottes[] getToutesLesBottesPossibles() {
         // 2*2*2*2 = 16
         Bottes[] lesBottesPossibles = new Bottes[16];
 
@@ -29,10 +29,27 @@ public class FabriqueBottes {
         return lesBottesPossibles;
     }
 
+    public static Bottes[] getToutesLesBottesPossiblesSaufAsDuVolant() {
+        // 2*2*2*1 = 16
+        Bottes[] lesBottesPossibles = new Bottes[8];
+
+        // Crée les différentes combinaisons de bottes
+        lesBottesPossibles[0] = creerBottes(false, false, false, false);
+        lesBottesPossibles[1] = creerBottes(false, true, false, false);
+        lesBottesPossibles[2] = creerBottes(false, true, true, false);
+        lesBottesPossibles[3] = creerBottes(false, false, true, false);
+        lesBottesPossibles[4] = creerBottes(false, true, true, true);
+        lesBottesPossibles[5] = creerBottes(false, true, false, true);
+        lesBottesPossibles[6] = creerBottes(false, false, true, true);
+        lesBottesPossibles[7] = creerBottes(false, false, false, true);
+
+        return lesBottesPossibles;
+    }
+
     /**
      * Méthode utilitaire pour créer une combinaison spécifique de bottes.
      */
-    private Bottes creerBottes(boolean estAsDuVolant, boolean estPrioritaire, boolean estCiterneDEssence, boolean estIncrevable) {
+    private static Bottes creerBottes(boolean estAsDuVolant, boolean estPrioritaire, boolean estCiterneDEssence, boolean estIncrevable) {
         Bottes bottes = new Bottes();
         if (estAsDuVolant) {
             bottes.setEstAsDuVolant();

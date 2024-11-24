@@ -15,4 +15,9 @@ public class Essence extends Parade {
         return new Essence();
     }
 
+    @Override
+    public boolean match(String s) {
+        return s.equals("Essence");
+    }
+
 }

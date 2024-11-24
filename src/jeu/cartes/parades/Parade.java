@@ -15,10 +15,6 @@ public abstract class Parade extends Carte {
         return false;
     }
 
-    @Override
-    public boolean match(String s) {
-        return false;
-    }
 
 
 }

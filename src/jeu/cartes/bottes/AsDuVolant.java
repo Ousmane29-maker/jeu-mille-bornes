@@ -12,8 +12,8 @@ public class AsDuVolant extends Botte{
     }
 
     @Override
-    public void activerBotte(Bottes bottes) {
-        bottes.setEstAsDuVolant(); // Active As du Volant
+    public boolean match(String s) {
+        return s.equals("AsDuVolant");
     }
 
 

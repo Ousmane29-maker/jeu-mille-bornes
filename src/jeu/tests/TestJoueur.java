@@ -3,7 +3,6 @@ package jeu.tests;
 import jeu.Jeu;
 import jeu.cartes.Bottes;
 import jeu.cartes.Carte;
-import jeu.cartes.Couleur;
 import jeu.cartes.attaques.Accident;
 import jeu.cartes.attaques.Crevaison;
 import jeu.cartes.attaques.FeuRouge;
@@ -14,6 +13,8 @@ import jeu.cartes.parades.FeuVert;
 import jeu.joueurs.Joueur;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -203,5 +204,22 @@ class TestJoueur {
 
     }
 
+    @ParameterizedTest
+    @MethodSource("jeu.fabriques.FabriqueJeux#getMB1JReparationCorrect")
+    void testPoserReparationCorrect(Jeu jeu) {
+        Joueur joueur = jeu.getJoueur(0);
+        jeu.jouer("P1");
+        assertTrue(joueur.getBataille().match("Reparation"));
+        assertEquals(0,joueur.getMain().getNbCartes()) ;
+    }
+
+    @ParameterizedTest
+    @MethodSource ("jeu.fabriques.FabriqueJeux#getMB2JAccidentCorrect")
+    void testPoserAutruiAccidentCorrect(Jeu jeu) {
+        Joueur j1 = jeu.getJoueur(0);
+        Joueur j2 = jeu.getJoueur(1);
+        j1.jouer("P12");
+        assertTrue(j2.getBataille().match("Accident"));
+    }
 
 }

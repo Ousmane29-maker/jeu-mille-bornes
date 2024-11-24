@@ -3,10 +3,6 @@ package jeu.cartes;
 import jeu.joueurs.Joueur;
 
 public class LimitationDeVitesse extends Carte {
-    @Override
-    public boolean estUneLimitationDeVitesse() {
-        return true;
-    }
 
     @Override
     public boolean peutEtrePoseeSurMonJeu(Joueur j) {
@@ -20,9 +16,8 @@ public class LimitationDeVitesse extends Carte {
         return j.peuRecevoir(this) ;
     }
 
-    @Override
     public boolean match(String s) {
-        return false;
+        return s.equals("LimitationDeVitesse") ;
     }
 
     @Override

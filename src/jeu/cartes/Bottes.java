@@ -15,19 +15,28 @@ public class Bottes {
     }
 
     public void setEstAsDuVolant() {
-        this.estAsDuVolant = !this.estAsDuVolant;
+        if (!estAsDuVolant) {
+            this.estAsDuVolant = true;  // Active AsDuVolant seulement si ce n'est pas déjà fait
+        }
     }
 
+
     public void setEstPrioritaire() {
-        this.estPrioritaire = !this.estPrioritaire;
+        if (!estPrioritaire) {
+            this.estPrioritaire = true;
+        }
     }
 
     public void setEstCiterneDEssence() {
-        this.estCiterneDEssence = !this.estCiterneDEssence;
+        if (!estCiterneDEssence) {
+            this.estCiterneDEssence = true;
+        }
     }
 
     public void setEstIncrevable() {
-        this.estIncrevable = !this.estIncrevable;
+        if (!estIncrevable) {
+            this.estIncrevable = true;  // Active AsDuVolant seulement si ce n'est pas déjà fait
+        }
     }
 
     public boolean estAsDuVolant() {

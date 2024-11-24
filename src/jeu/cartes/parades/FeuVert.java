@@ -15,4 +15,10 @@ public class FeuVert extends Parade {
     public Carte clone() {
         return new FeuVert();
     }
+
+    @Override
+    public boolean match(String s) {
+        return s.equals("FeuVert");
+    }
+
 }
