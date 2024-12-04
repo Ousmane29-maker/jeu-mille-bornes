@@ -1,7 +1,17 @@
 package jeu.cartes;
 
+import jeu.ErreurFichier;
+import jeu.cartes.attaques.FeuRouge;
+import jeu.cartes.bornes.Bornes;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class PaquetDeCartes {
     LinkedList<Carte> pdc ;
@@ -140,30 +150,84 @@ public class PaquetDeCartes {
     }
 
 
-    /**
-     * @param o l'objet a comparer
-     * @return vrai s'ils sont egal (ici en profondeur : on compare chaque carte, chaque couleur)
-     */
-    @Override
-    public boolean equals(Object o){
-        if (this == o){ // Vérifie si c'est le même objet
-            return true ;
-        }
-        if (o == null || getClass() != o.getClass()) { // Vérifie si o est du même type ou o == null
-            return false;
-        }
-        PaquetDeCartes pdc2 = (PaquetDeCartes) o ;
-        if(this.getNbCartes() != pdc2.getNbCartes()){
-            return false ; // on retourne faux s'ils n'ont pas le meme nombre de cartes
-        }
-        boolean equals = true;
-        for(int i = 0; i < this.getNbCartes(); i++){
-            // Comparer les classes des cartes puisque chaque carte correspond a une classe specifique
-            if(!this.getCarte(i).getClass().equals(pdc2.getCarte(i).getClass())){
-                equals = false ;
+//    /**
+//     * @param o l'objet a comparer
+//     * @return vrai s'ils sont egal (ici en profondeur : on compare chaque carte, chaque couleur)
+//     */
+//
+//    // Avant que carte ne soit une classe abstraite
+//    @Override
+//    public boolean equals(Object o){
+//        if (this == o){ // Vérifie si c'est le même objet
+//            return true ;
+//        }
+//        if (o == null || getClass() != o.getClass()) { // Vérifie si o est du même type ou o == null
+//            return false;
+//        }
+//        PaquetDeCartes pdc2 = (PaquetDeCartes) o ;
+//        if(this.getNbCartes() != pdc2.getNbCartes()){
+//            return false ; // on retourne faux s'ils n'ont pas le meme nombre de cartes
+//        }
+//        boolean equals = true;
+//        for(int i = 0; i < this.getNbCartes(); i++){
+//            // Comparer les classes des cartes puisque chaque carte correspond a une classe specifique
+//            if(!this.getCarte(i).getClass().equals(pdc2.getCarte(i).getClass())){
+//                equals = false ;
+//            }
+//        }
+//        return equals ;
+//    }
+
+    public void ecrire(String nomDeFichier) throws ErreurFichier {
+        try (FileWriter flot = new FileWriter(nomDeFichier);
+             PrintWriter flotFiltre = new PrintWriter(flot)) {
+
+            // Récupération des comptages de cartes
+            Map<String, Integer> carteCounts = nbCarteDeChaqueType();
+
+            // Écriture des données dans le fichier
+            for (Map.Entry<String, Integer> entry : carteCounts.entrySet()) {
+                String name = entry.getKey();
+                Integer value = entry.getValue();
+                if(value == -1){
+                    flotFiltre.printf("%s%n", name);
+                }else{
+                    flotFiltre.printf("%s %d%n", name, value);
+                }
             }
+
+        } catch(IOException e){
+            throw new ErreurFichier("Erreur lie a l'ouverture du fichier") ;
         }
-        return equals ;
     }
+
+
+    private Map<String, Integer> nbCarteDeChaqueType() {
+        Map<String, Integer> carteCounts = new HashMap<>();
+
+        for (Carte carte : pdc) {
+            String key;
+            int value = 0;
+
+            if (carte.estUneBotte()) {
+                key = carte.getClass().getSimpleName();;
+                value = -1;  // On attribue une occurrence de -1 pour les cartes Botte, on pas besoin de l'occurence
+            } else if (carte.match("Bornes")) {
+                Bornes bornes = (Bornes) carte;
+                key = "Bornes " + bornes.getKms();  // Bornes + km ety espace entre les 2
+                value = carteCounts.getOrDefault(key, 0) + 1;  // 1 si la cle n'est pas presente sinon incremente sa valeur de 1
+            } else {
+                key = carte.getClass().getSimpleName();  // Pour toutes les autres cartes (Attaque, Parade, etc.)
+                value = carteCounts.getOrDefault(key, 0) + 1;
+            }
+
+            carteCounts.put(key, value);
+        }
+
+        return carteCounts;
+    }
+
+
+
 
 }

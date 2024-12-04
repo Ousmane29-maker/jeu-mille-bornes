@@ -1,4 +1,5 @@
 package jeu.tests;
+import jeu.ErreurFichier;
 import jeu.cartes.Carte ;
 import jeu.cartes.PaquetDeCartes;
 import jeu.cartes.attaques.Accident;
@@ -150,5 +151,14 @@ void testRetourner(){
         assertTrue(pdc.equals(pdc2));
     }
 
+    @Test
+    void TestEcrire(){
+        PaquetDeCartes pdc = FabriqueCartes.getPaquetAvecDifferentsCartes() ;
+        try {
+            pdc.ecrire("fichier.txt");
+        } catch (ErreurFichier e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }
