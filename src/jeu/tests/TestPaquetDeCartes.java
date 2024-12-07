@@ -152,13 +152,18 @@ void testRetourner(){
     }
 
     @Test
-    void TestEcrire(){
+    void TestEcrire() throws ErreurFichier {
         PaquetDeCartes pdc = FabriqueCartes.getPaquetAvecDifferentsCartes() ;
-        try {
-            pdc.ecrire("fichier.txt");
-        } catch (ErreurFichier e) {
-            System.out.println(e.getMessage());
-        }
+        pdc.ecrire("fichier.txt");
+
+    }
+
+    @Test
+    void TestLecture() throws ErreurFichier {
+        PaquetDeCartes pdc = new PaquetDeCartes() ;
+        pdc.lire("fichier.txt");
+        pdc.ecrire("fichier.txt");
+
     }
 
 }
