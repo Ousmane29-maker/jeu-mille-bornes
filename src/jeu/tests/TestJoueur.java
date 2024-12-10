@@ -224,4 +224,5 @@ class TestJoueur {
         assertEquals(1, j2.getMain().getNbCartes()) ;
     }
 
+
 }

@@ -309,10 +309,11 @@ public class PaquetDeCartes {
     }
 
     private String getPackageForCarte(String name) {
-        return estUneAttaque(name) ? "jeu.cartes.attaques." :
-                estUneBotte(name) ? "jeu.cartes.bottes." :
-                        "jeu.cartes.parades.";
+        return estUneBotte(name) ? "jeu.cartes.bottes." :  // On teste d'abord les bottes
+                estUneAttaque(name) ? "jeu.cartes.attaques." :  // Ensuite les attaques
+                        "jeu.cartes.parades.";  // Par défaut, c'est une parade
     }
+
 
 
 }

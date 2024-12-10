@@ -79,4 +79,9 @@ public class FabriqueCartes {
         return pdc;
     }
 
+    public static PaquetDeCartes getPaquetStandard() {
+        PaquetDeCartes pdc = new PaquetDeCartes() ;
+        // A completer ..
+        return  pdc ;
+    }
 }

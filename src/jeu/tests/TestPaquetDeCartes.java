@@ -154,15 +154,15 @@ void testRetourner(){
     @Test
     void TestEcrire() throws ErreurFichier {
         PaquetDeCartes pdc = FabriqueCartes.getPaquetAvecDifferentsCartes() ;
-        pdc.ecrire("fichier.txt");
+        pdc.ecrire("cartes.txt");
 
     }
 
     @Test
     void TestLecture() throws ErreurFichier {
         PaquetDeCartes pdc = new PaquetDeCartes() ;
-        pdc.lire("fichier.txt");
-        pdc.ecrire("fichier.txt");
+        pdc.lire("cartes.txt");
+        pdc.ecrire("cartes.txt");
 
     }
 

@@ -50,4 +50,12 @@ class TestJeu {
         // Attendons de voir la suite, si on a un getPaquet ou toute autre implementation
     }
 
+    @Test
+    void testCreerJoueurs(){
+        Jeu jeu = new Jeu() ;
+        jeu.creerJoueurs(4);
+        assertTrue(jeu.getNbJoueurs() == 4) ;
+        assertTrue(jeu.getNbBots() == 3) ;
+    }
+
 }

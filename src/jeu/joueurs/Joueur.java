@@ -301,13 +301,12 @@ public class Joueur {
         return bataille ;
     }
 
+    public boolean estBot(){
+        return false ;
+    }
 
-    //est ce que bataille doit etre force a etre une attaque ??
-
-    /*Attention : un joueur ne peut pas être attaqué simultanément avec 2
-    attaques à l’exception de la Limite de Vitesse qui peut être jouée en plus
-    d’une autre carte Attaque.
-    Doit on annuler l'attaque en cours et prendre la nouvelle attaque , en modifiant la carte batataille de son adversaire ??
-     */
+    public  boolean estHumain(){
+        return false ;
+    }
 
 }
