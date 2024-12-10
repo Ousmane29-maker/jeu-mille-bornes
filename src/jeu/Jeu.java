@@ -85,4 +85,16 @@ public class Jeu {
         return collection.get(indiceJoueur) ;
     }
 
+    public void initialiser(int nbBots){
+        // ...
+    }
+    public void distribuer(){
+        //
+    }
+
+    public void creerJoueurs(){
+        //
+    }
+
+
 }

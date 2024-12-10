@@ -181,6 +181,20 @@ public class PaquetDeCartes {
 //        return equals ;
 //    }
 
+    private boolean estUneAttaque(String name) {
+        return name.equals("FeuRouge") ||
+                name.equals("Accident") ||
+                name.equals("PanneDEssence") ||
+                name.equals("Crevaison");
+    }
+
+    private boolean estUneBotte(String name) {
+        return name.equals("Increvable") ||
+                name.equals("AsDuVolant") ||
+                name.equals("Prioritaire") ||
+                name.equals("CiterneDEssence");
+    }
+
     public void ecrire(String nomDeFichier) throws ErreurFichier {
         try (FileWriter flot = new FileWriter(nomDeFichier);
              PrintWriter flotFiltre = new PrintWriter(flot)) {
@@ -233,49 +247,45 @@ public class PaquetDeCartes {
 
     public void lire(String nomDeFichier) throws ErreurFichier {
         try (BufferedReader flot = new BufferedReader(new FileReader(nomDeFichier))) {
-            StreamTokenizer flotFiltre = new StreamTokenizer(flot);
-            flotFiltre.eolIsSignificant(true); // Fin de ligne significative
-
-            String name = null;
-            int count = 1; // Valeur par défaut de count
-            int kms = -1; // Pour les cartes Bornes
-            int lu = flotFiltre.nextToken(); // Lire le premier jeton
-
-            while (lu != StreamTokenizer.TT_EOF) {
-                if (lu == StreamTokenizer.TT_WORD) {
-                    name = flotFiltre.sval; // Stocke le mot lu
-                } else if (lu == StreamTokenizer.TT_NUMBER) {
-                    if ("Bornes".equals(name) && kms == -1) {
-                        kms = (int) flotFiltre.nval; // Stocke les kilomètres pour Bornes
-                    } else {
-                        count = (int) flotFiltre.nval; // Stocke le nombre d'occurrences pour les autres cartes
-                    }
-                } else if (lu == StreamTokenizer.TT_EOL) {
-                    // Traite la ligne complète
-                    traiterLigne(name, kms, count);
-
-                    // Réinitialise les valeurs pour la prochaine ligne
-                    name = null;
-                    count = 1; // Réinitialise count à 1 par défaut pour chaque nouvelle ligne
-                    kms = -1;
-                }
-                lu = flotFiltre.nextToken(); // Lire le token suivant
+            String ligne;
+            while ((ligne = flot.readLine()) != null) {
+                    traiterLigne(ligne);
             }
         } catch (IOException e) {
-            throw new ErreurFichier("Erreur liée à l'ouverture ou à la lecture du fichier.");
+            throw new ErreurFichier("Erreur lors de l'ouverture ou de la lecture du fichier : " + e.getMessage());
         }
     }
 
-    private void traiterLigne(String name, int kms, int count) throws ErreurFichier {
-        if (name == null) {
-            throw new ErreurFichier("fichier contenant une ligne vide");
-        }
-        if ("Bornes".equals(name)) {
-            ajouterBornes(kms, count);
-        } else {
-            ajouterAutresCartes(name, count);
+    private void traiterLigne(String ligne) throws ErreurFichier {
+        String[] tokens = ligne.split("\\s+"); // Divise la ligne par les espaces
+        String name = tokens[0]; // Premier mot = nom de la carte
+
+        try {
+            if ("Bornes".equals(name)) {
+                if (tokens.length != 3) {
+                    throw new ErreurFichier("Carte Bornes mal formatée (attendu : 'Bornes <kms> <count>') : " + ligne);
+                }
+                int kms = Integer.parseInt(tokens[1]); // Convertit les kilomètres
+                int count = Integer.parseInt(tokens[2]); // Convertit le nombre d'occurrences
+                ajouterBornes(kms, count);
+            } else if (estUneBotte(name)) {
+                if (tokens.length != 1) {
+                    throw new ErreurFichier("Carte Botte mal formatée (attendu : '<name>') : " + ligne);
+                }
+                ajouterAutresCartesQueBornes(name, 1); // Les bottes ont toujours un count de 1
+            } else {
+                if (tokens.length != 2) {
+                    throw new ErreurFichier("Carte Parade ou attaque mal formatée (attendu : '<name> <count>') : " + ligne);
+                }
+                int count = Integer.parseInt(tokens[1]); // Convertit le nombre d'occurrences
+                ajouterAutresCartesQueBornes(name, count);
+            }
+        } catch (NumberFormatException e) {
+            throw new ErreurFichier("Erreur de format numérique dans la ligne : " + ligne + " " + e.getMessage());
         }
     }
+
+
 
     private void ajouterBornes(int kms, int count) throws ErreurFichier {
         for (int i = 0; i < count; i++) {
@@ -283,46 +293,26 @@ public class PaquetDeCartes {
         }
     }
 
-    private void ajouterAutresCartes(String name, int count) throws ErreurFichier {
+    private void ajouterAutresCartesQueBornes(String name, int count) throws ErreurFichier {
         String packageName = getPackageForCarte(name);
         try {
             Class<?> clazz = Class.forName(packageName + name);
             Carte carte = (Carte) clazz.getDeclaredConstructor().newInstance();
-            ajouterCartes(carte, count);
+            for (int i = 0; i < count; i++) {
+                this.ajouter(carte); // Ajoute la carte (ou les cartes) pour count
+            }
         } catch (ClassNotFoundException e) {
             throw new ErreurFichier("Lecture d'une Classe de carte inconnue : " + name);
         } catch (ReflectiveOperationException e) {
             throw new ErreurFichier("Erreur lors de l'instanciation de la carte : " + name);
         }
     }
-    private void ajouterCartes(Carte carte, int count) {
-        for (int i = 0; i < count; i++) {
-            this.ajouter(carte); // Ajoute la carte (ou les cartes) pour count
-        }
-    }
 
     private String getPackageForCarte(String name) {
-        if (estUneAttaque(name)) {
-            return "jeu.cartes.attaques."; // Cartes de type Attaque
-        } else if (estUneBotte(name)) {
-            return "jeu.cartes.bottes."; // Cartes de type Botte
-        } else {
-            return "jeu.cartes.parades."; // Cartes de type Parade
-        }
+        return estUneAttaque(name) ? "jeu.cartes.attaques." :
+                estUneBotte(name) ? "jeu.cartes.bottes." :
+                        "jeu.cartes.parades.";
     }
 
-    private boolean estUneAttaque(String name) {
-        return name.equals("FeuRouge") ||
-                name.equals("Accident") ||
-                name.equals("PanneDEssence") ||
-                name.equals("Crevaison");
-    }
-
-    private boolean estUneBotte(String name) {
-        return name.equals("Increvable") ||
-                name.equals("AsDuVolant") ||
-                name.equals("Prioritaire") ||
-                name.equals("CiterneDEssence");
-    }
 
 }

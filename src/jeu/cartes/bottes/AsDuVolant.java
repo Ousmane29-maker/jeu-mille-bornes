@@ -16,5 +16,4 @@ public class AsDuVolant extends Botte{
         return s.equals("AsDuVolant");
     }
 
-
 }
