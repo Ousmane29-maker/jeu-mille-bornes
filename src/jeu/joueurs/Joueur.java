@@ -14,21 +14,21 @@ import jeu.cartes.parades.FeuVert;
 import jeu.cartes.parades.Reparation;
 import jeu.cartes.parades.RoueDeSecours;
 
-public class Joueur {
+public abstract class Joueur {
 
-    private String nom;
-    private PaquetDeCartes main;
+    protected String nom;
+    protected PaquetDeCartes main;
 
-    int bornes;
-    private int cartes200Jouees; // Compteur pour les cartes "200 km"
+    protected int bornes;
+    protected int cartes200Jouees; // Compteur pour les cartes "200 km"
 
 
-    private Bottes bottes;
+    protected Bottes bottes;
 
-    private Carte bataille;
+    protected Carte bataille;
 
-    private Jeu jeu;
-    private boolean limitationVitesse;
+    protected Jeu jeu;
+    protected boolean limitationVitesse;
 
     public Joueur(Jeu jeu, String nom) {
         assert (jeu != null && nom != null) : "Les parametres jeu et nom ne doivent pas etre null";
@@ -36,7 +36,7 @@ public class Joueur {
         this.jeu = jeu;
         this.bornes = 0;
         this.cartes200Jouees = 0;
-        this.bottes = new Bottes();
+        this.bottes = new Bottes(); // a chequer ..
         this.bataille = null;
         this.limitationVitesse = false;
         this.main = new PaquetDeCartes();
@@ -50,17 +50,21 @@ public class Joueur {
         this.bataille = bataille;
     }
 
+    public abstract Joueur clone() ;
 
-    public Joueur(Joueur j) {
+    public Joueur(Joueur j){
         assert (j != null) : "Le parametre j ne doit pas etre null";
-        //Pas De Partage ici
+        //logique commune pour les deux types de joueurs
         this.nom = j.getNom(); // copie du nom
         //copie profonde du paquet (en utilisant le constructeur de copie profonde dans PaquetDeCartes)
         this.main = new PaquetDeCartes(j.getMain());
-        this.jeu = j.jeu; // Copie uniquement la référence au jeu
-
+        this.jeu = j.jeu ;
+        this.setBataille(bataille);
+        this.setBottes(bottes);
+        this.bornes = j.bornes ;
+        this.cartes200Jouees = j.cartes200Jouees ;
+        this.limitationVitesse = j.limitationVitesse ;
     }
-
     public PaquetDeCartes getMain() {
         return this.main;
     }
@@ -177,7 +181,7 @@ public class Joueur {
     }
 
     public void jouer(String coup) {
-        // le assert est deja fait dans jeu
+        assert coupPossible(coup) : "le coup doit etre valide";
         int indiceCarte = coup.charAt(1) - '1' ;        Carte carte = getMain().getCarte(indiceCarte) ;
         if(coup.charAt(0) == 'J'){
             jouerJeter(carte);
@@ -305,8 +309,11 @@ public class Joueur {
         return false ;
     }
 
-    public  boolean estHumain(){
+    public boolean estHumain(){
         return false ;
     }
+
+
+
 
 }

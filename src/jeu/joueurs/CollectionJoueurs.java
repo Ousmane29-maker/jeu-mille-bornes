@@ -14,7 +14,7 @@ public class CollectionJoueurs implements Iterable<Joueur>{
         //copie profonde
         this.cj = new ArrayList<>(cj.size()) ;
         for(Joueur joueur : cj.cj){
-            this.cj.add(new Joueur(joueur));
+            this.cj.add(joueur.clone());
         }
     }
 

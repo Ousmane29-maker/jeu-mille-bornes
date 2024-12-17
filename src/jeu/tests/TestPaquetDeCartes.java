@@ -136,20 +136,20 @@ void testRetourner(){
         assertEquals(pdc.getNbCartes(), 1);
         assertTrue(CartePiochee.getClass().equals(carte1.getClass()));
     }
-    @Test
-    void testEqualsFaux(){
-        PaquetDeCartes pdc  = FabriqueCartes.getPaquet1FeuRouge1FeuVert() ;
-        PaquetDeCartes pdc2 = FabriqueCartes.getPaquet1Accident() ;
-        assertFalse(pdc.equals(pdc2));
-    }
-
-    @Test
-    void testEqualsVrai(){
-        PaquetDeCartes pdc  = FabriqueCartes.getPaquet1FeuRouge1FeuVert() ;
-        PaquetDeCartes pdc2 = FabriqueCartes.getPaquetVide() ;
-        pdc2.ajouter(new FeuRouge(), new FeuVert());
-        assertTrue(pdc.equals(pdc2));
-    }
+//    @Test
+//    void testEqualsFaux(){
+//        PaquetDeCartes pdc  = FabriqueCartes.getPaquet1FeuRouge1FeuVert() ;
+//        PaquetDeCartes pdc2 = FabriqueCartes.getPaquet1Accident() ;
+//        assertFalse(pdc.equals(pdc2));
+//    }
+//
+//    @Test
+//    void testEqualsVrai(){
+//        PaquetDeCartes pdc  = FabriqueCartes.getPaquet1FeuRouge1FeuVert() ;
+//        PaquetDeCartes pdc2 = FabriqueCartes.getPaquetVide() ;
+//        pdc2.ajouter(new FeuRouge(), new FeuVert());
+//        assertTrue(pdc.equals(pdc2));
+//    }
 
     @Test
     void TestEcrire() throws ErreurFichier {

@@ -10,21 +10,33 @@ import jeu.cartes.parades.Essence;
 import jeu.cartes.parades.FeuVert;
 import jeu.cartes.parades.Reparation;
 import jeu.joueurs.Joueur;
+import jeu.joueurs.JoueurHumain;
 
 public class FabriqueJeux {
+
+    public static Jeu creerJeu(String nom, Carte carteBataille, Carte carteMain, Bottes bottes, Boolean limitationVitesse){
+                    Jeu jeu = new Jeu() ;
+                    Joueur joueur = new JoueurHumain(jeu, nom) ;
+                    joueur.ajouterMain(carteMain);
+                    joueur.setBataille(carteBataille) ;
+                    joueur.setBottes(bottes);
+                    if(limitationVitesse){
+                        joueur.setLimitationVitesse();
+                    }
+                    jeu.add(joueur); // on ajoute le joueur dans le jeu apres avoir specifie ses parametres
+                    return jeu ;
+
+    }
     public static CollectionJeux creerJeuUnJoueur(String nom, Carte[] cT, Carte[] cM, Bottes[] b){
         //cT =  tableau contenant des cartes Batailles
         CollectionJeux collectionJeux = new CollectionJeux() ;
         for(Carte carteBataille : cT){
             for(Carte carteMain :cM){
                 for(Bottes bottes : b){
-                    Jeu jeu = new Jeu() ;
-                    Joueur joueur = new Joueur(jeu, nom) ;
-                    joueur.ajouterMain(carteMain);
-                    joueur.setBataille(carteBataille) ;
-                    joueur.setBottes(bottes);
-                    jeu.add(joueur); // on ajoute le joueur dans le jeu apres avoir specifie ses parametres
-                    collectionJeux.add(jeu); // on ajoute ce jeu creer lui meme dans la collection
+                    Jeu jeu1 = FabriqueJeux.creerJeu(nom, carteBataille, carteMain, bottes,  false) ;
+                    Jeu jeu2 = FabriqueJeux.creerJeu(nom, carteBataille, carteMain,bottes, true) ;
+                    collectionJeux.add(jeu1); // on ajoute ce jeu creer lui meme dans la collection
+                    collectionJeux.add(jeu2);
                 }
             }
         }

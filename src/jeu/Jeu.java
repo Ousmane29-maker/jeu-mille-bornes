@@ -4,10 +4,7 @@ import jeu.cartes.Carte;
 //import jeu.cartes.PaquetDeCartes;
 import jeu.cartes.PaquetDeCartes;
 import jeu.fabriques.FabriqueCartes;
-import jeu.joueurs.Bot;
-import jeu.joueurs.CollectionJoueurs;
-import jeu.joueurs.Joueur;
-import jeu.joueurs.JoueurHumain;
+import jeu.joueurs.*;
 
 import java.util.Random;
 
@@ -41,7 +38,7 @@ public class Jeu {
 
         for(int i = 0; i < jeu.getNbJoueurs(); i++){
             Joueur j = jeu.joueurs.get(i) ;
-            Joueur newJ = new Joueur(j) ; // copie d'un joueur
+            Joueur newJ = j.clone() ; // copie d'un joueur
             newJ.setJeu(this); // on modifie son jeu en le remplacant par this(la copie de jeu qu'on est entrain d'effectue)
             this.add(newJ); // on ajoute newJ dans la collection de copie
         }
@@ -132,11 +129,17 @@ public class Jeu {
     }
     public void creerJoueurs(int nbJoueurs){
         assert(nbJoueurs >=2 && nbJoueurs <= 5) : "Le nombre de joueurs doit etre dans l'intervalle [2,5]" ;
+        Strategie strategie = new StrategieParDefaut() ; //apres on poura avoir plusieur Strategie
         for(int i = 1; i < nbJoueurs; i++){
-            add(new Bot(this, "Bot"+1)) ;
+            add(new Bot(this, "Bot"+1, strategie)) ;
         }
         add(new JoueurHumain(this, "JoueurHumain")) ;
     }
 
-// A verifier choisirQuiJoue() et ChoisirQuiDistribue()
+
+
+    // A verifier choisirQuiJoue() et ChoisirQuiDistribue()
+
+
+
 }

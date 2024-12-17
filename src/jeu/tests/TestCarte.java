@@ -16,6 +16,7 @@ import jeu.cartes.parades.FeuVert;
 import jeu.cartes.parades.Reparation;
 import jeu.cartes.parades.RoueDeSecours;
 import jeu.joueurs.Joueur;
+import jeu.joueurs.JoueurHumain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -67,7 +68,7 @@ public class TestCarte {
     }
     @Test
     public void TestAttaquePeutEtrePoseeSurMonJeu(){
-        Joueur j = new Joueur(new Jeu(), "joueur_A") ;
+        Joueur j = new JoueurHumain(new Jeu(), "joueur_A") ;
         Carte carteFeuRouge = new FeuRouge() ;
         Carte carteAccident = new Accident() ;
         Carte carteCrevaison = new Crevaison() ;
@@ -85,7 +86,7 @@ public class TestCarte {
 
     @Test
     public void TestAccidentPeutEtrePoseeSurJeuAdversaireVrai() {
-        Joueur j = new Joueur(new Jeu(), "joueur_A") ;
+        Joueur j = new JoueurHumain(new Jeu(), "joueur_A") ;
         Carte carteAccident = new Accident() ;
         assertThrows(AssertionError.class, () -> carteAccident.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertTrue(carteAccident.peutEtrePoseeSurJeuAdversaire(j)) ;
@@ -96,7 +97,7 @@ public class TestCarte {
         //cas ou le joueur est immunise contre Accident
         Bottes bottes = new Bottes() ;
         bottes.setEstAsDuVolant();
-        Joueur j = new Joueur(new Jeu(), "joueur_A", bottes, null) ;
+        Joueur j = new JoueurHumain(new Jeu(), "joueur_A", bottes, null) ;
         Carte carteAccident = new Accident() ;
         assertThrows(AssertionError.class, () -> carteAccident.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertFalse(carteAccident.peutEtrePoseeSurJeuAdversaire(j));
@@ -104,7 +105,7 @@ public class TestCarte {
 
     @Test
     public void TestFeuRougePeutEtrePoseeSurJeuAdversaireVrai() {
-        Joueur j = new Joueur(new Jeu(), "joueur_A") ;
+        Joueur j = new JoueurHumain(new Jeu(), "joueur_A") ;
         Carte carteFeuRouge = new FeuRouge() ;
         assertThrows(AssertionError.class, () -> carteFeuRouge.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertTrue(carteFeuRouge.peutEtrePoseeSurJeuAdversaire(j)) ;
@@ -115,7 +116,7 @@ public class TestCarte {
         //cas ou le joueur est immunise contre FeuRouge
         Bottes bottes = new Bottes() ;
         bottes.setEstPrioritaire();
-        Joueur j = new Joueur(new Jeu(), "joueur_A", bottes, null) ;
+        Joueur j = new JoueurHumain(new Jeu(), "joueur_A", bottes, null) ;
         Carte carteFeuRouge = new FeuRouge() ;
         assertThrows(AssertionError.class, () -> carteFeuRouge.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertFalse(carteFeuRouge.peutEtrePoseeSurJeuAdversaire(j));
@@ -123,7 +124,7 @@ public class TestCarte {
     @Test
     public void TestParadePeutEtrePoseeSurJeuAdversaire(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A") ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A") ;
         Carte carteFeuVert = new FeuVert() ;
         Carte carteReparation = new Reparation() ;
         Carte carteEssence = new Essence() ;
@@ -142,7 +143,7 @@ public class TestCarte {
     @Test
     public void TestReparationPeutEtrePoseeSurMonJeuVrai(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A", null, new Accident()) ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A", null, new Accident()) ;
         Carte carteReparation = new Reparation() ;
         assertThrows(AssertionError.class, () -> carteReparation.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertTrue(carteReparation.peutEtrePoseeSurMonJeu(j)) ;
@@ -152,12 +153,12 @@ public class TestCarte {
     @Test
     public void TestReparationPeutEtrePoseeSurMonJeuFaux(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A", null, null) ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A", null, null) ;
         Carte carteReparation = new Reparation() ;
         assertThrows(AssertionError.class, () -> carteReparation.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertFalse(carteReparation.peutEtrePoseeSurMonJeu(j));
 
-        Joueur j2 = new Joueur(jeu, "joueur_A", null, new FeuVert()) ;
+        Joueur j2 = new JoueurHumain(jeu, "joueur_B", null, new FeuVert()) ;
         assertFalse(carteReparation.peutEtrePoseeSurMonJeu(j2));
 
     }
@@ -165,7 +166,7 @@ public class TestCarte {
     @Test
     public void TestFeuVertPeutEtrePoseeSurMonJeuVrai(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A", null, new FeuRouge()) ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A", null, new FeuRouge()) ;
         Carte feuVert = new FeuVert() ;
         assertThrows(AssertionError.class, () -> feuVert.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertTrue(feuVert.peutEtrePoseeSurMonJeu(j)) ;
@@ -174,12 +175,12 @@ public class TestCarte {
     @Test
     public void TestFeuVertPeutEtrePoseeSurMonJeuFaux(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A", null, null) ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A", null, null) ;
         Carte feuVert = new FeuVert() ;
         assertThrows(AssertionError.class, () -> feuVert.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertFalse(feuVert.peutEtrePoseeSurMonJeu(j)) ;
 
-        Joueur j2 = new Joueur(jeu, "joueur_A", null, new Accident()) ;
+        Joueur j2 = new JoueurHumain(jeu, "joueur_A", null, new Accident()) ;
         assertFalse(feuVert.peutEtrePoseeSurMonJeu(j2));
 
     }
@@ -187,7 +188,7 @@ public class TestCarte {
     @Test
     public void TestEssencePeutEtrePoseeSurMonJeuVrai(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A", null, new PanneDEssence()) ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A", null, new PanneDEssence()) ;
         Carte essence = new Essence() ;
         assertThrows(AssertionError.class, () -> essence.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertTrue(essence.peutEtrePoseeSurMonJeu(j)) ;
@@ -196,12 +197,12 @@ public class TestCarte {
     @Test
     public void TestEssencePeutEtrePoseeSurMonJeuFaux(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A", null, null) ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A", null, null) ;
         Carte essence = new Essence() ;
         assertThrows(AssertionError.class, () -> essence.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertFalse(essence.peutEtrePoseeSurMonJeu(j)) ;
 
-        Joueur j2 = new Joueur(jeu, "joueur_A", null, new Accident()) ;
+        Joueur j2 = new JoueurHumain(jeu, "joueur_A", null, null) ;
         assertFalse(essence.peutEtrePoseeSurMonJeu(j2));
 
     }
@@ -209,7 +210,7 @@ public class TestCarte {
     @Test
     public void TestRoueDeSecoursPeutEtrePoseeSurMonJeuVrai(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A", null, new Crevaison()) ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A", null, new Crevaison()) ;
         Carte roueDeSecours = new RoueDeSecours() ;
         assertThrows(AssertionError.class, () -> roueDeSecours.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertTrue(roueDeSecours.peutEtrePoseeSurMonJeu(j)) ;
@@ -218,12 +219,12 @@ public class TestCarte {
     @Test
     public void TestRoueDeSecoursPeutEtrePoseeSurMonJeuFaux(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A", null, null) ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A", null, null) ;
         Carte roueDeSecours = new RoueDeSecours() ;
         assertThrows(AssertionError.class, () -> roueDeSecours.peutEtrePoseeSurJeuAdversaire(null)) ;
         assertFalse(roueDeSecours.peutEtrePoseeSurMonJeu(j)) ;
 
-        Joueur j2 = new Joueur(jeu, "joueur_A", null, new Accident()) ;
+        Joueur j2 = new JoueurHumain(jeu, "joueur_A", null, new Accident()) ;
         assertFalse(roueDeSecours.peutEtrePoseeSurMonJeu(j2));
 
     }
@@ -231,7 +232,7 @@ public class TestCarte {
     @Test
     public void TestBottePeutEtrePoseeSurJeuAdversaire(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A") ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A") ;
         Carte prioritaire = new Prioritaire() ;
         Carte increvable = new Increvable() ;
         Carte citerneDEssence = new CiterneDEssence() ;
@@ -250,7 +251,7 @@ public class TestCarte {
     @Test
     public void TestBottePeutEtrePoseeSurMonJeu(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A") ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A") ;
         Carte prioritaire = new Prioritaire() ;
         Carte increvable = new Increvable() ;
         Carte citerneDEssence = new CiterneDEssence() ;
@@ -269,7 +270,7 @@ public class TestCarte {
     @Test
     public void TestBornesPeutEtrePoseeSurJeuAdversaire(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A") ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A") ;
         Bornes borne25 = new Bornes(25) ;
         Bornes borne50 = new Bornes(50) ;
         Bornes borne75 = new Bornes(75) ;
@@ -293,7 +294,7 @@ public class TestCarte {
     @Test
     public void TestBornesPeutEtrePoseeSurMonJeu(){
         Jeu jeu = new Jeu() ;
-        Joueur j = new Joueur(jeu, "joueur_A") ;
+        Joueur j = new JoueurHumain(jeu, "joueur_A") ;
         Bornes borne25 = new Bornes(25) ;
         Bornes borne50 = new Bornes(50) ;
         Bornes borne75 = new Bornes(75) ;

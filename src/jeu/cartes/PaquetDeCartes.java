@@ -5,12 +5,9 @@ import jeu.cartes.attaques.FeuRouge;
 import jeu.cartes.bornes.Bornes;
 
 import java.io.*;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
-public class PaquetDeCartes {
+public class PaquetDeCartes implements Iterable<Carte> {
     LinkedList<Carte> pdc;
 
     /**
@@ -315,5 +312,8 @@ public class PaquetDeCartes {
     }
 
 
-
+    @Override
+    public Iterator<Carte> iterator() {
+        return pdc.iterator();
+    }
 }
