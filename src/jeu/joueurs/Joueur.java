@@ -180,7 +180,8 @@ public abstract class Joueur {
         this.bottes = newBottes;
     }
 
-    public void jouer(String coup) {
+    public abstract void jouer(String coup) ;
+    public void jouerCoup(String coup) {
         assert coupPossible(coup) : "le coup doit etre valide";
         int indiceCarte = coup.charAt(1) - '1' ;        Carte carte = getMain().getCarte(indiceCarte) ;
         if(coup.charAt(0) == 'J'){

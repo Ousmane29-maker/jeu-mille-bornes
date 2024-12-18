@@ -7,6 +7,10 @@ import jeu.joueurs.Joueur;
 
 public class Prioritaire extends Botte{
 
+    public Prioritaire() {
+
+    }
+
     @Override
     public Carte clone() {
         return new Prioritaire();
@@ -18,4 +22,8 @@ public class Prioritaire extends Botte{
         return s.equals("Prioritaire");
     }
 
+    @Override
+    public String toString() {
+        return "Prioritaire";
+    }
 }

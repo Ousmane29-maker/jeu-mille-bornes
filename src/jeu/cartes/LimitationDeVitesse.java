@@ -4,6 +4,11 @@ import jeu.joueurs.Joueur;
 
 public class LimitationDeVitesse extends Carte {
 
+
+    public LimitationDeVitesse() {
+
+    }
+
     @Override
     public boolean peutEtrePoseeSurMonJeu(Joueur j) {
         assert (j != null) : "le parametre j ne doit pas etre null" ;
@@ -25,4 +30,8 @@ public class LimitationDeVitesse extends Carte {
         return new LimitationDeVitesse();
     }
 
+    @Override
+    public String toString() {
+        return "LimitationDeVitesse";
+    }
 }

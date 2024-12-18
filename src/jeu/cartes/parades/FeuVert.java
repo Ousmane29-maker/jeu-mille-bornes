@@ -5,6 +5,10 @@ import jeu.cartes.parades.Parade;
 import jeu.joueurs.Joueur;
 
 public class FeuVert extends Parade {
+    public FeuVert() {
+
+    }
+
     @Override
     public boolean peutEtrePoseeSurMonJeu(Joueur j) {
         return j.estPossiblePoser(this) ;
@@ -21,4 +25,8 @@ public class FeuVert extends Parade {
         return s.equals("FeuVert");
     }
 
+    @Override
+    public String toString() {
+        return "FeuVert";
+    }
 }

@@ -5,6 +5,9 @@ import jeu.cartes.Carte;
 import jeu.joueurs.Joueur;
 
 public class AsDuVolant extends Botte{
+    public AsDuVolant() {
+
+    }
 
     @Override
     public Carte clone() {
@@ -16,4 +19,8 @@ public class AsDuVolant extends Botte{
         return s.equals("AsDuVolant");
     }
 
+    @Override
+    public String toString() {
+        return "AsDuVolant";
+    }
 }

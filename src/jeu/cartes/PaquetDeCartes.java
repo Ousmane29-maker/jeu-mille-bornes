@@ -143,8 +143,9 @@ public class PaquetDeCartes implements Iterable<Carte> {
         StringBuilder str = new StringBuilder();
         str.append("Paquet de Carte \n { \n");
         for (Carte carte : this.pdc) {
-            str.append(carte.toString()).append("\n");
+            str.append(carte.toString()).append(", ");
         }
+        str.deleteCharAt(str.length() - 2) ; //supprimer le dernier virgule
         str.append("} \n");
         return str.toString();
     }
@@ -225,7 +226,6 @@ public class PaquetDeCartes implements Iterable<Carte> {
 
             if (carte.estUneBotte()) {
                 key = carte.getClass().getSimpleName();
-                ;
                 value = -1;  // On attribue une occurrence de -1 pour les cartes Botte, on pas besoin de l'occurence
             } else if (carte.match("Bornes")) {
                 Bornes bornes = (Bornes) carte;

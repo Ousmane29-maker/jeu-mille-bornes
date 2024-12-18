@@ -1,0 +1,19 @@
+Prioritaire
+CiterneDEssence
+Increvable
+AsDuVolant
+FeuRouge 5
+LimitationDeVitesse 4
+PanneDEssence 3
+Crevaison 3
+Accident 3
+FeuVert 14
+FinLimiationDeVitesse 6
+Essence 6
+RoueDeSecours 6
+Reparation 6
+Bornes 25 10
+Bornes 50 10
+Bornes 75 10
+Bornes 100 12
+Bornes 200 4

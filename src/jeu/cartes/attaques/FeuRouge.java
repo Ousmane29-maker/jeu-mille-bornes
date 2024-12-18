@@ -6,6 +6,9 @@ import jeu.joueurs.Joueur;
 
 public class FeuRouge extends Attaque {
 
+    public FeuRouge() {
+
+    }
 
     @Override
     public boolean peutEtrePoseeSurJeuAdversaire(Joueur j) {
@@ -21,5 +24,10 @@ public class FeuRouge extends Attaque {
     @Override
     public Carte clone() {
         return new FeuRouge();
+    }
+
+    @Override
+    public String toString() {
+        return "FeuRouge";
     }
 }

@@ -35,4 +35,9 @@ public class Bornes extends Carte {
     public int getKms() {
         return kms;
     }
+
+    @Override
+    public String toString() {
+        return "Bornes" + kms ;
+    }
 }

@@ -11,10 +11,18 @@ public class Increvable extends Botte{
         return new Increvable();
     }
 
+    public Increvable() {
+
+    }
 
     @Override
     public boolean match(String s) {
         return s.equals("Increvable");
     }
 
+
+    @Override
+    public String toString() {
+        return "Increvable";
+    }
 }

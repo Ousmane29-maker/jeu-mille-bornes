@@ -3,9 +3,15 @@ package jeu.joueurs;
 import jeu.Jeu;
 
 public class StrategieParDefaut implements Strategie{
+
+
+    public StrategieParDefaut() {
+
+    }
+
     @Override
     public String choisirCoup(Jeu jeu) {
-        Joueur joueurcourant =  jeu.getJoueur(jeu.getJoueurQuiJoue()) ;
+        Joueur joueurcourant =  jeu.getJoueurCourant() ;
         assert (joueurcourant.getNbCartesMain() > 0) : "le nombre de carte joueur courant est null" ;
         /*
         * Ca consiste à essayer de poser la premiere carte sur le joueur Humain

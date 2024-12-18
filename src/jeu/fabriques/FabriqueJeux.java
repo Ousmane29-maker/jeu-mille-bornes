@@ -13,6 +13,9 @@ import jeu.joueurs.Joueur;
 import jeu.joueurs.JoueurHumain;
 
 public class FabriqueJeux {
+    public FabriqueJeux() {
+
+    }
 
     public static Jeu creerJeu(String nom, Carte carteBataille, Carte carteMain, Bottes bottes, Boolean limitationVitesse){
                     Jeu jeu = new Jeu() ;

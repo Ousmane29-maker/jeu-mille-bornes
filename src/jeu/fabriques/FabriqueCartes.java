@@ -1,5 +1,6 @@
 package jeu.fabriques;
 
+import jeu.ErreurFichier;
 import jeu.cartes.PaquetDeCartes;
 import jeu.cartes.attaques.Accident;
 import jeu.cartes.attaques.Crevaison;
@@ -11,7 +12,13 @@ import jeu.cartes.bottes.Increvable;
 import jeu.cartes.bottes.Prioritaire;
 import jeu.cartes.parades.FeuVert;
 
+import java.io.IOException;
+
 public class FabriqueCartes {
+
+    public FabriqueCartes() {
+
+    }
 
     public static PaquetDeCartes getPaquetVide(){
         return  new PaquetDeCartes() ;
@@ -81,7 +88,12 @@ public class FabriqueCartes {
 
     public static PaquetDeCartes getPaquetStandard() {
         PaquetDeCartes pdc = new PaquetDeCartes() ;
-        // A completer ..
+        try{
+            pdc.lire("cartes_standard.txt");
+        } catch (ErreurFichier e) {
+            throw new RuntimeException(e);
+        }
+
         return  pdc ;
     }
 }

@@ -3,6 +3,9 @@ package jeu.fabriques;
 import jeu.cartes.Bottes;
 
 public class FabriqueBottes {
+    public FabriqueBottes() {
+
+    }
 
     public static Bottes[] getToutesLesBottesPossibles() {
         // 2*2*2*2 = 16

@@ -5,7 +5,9 @@ import jeu.cartes.Carte;
 import jeu.joueurs.Joueur;
 
 public class CiterneDEssence extends Botte{
+    public CiterneDEssence() {
 
+    }
 
     @Override
     public Carte clone() {
@@ -18,4 +20,8 @@ public class CiterneDEssence extends Botte{
         return s.equals("CiterneDEssence");
     }
 
+    @Override
+    public String toString() {
+        return "CiterneDEssence";
+    }
 }

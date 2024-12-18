@@ -5,6 +5,10 @@ import jeu.cartes.attaques.Attaque;
 import jeu.joueurs.Joueur;
 
 public class Accident extends Attaque {
+    public Accident() {
+
+    }
+
     @Override
     public boolean peutEtrePoseeSurJeuAdversaire(Joueur j) {
         assert (j != null) : "le parametre j ne doit pas etre null" ;
@@ -19,5 +23,10 @@ public class Accident extends Attaque {
     @Override
     public Carte clone() {
         return new Accident();
+    }
+
+    @Override
+    public String toString() {
+        return "Accident";
     }
 }

@@ -5,6 +5,9 @@ import jeu.cartes.attaques.Attaque;
 import jeu.joueurs.Joueur;
 
 public class Crevaison extends Attaque {
+    public Crevaison() {
+
+    }
 
     @Override
     public boolean peutEtrePoseeSurJeuAdversaire(Joueur j) {
@@ -20,5 +23,10 @@ public class Crevaison extends Attaque {
     @Override
     public Carte clone() {
         return new Crevaison();
+    }
+
+    @Override
+    public String toString() {
+        return "Crevaison";
     }
 }

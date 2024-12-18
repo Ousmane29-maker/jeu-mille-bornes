@@ -19,6 +19,8 @@ public class Jeu {
     private PaquetDeCartes talon ;
 
     private PaquetDeCartes pioche ;
+
+    private DialogueLigneDeCommande dialogue ;
     public Jeu() {
         this.joueurs = new CollectionJoueurs(2) ; //nombre de joueur par defaut : 2
         this.pioche = new PaquetDeCartes() ; // A definir apres
@@ -72,6 +74,11 @@ public class Jeu {
         this.joueurQuiJoue = (this.joueurQuiJoue + 1) % this.getNbJoueurs();
     }
 
+    public void setDialogue(DialogueLigneDeCommande dialogue) {
+        this.dialogue = dialogue;
+    }
+
+
     public int getNbJoueurs() {
         return this.joueurs.size();
     }
@@ -82,14 +89,14 @@ public class Jeu {
 
     public void jouer(String coup){
         assert coupPossible(coup) : "le coup doit etre valide";
-        Joueur joueurCourant = getJoueur(joueurQuiJoue) ;
+        Joueur joueurCourant = getJoueurCourant() ;
         joueurCourant.jouer(coup) ;
 
         // c'est ici que l'on doit changer le joueur courant ???
     }
 
     public boolean coupPossible(String coup){
-        Joueur joueurCourant = getJoueur(joueurQuiJoue) ;
+        Joueur joueurCourant = getJoueurCourant();
         return joueurCourant.coupPossible(coup) ;
     }
 
@@ -97,11 +104,15 @@ public class Jeu {
         return joueurs.get(indiceJoueur) ;
     }
 
+    public Joueur getJoueurCourant() {
+        return getJoueur(joueurQuiJoue) ;
+    }
     public void initialiser(int nbBots){
         creerJoueurs(nbBots + 1);
         distribuer();
         choisirQuiDistribue(nbBots + 1) ;
         choisirQuiJoue() ;
+        dialogue.reagir() ;
     }
 
     private void choisirQuiJoue() {

@@ -6,6 +6,10 @@ import jeu.cartes.bottes.AsDuVolant;
 import jeu.joueurs.Joueur;
 
 public class PanneDEssence extends Attaque {
+    public PanneDEssence() {
+
+    }
+
     @Override
     public boolean peutEtrePoseeSurJeuAdversaire(Joueur j) {
         assert (j != null) : "le parametre j ne doit pas etre null" ;
@@ -20,5 +24,10 @@ public class PanneDEssence extends Attaque {
     @Override
     public Carte clone() {
         return new PanneDEssence();
+    }
+
+    @Override
+    public String toString() {
+        return "PanneDEssence";
     }
 }

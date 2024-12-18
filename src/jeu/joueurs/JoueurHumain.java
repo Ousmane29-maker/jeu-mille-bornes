@@ -26,4 +26,8 @@ public class JoueurHumain extends Joueur {
         return  new JoueurHumain((this)) ;
     }
 
+    public void jouer(String coup) {
+        jouerCoup(coup);
+    }
+
 }

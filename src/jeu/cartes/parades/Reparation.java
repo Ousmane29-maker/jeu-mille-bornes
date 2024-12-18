@@ -5,6 +5,11 @@ import jeu.cartes.parades.Parade;
 import jeu.joueurs.Joueur;
 
 public class Reparation extends Parade {
+
+    public Reparation() {
+
+    }
+
     @Override
     public boolean peutEtrePoseeSurMonJeu(Joueur j) {
         return j.estPossiblePoser(this) ;
@@ -20,4 +25,8 @@ public class Reparation extends Parade {
         return s.equals("Reparation");
     }
 
+    @Override
+    public String toString() {
+        return "Reparation";
+    }
 }
