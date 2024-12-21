@@ -91,6 +91,7 @@ public class Jeu {
         assert coupPossible(coup) : "le coup doit etre valide";
         Joueur joueurCourant = getJoueurCourant() ;
         joueurCourant.jouer(coup) ;
+        dialogue.reagir() ;
 
         // c'est ici que l'on doit changer le joueur courant ???
     }
@@ -140,7 +141,7 @@ public class Jeu {
     }
     public void creerJoueurs(int nbJoueurs){
         assert(nbJoueurs >=2 && nbJoueurs <= 5) : "Le nombre de joueurs doit etre dans l'intervalle [2,5]" ;
-        Strategie strategie = new StrategieParDefaut() ; //apres on poura avoir plusieur Strategie
+        Strategie strategie = new StrategieBasique() ; //apres on poura avoir plusieur Strategie
         for(int i = 1; i < nbJoueurs; i++){
             add(new Bot(this, "Bot"+1, strategie)) ;
         }

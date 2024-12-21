@@ -1,0 +1,21 @@
+package jeu.joueurs;
+
+import jeu.Jeu;
+
+public class StrategieTrivial implements Strategie{
+
+    public StrategieTrivial() {
+
+    }
+
+    @Override
+    public String choisirCoup(Jeu jeu) {
+       // Strategie trivial : J1
+        return "J1" ;
+    }
+
+    @Override
+    public String toString() {
+        return "StrategieTrivial";
+    }
+}

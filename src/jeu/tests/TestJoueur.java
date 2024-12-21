@@ -13,7 +13,7 @@ import jeu.cartes.parades.FeuVert;
 import jeu.joueurs.Bot;
 import jeu.joueurs.Joueur;
 import jeu.joueurs.JoueurHumain;
-import jeu.joueurs.StrategieParDefaut;
+import jeu.joueurs.StrategieBasique;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,8 +30,8 @@ class TestJoueur {
     void testConstrNull(){
       Jeu jeu = new Jeu() ;
       assertThrows(AssertionError.class, ()-> new JoueurHumain(null, "Joueur1")) ;
-      assertThrows(AssertionError.class, ()-> new Bot(null, "nom", new StrategieParDefaut())) ;
-      assertThrows(AssertionError.class, ()-> new Bot(jeu, null, new StrategieParDefaut())) ;
+      assertThrows(AssertionError.class, ()-> new Bot(null, "nom", new StrategieBasique())) ;
+      assertThrows(AssertionError.class, ()-> new Bot(jeu, null, new StrategieBasique())) ;
     }
 
     @Test
@@ -180,7 +180,7 @@ class TestJoueur {
     @Test
     void testCoupPossiblePxy() {
         Jeu jeu = new Jeu();
-        Joueur j = new Bot(jeu, "JoueurA", new StrategieParDefaut());
+        Joueur j = new Bot(jeu, "JoueurA", new StrategieBasique());
         Joueur j2 = new JoueurHumain(jeu, "JoueurB");
         j.ajouterMain(new Bornes(200));
         j.ajouterMain(new FeuRouge());

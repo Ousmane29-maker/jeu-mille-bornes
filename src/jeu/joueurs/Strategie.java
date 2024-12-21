@@ -7,6 +7,7 @@ import java.text.StringCharacterIterator;
 public interface Strategie  {
 
     public String choisirCoup(Jeu jeu) ;
+    public String toString() ;
 
     /*
      * Strategie trivial : J1

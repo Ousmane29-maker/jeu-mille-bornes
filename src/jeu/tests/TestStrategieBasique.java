@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TestStrategieParDefaut {
+class TestStrategieBasique {
 
     @Test
     void testChoisirAvecNbCartesJoueurNull() {
         Jeu jeu = new Jeu() ;
-        Strategie strategieBot1 = new StrategieParDefaut() ;
-        Strategie strategieBot2 = new StrategieParDefaut() ;
+        Strategie strategieBot1 = new StrategieBasique() ;
+        Strategie strategieBot2 = new StrategieBasique() ;
         Joueur bot1 = new Bot(jeu, "Bot1", strategieBot1) ;
         Joueur bot2 = new Bot(jeu, "Bot2", strategieBot2) ;
         jeu.add(bot1);
@@ -27,7 +27,7 @@ class TestStrategieParDefaut {
     @Test
     void testChoisirposerSurMonJeu() {
         Jeu jeu = new Jeu() ;
-        Strategie strategie = new StrategieParDefaut() ;
+        Strategie strategie = new StrategieBasique() ;
         Joueur bot1 = new Bot(jeu, "Bot1", strategie) ;
         bot1.ajouterMain(new Bornes(50));
         Joueur joueurHumain = new JoueurHumain(jeu, "JoueurHumain") ;
@@ -39,7 +39,7 @@ class TestStrategieParDefaut {
     @Test
     void testChoisirposerSurJeuAdverseEtJeter() {
         Jeu jeu = new Jeu() ;
-        Strategie strategie = new StrategieParDefaut() ;
+        Strategie strategie = new StrategieBasique() ;
         Joueur bot1 = new Bot(jeu, "Bot1", strategie) ;
         Bottes bottes = new Bottes() ;
         bottes.setEstPrioritaire();

@@ -2,22 +2,18 @@ package jeu.joueurs;
 
 import jeu.Jeu;
 
-public class StrategieParDefaut implements Strategie{
+public class StrategieBasique implements Strategie{
 
 
-    public StrategieParDefaut() {
+    public StrategieBasique() {
 
     }
 
     @Override
     public String choisirCoup(Jeu jeu) {
+        //  Basique : P1 > P1j> J1
         Joueur joueurcourant =  jeu.getJoueurCourant() ;
         assert (joueurcourant.getNbCartesMain() > 0) : "le nombre de carte joueur courant est null" ;
-        /*
-        * Ca consiste à essayer de poser la premiere carte sur le joueur Humain
-        * puis sur notre jeu
-        * et enfin ca ne marche pas  on la jette
-         */
         String coup ;
         coup = jeu.coupPossible("P1") ? "P1" : null ; // On essaye de poser la premiere carte sur notre jeu
 
@@ -34,5 +30,10 @@ public class StrategieParDefaut implements Strategie{
             coup = "J1" ;
         }
         return  coup ;
+    }
+
+    @Override
+    public String toString() {
+        return "StrategieBasique";
     }
 }

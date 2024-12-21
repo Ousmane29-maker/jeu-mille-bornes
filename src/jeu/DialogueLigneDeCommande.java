@@ -17,16 +17,11 @@ public class DialogueLigneDeCommande {
 
     public void reagir(){
         //Afficher l'etat du jeu : les cartes du joueurs courant, sa bataille, ...
-
-        //Faire jouer le joueur courant
-            //Determiner si un dialogue est necessaire
-            //determiner l coup a passer a Joueur.jouer(coup)
-            //Appeler jouer(coup)
         Joueur joueurCourant = jeu.getJoueurCourant();
         String coup = joueurCourant.estBot() ? " " : getCoupJoueurHumain() ;
         jeu.jouer(coup) ;
 
-        //game over
+        // if game over
 
         // changer le joueur courant ici ?
     }
@@ -42,5 +37,15 @@ public class DialogueLigneDeCommande {
        return  coup ;
     }
 
+    //Afficher l'etat du jeu : les cartes du joueurs courant, sa bataille, ...
+
+    //Faire jouer le joueur courant
+    //Determiner si un dialogue est necessaire
+    //determiner l coup a passer a Joueur.jouer(coup)
+    //Appeler jouer(coup)
+
+    //game over
+
+    // changer le joueur courant ici ?
 
 }

@@ -141,7 +141,7 @@ public class PaquetDeCartes implements Iterable<Carte> {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("Paquet de Carte \n { \n");
+        str.append("PaquetDeCarte = { ");
         for (Carte carte : this.pdc) {
             str.append(carte.toString()).append(", ");
         }
