@@ -12,17 +12,16 @@ public class StrategieBasique implements Strategie{
     @Override
     public String choisirCoup(Jeu jeu) {
         //  Basique : P1 > P1j> J1
-        Joueur joueurcourant =  jeu.getJoueurCourant() ;
-        assert (joueurcourant.getNbCartesMain() > 0) : "le nombre de carte joueur courant est null" ;
+        Joueur joueurCourant =  jeu.getJoueurCourant() ;
+        assert (joueurCourant.getNbCartesMain() > 0) : "Le joueurCourant n'a aucune carte en main" ;
         String coup ;
-        coup = jeu.coupPossible("P1") ? "P1" : null ; // On essaye de poser la premiere carte sur notre jeu
-
+        coup = joueurCourant.coupPossible("P1") ? "P1" : null ; // On essaye de poser la premiere carte sur notre jeu
         // On essaye de la poser sur les joueurs adverse en commencant par le premier joueurs, si on a pas reussi en haut
         int i = 1 ;
         while(i <= jeu.getNbJoueurs() && coup == null) {
             if(i != jeu.getJoueurQuiJoue()){ // eviter le cas ou le joueur adverse est le joueur qui joue
                 String coupAtester = "P1"+i ;
-                coup = jeu.coupPossible(coupAtester) ? coupAtester : null ;
+                coup = joueurCourant.coupPossible(coupAtester) ? coupAtester : null ;
             }
             i++ ;
         }
