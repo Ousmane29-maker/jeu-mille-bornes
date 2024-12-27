@@ -1,18 +1,12 @@
 package jeu.joueurs;
 import jeu.Jeu;
 import jeu.cartes.*;
-import jeu.cartes.attaques.Accident;
-import jeu.cartes.attaques.Crevaison;
-import jeu.cartes.attaques.FeuRouge;
-import jeu.cartes.attaques.PanneDEssence;
+import jeu.cartes.attaques.*;
 import jeu.cartes.bornes.Bornes;
 import jeu.cartes.bottes.AsDuVolant;
 import jeu.cartes.bottes.Increvable;
 import jeu.cartes.bottes.Prioritaire;
-import jeu.cartes.parades.Essence;
-import jeu.cartes.parades.FeuVert;
-import jeu.cartes.parades.Reparation;
-import jeu.cartes.parades.RoueDeSecours;
+import jeu.cartes.parades.*;
 
 public abstract class Joueur {
 

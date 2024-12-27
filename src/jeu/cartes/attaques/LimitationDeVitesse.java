@@ -1,5 +1,6 @@
-package jeu.cartes;
+package jeu.cartes.attaques;
 
+import jeu.cartes.Carte;
 import jeu.joueurs.Joueur;
 
 public class LimitationDeVitesse extends Carte {

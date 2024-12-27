@@ -183,14 +183,15 @@ public class PaquetDeCartes implements Iterable<Carte> {
         return name.equals("FeuRouge") ||
                 name.equals("Accident") ||
                 name.equals("PanneDEssence") ||
-                name.equals("Crevaison");
+                name.equals("Crevaison") ||
+                name.equals("LimitationDeVitesse") ;
     }
 
     private boolean estUneBotte(String name) {
         return name.equals("Increvable") ||
                 name.equals("AsDuVolant") ||
                 name.equals("Prioritaire") ||
-                name.equals("CiterneDEssence");
+                name.equals("CiterneDEssence") ;
     }
 
     public void ecrire(String nomDeFichier) throws ErreurFichier {

@@ -17,26 +17,30 @@ public class DialogueLigneDeCommande {
 
     public void reagir(){
         //Afficher l'etat du jeu : les cartes du joueurs courant, sa bataille, ...
+        afficherEtatJeu() ;
         Joueur joueurCourant = jeu.getJoueurCourant();
         String coup = joueurCourant.estBot() ? " " : getCoupJoueurHumain() ;
-        jeu.jouer(coup) ;
+        joueurCourant.jouer(coup) ;
 
-        // if game over
-
-        // changer le joueur courant ici ?
     }
 
 
     private String getCoupJoueurHumain(){
-        String coup = "" ;
-        while(!jeu.coupPossible(coup)){
-            System.out.println("Veuillez saisir un coup possible : \n");
-            coup = scanner.next() ;
-        }
-        // là le coup est valide
-       return  coup ;
+        String coup;
+        do {
+            System.out.println("Veuillez saisir un coup possible :");
+            coup = scanner.nextLine();
+        } while (!jeu.coupPossible(coup));
+
+        // Le coup est valide à ce stade
+        return coup;
     }
 
+    private void afficherEtatJeu() {
+        System.out.println("=== État du jeu ===");
+        //
+        System.out.println("===================");
+    }
     //Afficher l'etat du jeu : les cartes du joueurs courant, sa bataille, ...
 
     //Faire jouer le joueur courant

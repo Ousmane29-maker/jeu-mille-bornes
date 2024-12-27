@@ -88,12 +88,9 @@ public class Jeu {
     }
 
     public void jouer(String coup){
-        assert coupPossible(coup) : "le coup doit etre valide";
-        Joueur joueurCourant = getJoueurCourant() ;
-        joueurCourant.jouer(coup) ;
+        //assert coupPossible(coup) : "le coup doit etre valide";
         dialogue.reagir() ;
-
-        // c'est ici que l'on doit changer le joueur courant ???
+        setJoueurQuiJoue();
     }
 
     public boolean coupPossible(String coup){

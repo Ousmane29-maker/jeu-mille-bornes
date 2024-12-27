@@ -8,7 +8,7 @@ PanneDEssence 3
 Crevaison 3
 Accident 3
 FeuVert 14
-FinLimiationDeVitesse 6
+FinLimitationDeVitesse 6
 Essence 6
 RoueDeSecours 6
 Reparation 6

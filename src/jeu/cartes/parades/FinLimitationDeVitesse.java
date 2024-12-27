@@ -1,5 +1,6 @@
-package jeu.cartes;
+package jeu.cartes.parades;
 
+import jeu.cartes.Carte;
 import jeu.joueurs.Joueur;
 
 public class FinLimitationDeVitesse extends Carte {
