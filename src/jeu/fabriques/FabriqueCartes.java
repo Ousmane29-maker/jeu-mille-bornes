@@ -89,7 +89,7 @@ public class FabriqueCartes {
     public static PaquetDeCartes getPaquetStandard() {
         PaquetDeCartes pdc = new PaquetDeCartes() ;
         try{
-            pdc.lire("cartes_standard.txt");
+            pdc.lire("ressources/cartes_standard.txt");
         } catch (ErreurFichier e) {
             throw new RuntimeException(e);
         }

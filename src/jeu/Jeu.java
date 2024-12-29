@@ -88,9 +88,11 @@ public class Jeu {
     }
 
     public void jouer(String coup){
-        //assert coupPossible(coup) : "le coup doit etre valide";
-        dialogue.reagir() ;
+        assert coupPossible(coup) : "le coup doit etre valide";
+        Joueur joueurCourant = this.getJoueurCourant() ;
+        joueurCourant.jouer(coup);
         setJoueurQuiJoue();
+        dialogue.reagir() ;
     }
 
     public boolean coupPossible(String coup){
@@ -140,11 +142,15 @@ public class Jeu {
         assert(nbJoueurs >=2 && nbJoueurs <= 5) : "Le nombre de joueurs doit etre dans l'intervalle [2,5]" ;
         Strategie strategie = new StrategieBasique() ; //apres on poura avoir plusieur Strategie
         for(int i = 1; i < nbJoueurs; i++){
-            add(new Bot(this, "Bot"+1, strategie)) ;
+            add(new Bot(this, "Bot"+i, strategie)) ;
         }
         add(new JoueurHumain(this, "JoueurHumain")) ;
     }
 
+    public boolean estTermine() {
+        //
+        return false ;
+    }
 
 
     // A verifier choisirQuiJoue() et ChoisirQuiDistribue()

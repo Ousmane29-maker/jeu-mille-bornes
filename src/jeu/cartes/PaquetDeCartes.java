@@ -141,12 +141,12 @@ public class PaquetDeCartes implements Iterable<Carte> {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("PaquetDeCarte = { ");
+        str.append('{');
         for (Carte carte : this.pdc) {
             str.append(carte.toString()).append(", ");
         }
         str.deleteCharAt(str.length() - 2) ; //supprimer le dernier virgule
-        str.append("} \n");
+        str.append('}');
         return str.toString();
     }
 

@@ -54,4 +54,26 @@ public class Bottes {
     public boolean estIncrevable() {
         return estIncrevable;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        if (estAsDuVolant) {
+            sb.append("AsDuVolant, ");
+        }
+        if (estPrioritaire) {
+            sb.append("Prioritaire, ");
+        }
+        if (estCiterneDEssence) {
+            sb.append("CiterneDEssence, ");
+        }
+        if (estIncrevable) {
+            sb.append("Increvable, ");
+        }
+        // Supprimer la dernière virgule et espace si le StringBuilder n'est pas vide
+        if (!sb.isEmpty()) {
+            sb.setLength(sb.length() - 2);
+        }
+        return sb.toString();
+    }
 }

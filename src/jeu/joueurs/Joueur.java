@@ -86,20 +86,20 @@ public abstract class Joueur {
         this.jeu = jeu;
     }
 
-//    @Override
-//    public String toString() {
-//        StringBuilder str = new StringBuilder() ;
-//        str.append("Joueur{ \n nom = ") ;
-//        str.append(this.nom) ;
-//        str.append("\nmain = ");
-////        str.append(this.main) ;
-//        str.append("jeu = ");
-//        str.append(this.jeu) ;
-//        str.append("} \n") ;
-//
-//        return str.toString() ;
-//    }
-
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\n")
+                .append("  nom = ").append(nom).append("\n")
+                .append("  main = ").append(main).append("\n")
+                .append("  bornes = ").append(bornes).append("\n")
+                .append("  cartes200Jouees = ").append(cartes200Jouees).append("\n")
+                .append("  bottes = ").append(bottes).append("\n")
+                .append("  bataille = ").append(bataille).append("\n")
+                .append("  limitationVitesse = ").append(limitationVitesse).append("\n")
+                .append("}");
+        return sb.toString();
+    }
 
     //peutRecevoir Attaque
     public boolean peutRecevoir(Accident accident) {
