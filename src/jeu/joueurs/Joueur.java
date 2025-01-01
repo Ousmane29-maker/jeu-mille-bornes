@@ -177,7 +177,8 @@ public abstract class Joueur {
     public abstract void jouer(String coup) ;
     public void jouerCoup(String coup) {
         assert coupPossible(coup) : "le coup doit etre valide";
-        int indiceCarte = coup.charAt(1) - '1' ;        Carte carte = getMain().getCarte(indiceCarte) ;
+        int indiceCarte = coup.charAt(1) - '1' ;
+        Carte carte = getMain().getCarte(indiceCarte) ;
         if(coup.charAt(0) == 'J'){
             jouerJeter(carte);
         } else if (coup.length() == 2) {
@@ -309,6 +310,7 @@ public abstract class Joueur {
     }
 
 
-
-
+    public int getBornes() {
+        return bornes;
+    }
 }

@@ -88,9 +88,10 @@ public class Jeu {
     }
 
     public void jouer(String coup){
-        assert coupPossible(coup) : "le coup doit etre valide";
+        //assert coupPossible(coup) : "le coup doit etre valide";
         Joueur joueurCourant = this.getJoueurCourant() ;
         joueurCourant.jouer(coup);
+        donnerCarte(joueurCourant); // piocher apres avoir jouee
         setJoueurQuiJoue();
         dialogue.reagir() ;
     }
@@ -140,7 +141,7 @@ public class Jeu {
     }
     public void creerJoueurs(int nbJoueurs){
         assert(nbJoueurs >=2 && nbJoueurs <= 5) : "Le nombre de joueurs doit etre dans l'intervalle [2,5]" ;
-        Strategie strategie = new StrategieBasique() ; //apres on poura avoir plusieur Strategie
+        Strategie strategie = new StrategieFacile() ; //apres on poura avoir plusieur Strategie
         for(int i = 1; i < nbJoueurs; i++){
             add(new Bot(this, "Bot"+i, strategie)) ;
         }
@@ -148,8 +149,39 @@ public class Jeu {
     }
 
     public boolean estTermine() {
-        //
-        return false ;
+        // Vérifie si la pioche est vide
+        if (pioche.estVide()) {
+            return true;
+        }
+        // Vérifie si un joueur a gagné en atteignant 1000 Bornes
+        for (Joueur joueur : joueurs) {
+            if (joueur.getBornes() == 1000) {
+                return true;
+            }
+        }
+        // Le jeu continue
+        return false;
+    }
+    public Joueur determinerGagnant() {
+        // Vérifie d'abord si un joueur a exactement 1000 Bornes
+        for (Joueur joueur : joueurs) {
+            if (joueur.getBornes() == 1000) {
+                return joueur;  // Retourne immédiatement le joueur gagnant
+            }
+        }
+
+        // Si aucun joueur n'a 1000 Bornes, on détermine le joueur avec le plus de Bornes sans dépasser 1000
+        Joueur possibleGagnant = null;
+        int maxBornes = -1;
+
+        for (Joueur joueur : joueurs) {
+            if (joueur.getBornes() <= 1000 && joueur.getBornes() > maxBornes) {
+                maxBornes = joueur.getBornes();
+                possibleGagnant = joueur;
+            }
+        }
+
+        return possibleGagnant;  // Retourne le joueur avec le maximum de Bornes sans dépasser 1000
     }
 
 

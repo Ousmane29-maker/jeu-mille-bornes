@@ -145,7 +145,9 @@ public class PaquetDeCartes implements Iterable<Carte> {
         for (Carte carte : this.pdc) {
             str.append(carte.toString()).append(", ");
         }
-        str.deleteCharAt(str.length() - 2) ; //supprimer le dernier virgule
+        if (str.length() > 1) {
+            str.setLength(str.length() - 2); //supprimer le dernier virgule
+        }
         str.append('}');
         return str.toString();
     }

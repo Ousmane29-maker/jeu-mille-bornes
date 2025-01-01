@@ -26,7 +26,7 @@ public class FabriqueJeux {
                     if(limitationVitesse){
                         joueur.setLimitationVitesse();
                     }
-                    jeu.add(joueur); // on ajoute le joueur dans le jeu apres avoir specifie ses parametres
+                    jeu.add(joueur); // on ajoute le joueur dans le jeu apres avoir specifier ses parametres
                     return jeu ;
 
     }
@@ -38,7 +38,7 @@ public class FabriqueJeux {
                 for(Bottes bottes : b){
                     Jeu jeu1 = FabriqueJeux.creerJeu(nom, carteBataille, carteMain, bottes,  false) ;
                     Jeu jeu2 = FabriqueJeux.creerJeu(nom, carteBataille, carteMain,bottes, true) ;
-                    collectionJeux.add(jeu1); // on ajoute ce jeu creer lui meme dans la collection
+                    collectionJeux.add(jeu1); 
                     collectionJeux.add(jeu2);
                 }
             }

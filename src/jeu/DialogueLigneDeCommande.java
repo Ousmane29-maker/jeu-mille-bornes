@@ -17,11 +17,22 @@ public class DialogueLigneDeCommande {
 
     public void reagir(){
         //Afficher l'etat du jeu : les cartes du joueurs courant, sa bataille, ...
-        afficherEtatJeu() ;
-        Joueur joueurCourant = jeu.getJoueurCourant();
-        String coup = joueurCourant.estBot() ? " " : getCoupJoueurHumain() ;
-        jeu.jouer(coup) ;
+        if(jeu.estTermine()){
+            afficherFinDuJeu() ;
+        }else{
+            afficherEtatJeu() ;
+            Joueur joueurCourant = jeu.getJoueurCourant();
+            String coup = joueurCourant.estBot() ? " " : getCoupJoueurHumain() ;
+            jeu.jouer(coup) ;
+        }
 
+
+    }
+
+    private void afficherFinDuJeu() {
+        Joueur joueurGagnant = jeu.determinerGagnant();
+        System.out.println("C'est la fin du jeu !\n");
+        System.out.println(joueurGagnant.getNom() + " a gagné avec " + joueurGagnant.getBornes() + " km.\n");
     }
 
 
