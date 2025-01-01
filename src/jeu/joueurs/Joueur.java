@@ -153,6 +153,10 @@ public abstract class Joueur {
     }
 
     public boolean estPossiblePoser(Bornes bornes) {
+        //s'il ya une carte attaque sur sa bataille
+        if(bataille != null && bataille.estUneAttaque()){
+            return false ;
+        }
         // Vérifier la limitation de vitesse
         if (this.limitationVitesse && bornes.getKms() > 50) {
             return false;
@@ -161,7 +165,7 @@ public abstract class Joueur {
         if (bornes.getKms() == 200 && this.cartes200Jouees >= 2) {
             return false;
         }
-        // Si aucune règle ne bloque, la carte peut être posée bien surrr
+        // Si aucune condition n'empêche de jouer, la carte peut être posée
         return true;
     }
 

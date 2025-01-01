@@ -25,12 +25,10 @@ public class DialogueLigneDeCommande {
             String coup = joueurCourant.estBot() ? " " : getCoupJoueurHumain() ;
             jeu.jouer(coup) ;
         }
-
-
     }
 
     private void afficherFinDuJeu() {
-        Joueur joueurGagnant = jeu.determinerGagnant();
+        Joueur joueurGagnant = jeu.getJoueurGagnant();
         System.out.println("C'est la fin du jeu !\n");
         System.out.println(joueurGagnant.getNom() + " a gagné avec " + joueurGagnant.getBornes() + " km.\n");
     }

@@ -6,6 +6,7 @@ import jeu.cartes.PaquetDeCartes;
 import jeu.fabriques.FabriqueCartes;
 import jeu.joueurs.*;
 
+import java.util.Iterator;
 import java.util.Random;
 
 public class Jeu {
@@ -21,6 +22,8 @@ public class Jeu {
     private PaquetDeCartes pioche ;
 
     private DialogueLigneDeCommande dialogue ;
+
+    private Joueur joueurGagnant = null;
     public Jeu() {
         this.joueurs = new CollectionJoueurs(2) ; //nombre de joueur par defaut : 2
         this.pioche = new PaquetDeCartes() ; // A definir apres
@@ -64,6 +67,11 @@ public class Jeu {
     public int getJoueurQuiJoue() {
         return joueurQuiJoue;
     }
+
+    public Joueur getJoueurGagnant() {
+        return joueurGagnant;
+    }
+
 
 
     public int getJoueurQuiDistribue() {
@@ -149,43 +157,42 @@ public class Jeu {
     }
 
     public boolean estTermine() {
-        // Vérifie si la pioche est vide
-        if (pioche.estVide()) {
-            return true;
-        }
-        // Vérifie si un joueur a gagné en atteignant 1000 Bornes
-        for (Joueur joueur : joueurs) {
+        boolean estTermine = false;
+        // Vérifie d'abord si un joueur a atteint exactement 1000 Bornes
+        Iterator<Joueur> iterator = joueurs.iterator();
+        while (iterator.hasNext() && !estTermine) {
+            Joueur joueur = iterator.next();
             if (joueur.getBornes() == 1000) {
-                return true;
-            }
-        }
-        // Le jeu continue
-        return false;
-    }
-    public Joueur determinerGagnant() {
-        // Vérifie d'abord si un joueur a exactement 1000 Bornes
-        for (Joueur joueur : joueurs) {
-            if (joueur.getBornes() == 1000) {
-                return joueur;  // Retourne immédiatement le joueur gagnant
-            }
-        }
+                joueurGagnant = joueur ;
+                estTermine = true;
 
-        // Si aucun joueur n'a 1000 Bornes, on détermine le joueur avec le plus de Bornes sans dépasser 1000
+            }
+        }
+        // Si aucun joueur n'a 1000 Bornes, vérifie si la pioche est vide
+        if (!estTermine && pioche.estVide()) {
+            determinerGagnantParProximite() ; // Déterminer le gagnant lorsque la pioche est vide
+            estTermine = true;
+        }
+        return estTermine;  // Retourne le résultat final
+    }
+
+
+    private void determinerGagnantParProximite() {
         Joueur possibleGagnant = null;
         int maxBornes = -1;
-
+        // Parcourt les joueurs pour trouver celui avec le plus de bornes sans atteindre 1000
         for (Joueur joueur : joueurs) {
-            if (joueur.getBornes() <= 1000 && joueur.getBornes() > maxBornes) {
-                maxBornes = joueur.getBornes();
+            int bornes = joueur.getBornes();
+            if (bornes < 1000 && bornes > maxBornes) {
+                maxBornes = bornes;
                 possibleGagnant = joueur;
             }
         }
-
-        return possibleGagnant;  // Retourne le joueur avec le maximum de Bornes sans dépasser 1000
+        // Met à jour le joueur gagnant
+        joueurGagnant = possibleGagnant;
     }
 
-
-    // A verifier choisirQuiJoue() et ChoisirQuiDistribue()
+// A verifier choisirQuiJoue() et ChoisirQuiDistribue()
 
 
 
