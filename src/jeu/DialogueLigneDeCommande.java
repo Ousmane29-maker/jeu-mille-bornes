@@ -20,7 +20,7 @@ public class DialogueLigneDeCommande {
         if(jeu.estTermine()){
             afficherFinDuJeu() ;
         }else{
-            afficherEtatJeu() ;
+            afficherEtatJoueurCourant() ;
             Joueur joueurCourant = jeu.getJoueurCourant();
             String coup = joueurCourant.estBot() ? " " : getCoupJoueurHumain() ;
             jeu.jouer(coup) ;
@@ -45,7 +45,7 @@ public class DialogueLigneDeCommande {
         return coup;
     }
 
-    private void afficherEtatJeu() {
+    private void afficherEtatJoueurCourant() {
         System.out.println("=== État du joueur courant ===");
         System.out.println(jeu.getJoueurCourant());
         System.out.println("===================");

@@ -4,6 +4,7 @@ import jeu.cartes.*;
 import jeu.cartes.attaques.*;
 import jeu.cartes.bornes.Bornes;
 import jeu.cartes.bottes.AsDuVolant;
+import jeu.cartes.bottes.CiterneDEssence;
 import jeu.cartes.bottes.Increvable;
 import jeu.cartes.bottes.Prioritaire;
 import jeu.cartes.parades.*;
@@ -53,8 +54,8 @@ public abstract class Joueur {
         //copie profonde du paquet (en utilisant le constructeur de copie profonde dans PaquetDeCartes)
         this.main = new PaquetDeCartes(j.getMain());
         this.jeu = j.jeu ;
-        this.setBataille(bataille);
-        this.setBottes(bottes);
+        this.setBataille(j.bataille);
+        this.setBottes(j.bottes);
         this.bornes = j.bornes ;
         this.cartes200Jouees = j.cartes200Jouees ;
         this.limitationVitesse = j.limitationVitesse ;
@@ -88,18 +89,49 @@ public abstract class Joueur {
 
     @Override
     public String toString() {
+        final String RESET = "\u001B[0m";
+        final String LIGHT_GREEN = "\u001B[92m"; // Vert clair pour les bottes et états neutres
+        final String RED = "\u001B[31m";         // Rouge pour les attaques
+        final String ORANGE = "\u001B[38;5;214m"; // Orange pour les limitations actives
+        final String BLUE = "\u001B[34m";        // Bleu pour les bornes
+
         StringBuilder sb = new StringBuilder();
         sb.append("{\n")
                 .append("  nom = ").append(nom).append("\n")
                 .append("  main = ").append(main).append("\n")
-                .append("  bornes = ").append(bornes).append("\n")
-                .append("  cartes200Jouees = ").append(cartes200Jouees).append("\n")
-                .append("  bottes = ").append(bottes).append("\n")
-                .append("  bataille = ").append(bataille).append("\n")
-                .append("  limitationVitesse = ").append(limitationVitesse).append("\n")
-                .append("}");
+                // Bornes : bleu
+                .append("  bornes = ").append(BLUE).append(bornes).append(RESET).append("\n")
+                // cartes200Jouees : affichées normalement
+                .append("  cartes200Jouees = ").append(cartes200Jouees).append("\n");
+
+        // Condition pour bataille : rouge si c'est une attaque, texte clair pour null
+        sb.append("  bataille = ");
+        if (bataille == null) {
+            sb.append("Pas de bataille").append("\n");
+        } else if (bataille.estUneAttaque()) {
+            sb.append(RED).append(bataille).append(RESET).append("\n");
+        } else {
+            sb.append(bataille).append("\n");
+        }
+
+        // Condition pour limitation de vitesse : orange si active, vert clair sinon
+        sb.append("  limitationVitesse = ");
+        if (limitationVitesse) {
+            sb.append(ORANGE).append("Limitation de vitesse active (limite à 50 km/h)").append(RESET).append("\n");
+        } else {
+            sb.append("Pas de limitation de vitesse").append("\n");
+        }
+
+        sb.append("  bottes = ") ;
+        if(!bottes.estAsDuVolant() && !bottes.estPrioritaire() && !bottes.estIncrevable() && !bottes.estCiterneDEssence()){
+            sb.append(bottes).append("\n") ;
+        }else{
+            sb.append(LIGHT_GREEN).append(bottes).append(RESET).append("\n") ;
+        }
+        sb.append("}");
         return sb.toString();
     }
+
 
     //peutRecevoir Attaque
     public boolean peutRecevoir(Accident accident) {
@@ -148,9 +180,7 @@ public abstract class Joueur {
 //        //A gerer apres gestion de paquets de cartesn, voir y'a combien de cartes de 200 (ca doit etre < 2)
 
 
-    public void setLimitationVitesse() {
-        this.limitationVitesse = !this.limitationVitesse;
-    }
+
 
     public boolean estPossiblePoser(Bornes bornes) {
         //s'il ya une carte attaque sur sa bataille
@@ -176,6 +206,10 @@ public abstract class Joueur {
 
     public void setBottes(Bottes newBottes) {
         this.bottes = newBottes;
+    }
+
+    public void setLimitationVitesse() {
+        this.limitationVitesse = !this.limitationVitesse;
     }
 
     public abstract void jouer(String coup) ;
@@ -231,14 +265,14 @@ public abstract class Joueur {
     private void activerBotte(Carte carte) {
         switch (carte) {
             case AsDuVolant ignored -> this.bottes.setEstAsDuVolant();
-            case Essence ignored -> this.bottes.setEstCiterneDEssence();
+            case CiterneDEssence ignored -> this.bottes.setEstCiterneDEssence();
             case Prioritaire ignored -> this.bottes.setEstPrioritaire();
             case Increvable ignored -> this.bottes.setEstIncrevable();
-            default -> System.out.println("Carte non reconnue pour l'activation de botte, j'espère qu'on ne viendra jamais ici !");
+            default -> {
+                // Ne rien faire
+            }
         }
-
     }
-
 
 
     private void jouerJeter(Carte carte) {

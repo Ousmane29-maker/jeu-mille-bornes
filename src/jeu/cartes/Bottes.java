@@ -70,8 +70,10 @@ public class Bottes {
         if (estIncrevable) {
             sb.append("Increvable, ");
         }
-        // Supprimer la dernière virgule et espace si le StringBuilder n'est pas vide
-        if (!sb.isEmpty()) {
+        if (sb.isEmpty()) {
+            sb.append("Aucune botte activée");
+        } else {
+            // Supprimer la dernière virgule et espace si des bottes sont activées
             sb.setLength(sb.length() - 2);
         }
         return sb.toString();

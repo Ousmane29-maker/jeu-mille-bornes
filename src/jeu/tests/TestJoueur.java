@@ -168,12 +168,12 @@ class TestJoueur {
         j.ajouterMain(new Essence());
         jeu.add(j);
         assertTrue(j.coupPossible("P1"));
-        j.setLimitationVitesse(); // Rendre le coup "P1" invalide
-        assertFalse(j.coupPossible("P1"));
         assertFalse(j.coupPossible("P2"));
         assertFalse(j.coupPossible("P3"));
         assertFalse(j.coupPossible("P"));
         assertFalse(j.coupPossible("Pksi84"));
+        j.setLimitationVitesse(); // Rendre le coup "P1" invalide
+        assertFalse(j.coupPossible("P1"));
 
     }
 
