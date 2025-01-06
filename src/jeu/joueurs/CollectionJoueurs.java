@@ -6,8 +6,8 @@ import java.util.Iterator;
 public class CollectionJoueurs implements Iterable<Joueur>{
     ArrayList<Joueur> cj;
     public CollectionJoueurs(int nbJoueurs){
-        this.cj = new ArrayList<>(nbJoueurs) ;
         assert (nbJoueurs > 1) : "le nombre de joueur doit etre strictement superieur a 1" ;
+        this.cj = new ArrayList<>(nbJoueurs) ;
     }
     public CollectionJoueurs(CollectionJoueurs cj){
         assert (cj != null) : "Le parametre cj ne doit pas etre null" ;

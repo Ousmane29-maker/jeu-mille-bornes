@@ -10,6 +10,13 @@ import jeu.cartes.bottes.Prioritaire;
 import jeu.cartes.parades.*;
 
 public abstract class Joueur {
+    // Déclaration des constantes de couleur pour la mise en forme du texte
+    private static final String RESET = "\u001B[0m";           // Réinitialise la couleur
+    private static final String LIGHT_GREEN = "\u001B[92m";    // Vert clair pour les bottes
+    private static final String RED = "\u001B[31m";           // Rouge pour les attaques
+    private static final String ORANGE = "\u001B[38;5;214m";   // Orange pour les limitations actives
+    private static final String BLUE = "\u001B[34m";          // Bleu pour les bornes
+
 
     protected String nom;
     protected PaquetDeCartes main;
@@ -24,6 +31,7 @@ public abstract class Joueur {
 
     protected Jeu jeu;
     protected boolean limitationVitesse;
+
 
     public Joueur(Jeu jeu, String nom) {
         assert (jeu != null && nom != null) : "Les parametres jeu et nom ne doivent pas etre null";
@@ -72,6 +80,7 @@ public abstract class Joueur {
         return nom;
     }
 
+
     public void ajouterMain(Carte carte) {
         assert (carte != null) : " La carte ne doit pas etre null";
         this.main.ajouter(carte);
@@ -89,22 +98,15 @@ public abstract class Joueur {
 
     @Override
     public String toString() {
-        final String RESET = "\u001B[0m";
-        final String LIGHT_GREEN = "\u001B[92m"; // Vert clair pour les bottes et états neutres
-        final String RED = "\u001B[31m";         // Rouge pour les attaques
-        final String ORANGE = "\u001B[38;5;214m"; // Orange pour les limitations actives
-        final String BLUE = "\u001B[34m";        // Bleu pour les bornes
-
         StringBuilder sb = new StringBuilder();
-        sb.append("{\n")
-                .append("  nom = ").append(nom).append("\n")
-                .append("  main = ").append(main).append("\n")
-                // Bornes : bleu
-                .append("  bornes = ").append(BLUE).append(bornes).append(RESET).append("\n")
-                // cartes200Jouees : affichées normalement
-                .append("  cartes200Jouees = ").append(cartes200Jouees).append("\n");
-
-        // Condition pour bataille : rouge si c'est une attaque, texte clair pour null
+        sb.append("{\n") ;
+        sb.append("  nom = ").append(nom).append("\n") ;
+        if (estHumain()) {
+            sb.append("  main = ").append(main).append("\n");
+        }
+        sb.append("  bornes = ").append(BLUE).append(bornes).append(RESET).append("\n") ;
+        sb.append("  cartes200Jouees = ").append(cartes200Jouees).append("\n");
+        //pour la bataille
         sb.append("  bataille = ");
         if (bataille == null) {
             sb.append("Pas de bataille").append("\n");
@@ -113,15 +115,12 @@ public abstract class Joueur {
         } else {
             sb.append(bataille).append("\n");
         }
-
-        // Condition pour limitation de vitesse : orange si active, vert clair sinon
         sb.append("  limitationVitesse = ");
         if (limitationVitesse) {
             sb.append(ORANGE).append("Limitation de vitesse active (limite à 50 km/h)").append(RESET).append("\n");
         } else {
             sb.append("Pas de limitation de vitesse").append("\n");
         }
-
         sb.append("  bottes = ") ;
         if(!bottes.estAsDuVolant() && !bottes.estPrioritaire() && !bottes.estIncrevable() && !bottes.estCiterneDEssence()){
             sb.append(bottes).append("\n") ;
@@ -175,12 +174,6 @@ public abstract class Joueur {
     }
 
 
-//        //Important : au cours d’une partie, vous ne pouvez
-//        //poser que 2 cartes « 200 » sur votre Zone de Jeu.
-//        //A gerer apres gestion de paquets de cartesn, voir y'a combien de cartes de 200 (ca doit etre < 2)
-
-
-
 
     public boolean estPossiblePoser(Bornes bornes) {
         //s'il ya une carte attaque sur sa bataille
@@ -212,6 +205,7 @@ public abstract class Joueur {
         this.limitationVitesse = !this.limitationVitesse;
     }
 
+
     public abstract void jouer(String coup) ;
     public void jouerCoup(String coup) {
         assert coupPossible(coup) : "le coup doit etre valide";
@@ -221,6 +215,9 @@ public abstract class Joueur {
             jouerJeter(carte);
         } else if (coup.length() == 2) {
             jouerPoserSurMonJeu(carte) ;
+//            if(carte.estUneBotte()){
+//                jeu.rejouer() ;
+//            }
         }else {
             int indiceJoueurAdverse = coup.charAt(2) - '1' ;
             Joueur joueurAdverse = jeu.getJoueur(indiceJoueurAdverse);

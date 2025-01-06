@@ -211,7 +211,7 @@ class TestJoueur {
     @MethodSource("jeu.fabriques.FabriqueJeux#getMB1JReparationCorrect")
     void testPoserReparationCorrect(Jeu jeu) {
         Joueur joueur = jeu.getJoueur(0);
-        jeu.jouer("P1");
+        joueur.jouer("P1");
         assertTrue(joueur.getBataille().match("Reparation"));
         assertEquals(0,joueur.getMain().getNbCartes()) ;
     }

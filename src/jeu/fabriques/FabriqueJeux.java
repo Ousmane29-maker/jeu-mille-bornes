@@ -49,14 +49,14 @@ public class FabriqueJeux {
     public static CollectionJeux getMB1JReparationCorrect(){
         Carte[] cM = {new Reparation()};
         Carte[] cT = {new Accident()};
-        Bottes[] b = FabriqueBottes.getToutesLesBottesPossiblesSaufAsDuVolant();
+        Bottes[] b = FabriqueBottes.getToutesLesBottesPossibles();
         return creerJeuUnJoueur("Joueur1",cT, cM,b) ;
     }
 
     public static CollectionJeux getMB1JAccidentCorrect(){
         Carte[] cM = {new Accident()}; //l'accident que le joueur1 va utiliser pour attaquer
         Carte[] cT = {new FeuRouge()}; // aleatoire
-        Bottes[] b = FabriqueBottes.getToutesLesBottesPossiblesSaufAsDuVolant();
+        Bottes[] b = FabriqueBottes.getToutesLesBottesPossibles();
         return creerJeuUnJoueur("Joueur1",cT, cM,b) ;
     }
 
@@ -80,9 +80,10 @@ public class FabriqueJeux {
     }
 
     private static Jeu combiner(Jeu jeu1, Jeu jeu2) {
+        Jeu jeu = new Jeu(jeu1) ;
         Joueur joueur2 = jeu2.getJoueur(0) ;
-        joueur2.setJeu(jeu1);
-        jeu1.add(joueur2);
-        return jeu1 ;
+        joueur2.setJeu(jeu);
+        jeu.add(joueur2);
+        return jeu ;
     }
 }

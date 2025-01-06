@@ -1,5 +1,6 @@
 package jeu;
 
+import jeu.cartes.Carte;
 import jeu.joueurs.Bot;
 import jeu.joueurs.Joueur;
 
@@ -16,12 +17,14 @@ public class DialogueLigneDeCommande {
     }
 
     public void reagir(){
-        //Afficher l'etat du jeu : les cartes du joueurs courant, sa bataille, ...
         if(jeu.estTermine()){
             afficherFinDuJeu() ;
         }else{
-            afficherEtatJoueurCourant() ;
+            // afficherEtatJoueurCourant() ;
             Joueur joueurCourant = jeu.getJoueurCourant();
+            if(joueurCourant.estHumain()){
+                afficherEtatJeu();
+            }
             String coup = joueurCourant.estBot() ? " " : getCoupJoueurHumain() ;
             jeu.jouer(coup) ;
         }
@@ -45,22 +48,14 @@ public class DialogueLigneDeCommande {
         return coup;
     }
 
-    private void afficherEtatJoueurCourant() {
-        System.out.println("=== État du joueur courant ===");
-        System.out.println(jeu.getJoueurCourant());
-        System.out.println("===================");
+    private void afficherEtatJeu() {
+        System.out.println("\n=== 🌟 État du Jeu 🌟 ===");
+        for (Joueur joueur : jeu) {
+            System.out.println(joueur);
+            System.out.println("🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟"); // Séparation magnifique entre les joueurs
+        }
+        System.out.println("=== ===================== ===");
     }
 
-
-    //Afficher l'etat du jeu : les cartes du joueurs courant, sa bataille, ...
-
-    //Faire jouer le joueur courant
-    //Determiner si un dialogue est necessaire
-    //determiner l coup a passer a Joueur.jouer(coup)
-    //Appeler jouer(coup)
-
-    //game over
-
-    // changer le joueur courant ici ?
 
 }

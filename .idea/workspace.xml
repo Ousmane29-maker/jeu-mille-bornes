@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf94c28-9447-42e7-b9f2-1a00f7e0c910" name="Changes" comment="fin des cartes">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="dcf94c28-9447-42e7-b9f2-1a00f7e0c910" name="Changes" comment="Couleur sur la sortie standard">
       <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JeuBPO.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/jeu/CollectionJeux.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/jeu/fabriques/FabriqueBottes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/jeu/fabriques/FabriqueJeu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jeu/DialogueLigneDeCommande.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/DialogueLigneDeCommande.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jeu/Jeu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/Jeu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jeu/fabriques/FabriqueJeux.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/fabriques/FabriqueJeux.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jeu/joueurs/CollectionJoueurs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/joueurs/CollectionJoueurs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jeu/joueurs/Joueur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/joueurs/Joueur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/jeu/tests/TestJoueur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu/tests/TestJoueur.java" afterDir="false" />
     </list>
@@ -26,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -57,6 +54,7 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-21&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -71,19 +69,37 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="jeu" />
+      <recent name="jeu.joueurs" />
       <recent name="jeu.cartes" />
       <recent name="jeu." />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ressources" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="jeu.joueurs" />
       <recent name="jeu.tests" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestJoueur.testCoupPossiblePxy">
-    <configuration name="TestCarte" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="jeu.Main" />
+      <module name="JeuBPO" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jeu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestJoueur" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JeuBPO" />
       <extension name="coverage">
         <pattern>
@@ -92,29 +108,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="jeu.tests" />
-      <option name="MAIN_CLASS_NAME" value="jeu.tests.TestCarte" />
+      <option name="MAIN_CLASS_NAME" value="jeu.tests.TestJoueur" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestCarte.TestBottePeutEtrePoseeSurMonJeu" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="JeuBPO" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="jeu.tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="jeu.tests" />
-      <option name="MAIN_CLASS_NAME" value="jeu.tests.TestCarte" />
-      <option name="METHOD_NAME" value="TestBottePeutEtrePoseeSurMonJeu" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestJoueur.testCoupPossibleJX" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestJoueur.testPoserAutruiAccidentCorrect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JeuBPO" />
       <extension name="coverage">
         <pattern>
@@ -124,13 +124,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="jeu.tests" />
       <option name="MAIN_CLASS_NAME" value="jeu.tests.TestJoueur" />
-      <option name="METHOD_NAME" value="testCoupPossibleJX" />
+      <option name="METHOD_NAME" value="testPoserAutruiAccidentCorrect(jeu.Jeu)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestJoueur.testCoupPossiblePX" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestJoueur.testPoserReparationCorrect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JeuBPO" />
       <extension name="coverage">
         <pattern>
@@ -140,13 +140,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="jeu.tests" />
       <option name="MAIN_CLASS_NAME" value="jeu.tests.TestJoueur" />
-      <option name="METHOD_NAME" value="testCoupPossiblePX" />
+      <option name="METHOD_NAME" value="testPoserReparationCorrect(jeu.Jeu)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestJoueur.testCoupPossiblePxy" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestStrategieFacile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="JeuBPO" />
       <extension name="coverage">
         <pattern>
@@ -155,20 +155,26 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="jeu.tests" />
-      <option name="MAIN_CLASS_NAME" value="jeu.tests.TestJoueur" />
-      <option name="METHOD_NAME" value="testCoupPossiblePxy" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="jeu.tests.TestStrategieFacile" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.TestJoueur" />
+      <item itemvalue="JUnit.TestJoueur.testPoserAutruiAccidentCorrect" />
+      <item itemvalue="JUnit.TestJoueur.testPoserReparationCorrect" />
+      <item itemvalue="JUnit.TestStrategieFacile" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestJoueur.testCoupPossiblePxy" />
-        <item itemvalue="JUnit.TestJoueur.testCoupPossibleJX" />
-        <item itemvalue="JUnit.TestJoueur.testCoupPossiblePX" />
-        <item itemvalue="JUnit.TestCarte" />
-        <item itemvalue="JUnit.TestCarte.TestBottePeutEtrePoseeSurMonJeu" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.TestJoueur.testPoserAutruiAccidentCorrect" />
+        <item itemvalue="JUnit.TestJoueur.testPoserReparationCorrect" />
+        <item itemvalue="JUnit.TestJoueur" />
+        <item itemvalue="JUnit.TestStrategieFacile" />
       </list>
     </recent_temporary>
   </component>
@@ -206,7 +212,52 @@
       <workItem from="1731522202953" duration="85000" />
       <workItem from="1732106539956" duration="2481000" />
       <workItem from="1732172919145" duration="11706000" />
-      <workItem from="1732199315188" duration="561000" />
+      <workItem from="1732199315188" duration="721000" />
+      <workItem from="1732384551925" duration="6888000" />
+      <workItem from="1732406005796" duration="9338000" />
+      <workItem from="1732444736638" duration="3421000" />
+      <workItem from="1732713151306" duration="5175000" />
+      <workItem from="1733287183834" duration="4801000" />
+      <workItem from="1733314958976" duration="1888000" />
+      <workItem from="1733505661047" duration="14881000" />
+      <workItem from="1733747009995" duration="1185000" />
+      <workItem from="1733832211072" duration="3452000" />
+      <workItem from="1733841579257" duration="554000" />
+      <workItem from="1733856531353" duration="3209000" />
+      <workItem from="1733890991931" duration="297000" />
+      <workItem from="1733923554822" duration="5494000" />
+      <workItem from="1733929905509" duration="26000" />
+      <workItem from="1733938260511" duration="50000" />
+      <workItem from="1733969698011" duration="90000" />
+      <workItem from="1734060081168" duration="160000" />
+      <workItem from="1734452749578" duration="6996000" />
+      <workItem from="1734505149205" duration="11152000" />
+      <workItem from="1734798041010" duration="4039000" />
+      <workItem from="1734809074510" duration="63000" />
+      <workItem from="1734824054980" duration="173000" />
+      <workItem from="1734867722988" duration="2856000" />
+      <workItem from="1734967732851" duration="1932000" />
+      <workItem from="1734974550178" duration="1853000" />
+      <workItem from="1735048193570" duration="316000" />
+      <workItem from="1735239571962" duration="710000" />
+      <workItem from="1735315785441" duration="956000" />
+      <workItem from="1735317019945" duration="326000" />
+      <workItem from="1735318159646" duration="726000" />
+      <workItem from="1735383965487" duration="135000" />
+      <workItem from="1735484473431" duration="2976000" />
+      <workItem from="1735503310448" duration="199000" />
+      <workItem from="1735578557211" duration="3097000" />
+      <workItem from="1735586689222" duration="2760000" />
+      <workItem from="1735591551797" duration="2836000" />
+      <workItem from="1735734842769" duration="7860000" />
+      <workItem from="1735768181656" duration="2371000" />
+      <workItem from="1736023358193" duration="5980000" />
+      <workItem from="1736039515457" duration="528000" />
+      <workItem from="1736085438354" duration="46000" />
+      <workItem from="1736106895920" duration="1093000" />
+      <workItem from="1736108047626" duration="3385000" />
+      <workItem from="1736184170667" duration="4110000" />
+      <workItem from="1736190053067" duration="5323000" />
     </task>
     <task id="LOCAL-00001" summary="firtCommit">
       <option name="closed" value="true" />
@@ -328,18 +379,149 @@
       <option name="project" value="LOCAL" />
       <updated>1732108874108</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="A faire : la fonction jouer dans joueur et suite du tp">
+      <option name="closed" value="true" />
+      <created>1732200078763</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1732200078763</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Fin de la methode jouer entirement rester a le tester">
+      <option name="closed" value="true" />
+      <created>1732393847899</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1732393847899</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fin tp9">
+      <option name="closed" value="true" />
+      <created>1732417678600</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1732417678600</updated>
+    </task>
+    <task id="LOCAL-00019" summary="mise a jour du diagramme_de_classe">
+      <option name="closed" value="true" />
+      <created>1732448708113</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1732448708113</updated>
+    </task>
+    <task id="LOCAL-00020" summary="implementation de ecrire dans PDC">
+      <option name="closed" value="true" />
+      <created>1733294481707</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1733294481707</updated>
+    </task>
+    <task id="LOCAL-00021" summary="implementation de lire dans PDC">
+      <option name="closed" value="true" />
+      <created>1733529906339</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1733529906339</updated>
+    </task>
+    <task id="LOCAL-00022" summary="implementation de lire plus robuste et modulaire dans PDC">
+      <option name="closed" value="true" />
+      <created>1733837028679</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1733837028679</updated>
+    </task>
+    <task id="LOCAL-00023" summary="implementation de Bot, JoueurHumain et initialiser dans Jeu">
+      <option name="closed" value="true" />
+      <created>1733859638132</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1733859638132</updated>
+    </task>
+    <task id="LOCAL-00024" summary="implementation de Strategie">
+      <option name="closed" value="true" />
+      <created>1734459955097</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1734459955097</updated>
+    </task>
+    <task id="LOCAL-00025" summary="implementation de DialogueLigneDeCommande">
+      <option name="closed" value="true" />
+      <created>1734520174189</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1734520174189</updated>
+    </task>
+    <task id="LOCAL-00026" summary="implementation de quelques autres Strategie">
+      <option name="closed" value="true" />
+      <created>1734802804347</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1734802804347</updated>
+    </task>
+    <task id="LOCAL-00027" summary="implementation de quelques autres Strategie sauf difficile">
+      <option name="closed" value="true" />
+      <created>1734871246687</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1734871246687</updated>
+    </task>
+    <task id="LOCAL-00028" summary="mise a jour de lire dans PDC, pour adapter avec les cartes LimitationDeVitesse et FinLimitationDeVitesse.">
+      <option name="closed" value="true" />
+      <created>1735316828698</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1735316828698</updated>
+    </task>
+    <task id="LOCAL-00029" summary="gestion de l'interaction avec reagir et jouer">
+      <option name="closed" value="true" />
+      <created>1735487577657</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1735487577657</updated>
+    </task>
+    <task id="LOCAL-00030" summary="implentation de la fin du jeu et du gagnant !">
+      <option name="closed" value="true" />
+      <created>1735741030091</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1735741030092</updated>
+    </task>
+    <task id="LOCAL-00031" summary="correction de Bornes peut etre posee sur mon jeu, en incluant le cas ou le joueur est attaque .">
+      <option name="closed" value="true" />
+      <created>1735746542135</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1735746542135</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Couleur sur la sortie standard">
+      <option name="closed" value="true" />
+      <created>1736030865524</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1736030865524</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="firtCommit" />
-    <MESSAGE value="implementation de Couleur, Carte" />
-    <MESSAGE value="implementation de FabriqueCartes et debut PaquetDeCartes" />
-    <MESSAGE value="implementation PaquetDeCartes ainsi que ses tests" />
-    <MESSAGE value="implementation de Joueur et de sa classe tests" />
     <MESSAGE value="implementation de CollectionJoueurs" />
     <MESSAGE value="fin de CollectionJoueurs, on attaque la classe Jeu" />
     <MESSAGE value="la fonction toString() de Jeu a faire ..." />
@@ -348,6 +530,23 @@
     <MESSAGE value="A faire : peutRecevoir et estPossiblePoser de (Bornes ) ." />
     <MESSAGE value="Continuer la classe jeu prochainement avec de nouvelles instructions" />
     <MESSAGE value="fin des cartes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fin des cartes" />
+    <MESSAGE value="A faire : la fonction jouer dans joueur et suite du tp" />
+    <MESSAGE value="Fin de la methode jouer entirement rester a le tester" />
+    <MESSAGE value="Fin tp9" />
+    <MESSAGE value="mise a jour du diagramme_de_classe" />
+    <MESSAGE value="implementation de ecrire dans PDC" />
+    <MESSAGE value="implementation de lire dans PDC" />
+    <MESSAGE value="implementation de lire plus robuste et modulaire dans PDC" />
+    <MESSAGE value="implementation de Bot, JoueurHumain et initialiser dans Jeu" />
+    <MESSAGE value="implementation de Strategie" />
+    <MESSAGE value="implementation de DialogueLigneDeCommande" />
+    <MESSAGE value="implementation de quelques autres Strategie" />
+    <MESSAGE value="implementation de quelques autres Strategie sauf difficile" />
+    <MESSAGE value="mise a jour de lire dans PDC, pour adapter avec les cartes LimitationDeVitesse et FinLimitationDeVitesse." />
+    <MESSAGE value="gestion de l'interaction avec reagir et jouer" />
+    <MESSAGE value="implentation de la fin du jeu et du gagnant !" />
+    <MESSAGE value="correction de Bornes peut etre posee sur mon jeu, en incluant le cas ou le joueur est attaque ." />
+    <MESSAGE value="Couleur sur la sortie standard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Couleur sur la sortie standard" />
   </component>
 </project>

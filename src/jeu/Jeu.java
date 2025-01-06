@@ -9,7 +9,7 @@ import jeu.joueurs.*;
 import java.util.Iterator;
 import java.util.Random;
 
-public class Jeu {
+public class Jeu implements Iterable<Joueur>{
 
     private CollectionJoueurs joueurs;
 
@@ -38,9 +38,8 @@ public class Jeu {
         //copie profonde
         this.talon = new PaquetDeCartes(jeu.talon) ;
         this.pioche = new PaquetDeCartes(jeu.pioche) ;
-
-        this.joueurs = new CollectionJoueurs(jeu.getNbJoueurs()) ;
-
+        int nbJoueurs = Math.max(jeu.getNbJoueurs(), 2);
+        this.joueurs = new CollectionJoueurs(nbJoueurs);  // Initialisation avec au moins 2 joueurs
         for(int i = 0; i < jeu.getNbJoueurs(); i++){
             Joueur j = jeu.joueurs.get(i) ;
             Joueur newJ = j.clone() ; // copie d'un joueur
@@ -96,7 +95,6 @@ public class Jeu {
     }
 
     public void jouer(String coup){
-        //assert coupPossible(coup) : "le coup doit etre valide";
         Joueur joueurCourant = this.getJoueurCourant() ;
         joueurCourant.jouer(coup);
         donnerCarte(joueurCourant); // piocher apres avoir jouee
@@ -192,8 +190,14 @@ public class Jeu {
         joueurGagnant = possibleGagnant;
     }
 
-// A verifier choisirQuiJoue() et ChoisirQuiDistribue()
+    @Override
+    public Iterator<Joueur> iterator() {
+        return joueurs.iterator() ;
+    }
 
 
-
+//    public void rejouer() {
+//        donnerCarte(getJoueurCourant());
+//        dialogue.reagir();
+//    }
 }
