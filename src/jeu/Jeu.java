@@ -133,7 +133,7 @@ public class Jeu implements Iterable<Joueur>{
         joueurQuiDistribue = random.nextInt(nbJoueurs); // le joueur qui joue est choisi de maniere aleatoire
     }
 
-    public void distribuer(){
+    private void distribuer(){
         pioche.ajouter(FabriqueCartes.getPaquetStandardManuel()); // initialisation de la pioche
         pioche.melanger();
         for(int i = 0;  i < 7; i++){
@@ -147,7 +147,7 @@ public class Jeu implements Iterable<Joueur>{
         Carte carte = pioche.piocher() ;
         joueur.ajouterMain(carte);
     }
-    public void creerJoueurs(int nbJoueurs){
+    private void creerJoueurs(int nbJoueurs){
         assert(nbJoueurs >=2 && nbJoueurs <= 4) : "Le nombre de joueurs doit etre dans l'intervalle [2,4]" ;
        Strategie strategie ;
         for(int i = 1; i < nbJoueurs; i++){

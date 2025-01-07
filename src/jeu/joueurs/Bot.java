@@ -27,7 +27,7 @@ public class Bot extends  Joueur{
         return strategie;
     }
 
-    public  void jouer(String coup) {
+    public void jouer(String coup) {
         coup = strategie.choisirCoup(jeu) ;
         jouerCoup(coup);
     }

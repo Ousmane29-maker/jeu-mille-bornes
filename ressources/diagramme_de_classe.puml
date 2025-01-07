@@ -2,10 +2,41 @@
 class Bornes {
 -int kms
 }
-abstract class Carte{}
 abstract class Parade{}
 abstract class Botte{}
 abstract class Attaque{}
+
+interface Iterable<T> {
+    + iterator() : Iterator<T>
+}
+
+interface Strategie {
+    + String choisirCoup(Jeu jeu)
+    + String toString()
+}
+
+class StrategieFacile {
+    + String choisirCoup(Jeu jeu)
+    + String toString()
+}
+
+class StrategieBasique {
+    + String choisirCoup(Jeu jeu)
+    + String toString()
+}
+
+class StrategieTrivial {
+    + String choisirCoup(Jeu jeu)
+    + String toString()
+}
+
+class StrategieDifficile {
+    + String choisirCoup(Jeu jeu)
+    + String toString()
+    - ArrayList<String> genererCoupsPossibles(Jeu jeu)
+    - int evaluerCoup(String coup, Joueur joueurCourant)
+
+}
 
 class CollectionJoueurs {
     + CollectionJoueurs(int nbJoueurs)
@@ -14,9 +45,11 @@ class CollectionJoueurs {
     + int size()
     + Joueur get(int no)
     + String toString()
+    + Iterator<Joueur> iterator()
+    + String toString()
 }
 
-class Joueur {
+abstract class Joueur {
     - String nom
     - int bornes
     - int cartes200Jouees
@@ -45,7 +78,9 @@ class Joueur {
     + boolean estPossiblePoser(Bornes bornes)
     + void setBataille(Carte newBataille)
     + void setBottes(Bottes newBottes)
-    + void jouer(String coup)
+    + abstract Joueur clone()
+    + void jouerCoup(coup)
+    + abstract void jouer(String coup)
     + boolean coupPossible(String coup)
     + Carte getBataille()
     - void jouerJeuAdverse(Carte carte, Joueur joueurAdverse)
@@ -55,6 +90,9 @@ class Joueur {
     - boolean coupJxPossible(String coup)
     - boolean coupPxPossible(String coup)
     - boolean coupPxyPossible(String coup)
+    + String toString()
+    + public boolean estBot()
+    + public boolean estHumain()
 }
 
 class Jeu {
@@ -72,18 +110,48 @@ class Jeu {
     + String toString()
     + void jouer(String coup)
     + boolean coupPossible(String coup)
+    + void initialiser(int nbBots)
+    - void choisirQuiJoue()
+    - void choisirQuiDistribue()
+    - void distribuer()
+    + void donnerCarte((Joueur j)
+    - creerJoueurs(int nbJoueurs)
+    + boolean estTermine()
+    - void determinerGagnantParProximite()
+    + Iterator<Joueur> iterator()
+    + String toString()
 }
 
 class PaquetDeCartes {
     + PaquetDeCartes()
+    + PaquetDeCartes(Carte... cartes)
+    + PaquetDeCartes(PaquetDeCartes pdc)
+    + int getNbCartes()
+    + Carte getCarte(int no)
+    + void ajouter(Carte... cartes)
+    + void ajouter(PaquetDeCartes pdc)
+    +  boolean estVide()
+    + void melanger()
+    + void retourner()
+    + Carte getSommet()
+    + void enlever(Carte carte)
+    + Carte piocher()
+    + void ecrire(String nomDeFichier) throws ErreurFichier
+    - Map<String, Integer> nbCarteDeChaqueType()
+    + void lire(String nomDeFichier) throws ErreurFichier
+    + int nombreOccurrences(Carte carte)
+    + Iterator<Carte> iterator()
+    + String toString()
+
 }
 
-class Carte {
+abstract class Carte {
     + boolean peutEtrePoseeSurMonJeu(Joueur j)
     + boolean peutEtrePoseeSurJeuAdversaire(Joueur j)
     + boolean match(String s)
     + boolean estUneAttaque()
     + boolean estUneParade()
+    + String toString()
 }
 
 class Bottes {
@@ -108,6 +176,8 @@ class CollectionJeux {
     + void remove(Jeu jeu)
     + void remove(CollectionJeux cj)
     + int size()
+    + Iterator<Joueur> iterator()
+    + String toString()
 }
 
 class FabriqueJeux {
@@ -130,18 +200,51 @@ class FabriqueCartes {
     + {static} PaquetDeCartes getPaquetBottes()
     + {static} PaquetDeCartes getPaquet1Accident()
     + {static} PaquetDeCartes getPaquet1FeuRouge1FeuVert()
+    + {static} PaquetDeCartes getPaquetStandard()
+    + {static} PaquetDeCartes getPaquetStandardManuel()
 }
+
+class DialogueLigneDeCommande{
+    + void reagir()
+    + int definirNbBots()
+    + Strategie demanderStrategieBot(int indexBot, int nbBots)
+    - void afficherFinDuJeu()
+    - String getCoupJoueurHumain()
+    - void afficherEtatJeu()
+}
+
+class Bot{
+    + Bot(Jeu jeu, String nom, Strategie strategie)
+    + Bot(Bot j)
+    + Bot clone()
+    + boolean estBot()
+    + void jouer(String coup)
+}
+
+class JoueurHumain {
+    + JoueurHumain(Jeu jeu, String nom)
+    + public JoueurHumain(Jeu jeu, String nom, Bottes bottes, Carte bataille)
+    +  boolean estHumain()
+    + JoueurHumain(JoueurHumain j)
+    + JoueurHumain clone()
+    + void jouer(String coup)
+    }
 
 ' Relations entre les classes
 CollectionJoueurs -- "*" Joueur : cj
 Jeu -- "1" CollectionJoueurs
-Joueur "1" -- Jeu : joueurCourant
+Joueur "1" -- Jeu : joueurGagnant
 Joueur -- "1" Jeu
+Joueur -- "1" PaquetDeCartes : main
 Jeu -- "1" PaquetDeCartes : talon
 Jeu -- "1" PaquetDeCartes : pioche
+Jeu -- "1" DialogueLigneDeCommande
+DialogueLigneDeCommande -- "1" Jeu
 PaquetDeCartes -- "*" Carte
 Joueur -- "1" Carte : bataille
 Joueur -- "1" Bottes : bottes
+
+Bot -- "1" Strategie
 
 'pour les cartes
 LimitationDeVitesse --|> Carte
@@ -166,5 +269,19 @@ Prioritaire -up-|> Botte
 Increvable -up-|> Botte
 CiterneDEssence -up-|> Botte
 AsDuVolant -up-|> Botte
+
+JoueurHumain -right-|> Joueur
+Bot -right-|> Joueur
+
+PaquetDeCartes .up.|> Iterable
+CollectionJoueurs .up.|> Iterable
+CollectionJeux .up.|> Iterable
+Jeu .|> Iterable
+
+StrategieFacile .up.|> Strategie
+StrategieBasique .up.|> Strategie
+StrategieTrivial .up.|> Strategie
+StrategieDifficile .up.|> Strategie
+
 
 @enduml
