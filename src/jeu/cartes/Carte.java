@@ -24,5 +24,13 @@ public abstract class Carte {
 
     public abstract String toString() ;
 
+    @Override
+    public boolean equals(Object obj) {
+        return obj != null && this.getClass() == obj.getClass() ;
+    }
 
+
+    public boolean estUneBorne() {
+        return false ;
+    }
 }

@@ -1,4 +1,4 @@
-package jeu.joueurs;
+package jeu.joueurs.strategie;
 
 import jeu.Jeu;
 

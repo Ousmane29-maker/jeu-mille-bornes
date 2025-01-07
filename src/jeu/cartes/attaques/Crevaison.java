@@ -29,4 +29,6 @@ public class Crevaison extends Attaque {
     public String toString() {
         return "Crevaison";
     }
+
+
 }

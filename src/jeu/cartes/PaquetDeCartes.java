@@ -230,7 +230,7 @@ public class PaquetDeCartes implements Iterable<Carte> {
             if (carte.estUneBotte()) {
                 key = carte.getClass().getSimpleName();
                 value = -1;  // On attribue une occurrence de -1 pour les cartes Botte, on pas besoin de l'occurence
-            } else if (carte.match("Bornes")) {
+            } else if (carte.estUneBorne()) {
                 Bornes bornes = (Bornes) carte;
                 key = "Bornes " + bornes.getKms();  // Bornes + km ety espace entre les 2
                 value = carteCounts.getOrDefault(key, 0) + 1;  // 1 si la cle n'est pas presente sinon incremente sa valeur de 1
@@ -312,6 +312,17 @@ public class PaquetDeCartes implements Iterable<Carte> {
         return estUneBotte(name) ? "jeu.cartes.bottes." :  // On teste d'abord les bottes
                 estUneAttaque(name) ? "jeu.cartes.attaques." :  // Ensuite les attaques
                         "jeu.cartes.parades.";  // Par défaut, c'est une parade
+    }
+
+
+    public int nombreOccurrences(Carte carte) {
+        int occurrences = 0;
+        for (Carte c : pdc) {  // Supposons que `pdc` est la liste des cartes dans le paquet
+            if (c.equals(carte)) {  // Utilise la méthode spécifique à chaque classe
+                occurrences++;
+            }
+        }
+        return occurrences;
     }
 
 

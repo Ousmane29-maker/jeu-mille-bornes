@@ -2,6 +2,7 @@ package jeu.cartes.bottes;
 
 import jeu.cartes.Bottes;
 import jeu.cartes.Carte;
+import jeu.cartes.bornes.Bornes;
 import jeu.joueurs.Joueur;
 
 public class AsDuVolant extends Botte{
@@ -23,4 +24,5 @@ public class AsDuVolant extends Botte{
     public String toString() {
         return "AsDuVolant";
     }
+
 }

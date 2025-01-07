@@ -1,8 +1,10 @@
-package jeu.joueurs;
+package jeu.joueurs.strategie;
 
 import jeu.Jeu;
+import jeu.joueurs.Joueur;
+import jeu.joueurs.strategie.Strategie;
 
-public class StrategieTrivial implements Strategie{
+public class StrategieTrivial implements Strategie {
 
     public StrategieTrivial() {
 

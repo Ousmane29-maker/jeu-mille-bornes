@@ -29,4 +29,5 @@ public class FeuVert extends Parade {
     public String toString() {
         return "FeuVert";
     }
+
 }

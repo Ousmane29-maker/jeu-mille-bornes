@@ -28,6 +28,11 @@ public class Bornes extends Carte {
     }
 
     @Override
+    public boolean estUneBorne() {
+        return true ;
+    }
+
+    @Override
     public Carte clone() {
         return new Bornes(this.getKms());
     }
@@ -39,5 +44,10 @@ public class Bornes extends Carte {
     @Override
     public String toString() {
         return "Bornes" + kms ;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && this.kms == ((Bornes) obj).getKms();
     }
 }

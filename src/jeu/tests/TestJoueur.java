@@ -13,7 +13,7 @@ import jeu.cartes.parades.FeuVert;
 import jeu.joueurs.Bot;
 import jeu.joueurs.Joueur;
 import jeu.joueurs.JoueurHumain;
-import jeu.joueurs.StrategieBasique;
+import jeu.joueurs.strategie.StrategieBasique;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

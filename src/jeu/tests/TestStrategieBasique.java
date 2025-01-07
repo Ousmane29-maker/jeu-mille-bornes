@@ -5,6 +5,8 @@ import jeu.cartes.Bottes;
 import jeu.cartes.attaques.FeuRouge;
 import jeu.cartes.bornes.Bornes;
 import jeu.joueurs.*;
+import jeu.joueurs.strategie.Strategie;
+import jeu.joueurs.strategie.StrategieBasique;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

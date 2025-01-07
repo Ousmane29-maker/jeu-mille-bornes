@@ -241,7 +241,7 @@ public abstract class Joueur {
         if (carte.estUneParade()) {
             // Pose une parade
             setBataille(carte);
-        } else if (carte.match("Bornes")) {
+        } else if (carte.estUneBorne()) {
             // Gérer les Bornes
             Bornes bornes = (Bornes) carte;
             if (bornes.getKms() == 200) {

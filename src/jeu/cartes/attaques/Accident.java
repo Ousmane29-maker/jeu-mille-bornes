@@ -29,4 +29,6 @@ public class Accident extends Attaque {
     public String toString() {
         return "Accident";
     }
+
+
 }

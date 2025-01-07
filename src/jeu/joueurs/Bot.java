@@ -1,6 +1,7 @@
 package jeu.joueurs;
 
 import jeu.Jeu;
+import jeu.joueurs.strategie.Strategie;
 
 public class Bot extends  Joueur{
 

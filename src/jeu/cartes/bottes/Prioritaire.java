@@ -26,4 +26,6 @@ public class Prioritaire extends Botte{
     public String toString() {
         return "Prioritaire";
     }
+
+
 }

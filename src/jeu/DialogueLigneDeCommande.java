@@ -3,6 +3,9 @@ package jeu;
 import jeu.cartes.Carte;
 import jeu.joueurs.Bot;
 import jeu.joueurs.Joueur;
+import jeu.joueurs.strategie.Strategie ;
+import jeu.joueurs.strategie.StrategieDifficile ;
+import jeu.joueurs.strategie.StrategieFacile ;
 
 import java.util.Scanner;
 
@@ -56,6 +59,51 @@ public class DialogueLigneDeCommande {
         }
         System.out.println("=== ===================== ===");
     }
+
+
+    public int definirNbBots() {
+        System.out.println("=== Bienvenue dans le Jeu Mille Bornes ===");
+        System.out.println("=========================================\n");
+        int nbBots;
+        do {
+            System.out.print("Entrez le nombre de bots (entre 1 et 3) : ");
+            nbBots = scanner.nextInt();
+        } while (nbBots < 1 || nbBots > 3);  // On fixe ici entre 1 et 3 bots
+        return nbBots;
+    }
+
+
+    // Demander la stratégie pour chaque bot (facile ou difficile)
+    public Strategie demanderStrategieBot(int indexBot, int nbBots) {
+        System.out.println("Choisissez la stratégie pour Bot" + (indexBot) + " :");
+        System.out.println("1. Facile");
+        System.out.println("2. Difficile");
+
+        int choixStratégie = 0;
+        // Boucle jusqu'à ce que l'utilisateur entre un choix valide (1 ou 2)
+        do {
+            if (scanner.hasNextInt()) {
+                choixStratégie = scanner.nextInt();
+                if (choixStratégie < 1 || choixStratégie > 2) {
+                    System.out.println("Erreur : Veuillez entrer 1 pour Facile ou 2 pour Difficile.");
+                }
+            } else {
+                System.out.println("Erreur : Veuillez entrer un nombre valide.");
+                scanner.next(); // Consommer l'entrée non valide
+            }
+        } while (choixStratégie < 1 || choixStratégie > 2);
+
+        if(indexBot == nbBots){
+            System.out.println("\nPréparez-vous à démarrer la partie !");
+        }
+        // Retourner la stratégie en fonction du choix
+        if (choixStratégie == 1) {
+            return new StrategieFacile();
+        } else {
+            return new StrategieDifficile();
+        }
+    }
+
 
 
 }

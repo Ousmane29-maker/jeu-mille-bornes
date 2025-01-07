@@ -5,6 +5,8 @@ import jeu.cartes.Carte;
 import jeu.cartes.PaquetDeCartes;
 import jeu.fabriques.FabriqueCartes;
 import jeu.joueurs.*;
+import jeu.joueurs.strategie.Strategie;
+import jeu.joueurs.strategie.StrategieFacile;
 
 import java.util.Iterator;
 import java.util.Random;
@@ -146,9 +148,10 @@ public class Jeu implements Iterable<Joueur>{
         joueur.ajouterMain(carte);
     }
     public void creerJoueurs(int nbJoueurs){
-        assert(nbJoueurs >=2 && nbJoueurs <= 5) : "Le nombre de joueurs doit etre dans l'intervalle [2,5]" ;
-        Strategie strategie = new StrategieFacile() ; //apres on poura avoir plusieur Strategie
+        assert(nbJoueurs >=2 && nbJoueurs <= 4) : "Le nombre de joueurs doit etre dans l'intervalle [2,4]" ;
+       Strategie strategie ;
         for(int i = 1; i < nbJoueurs; i++){
+            strategie = dialogue.demanderStrategieBot(i, nbJoueurs - 1);
             add(new Bot(this, "Bot"+i, strategie)) ;
         }
         add(new JoueurHumain(this, "JoueurHumain")) ;
@@ -195,9 +198,35 @@ public class Jeu implements Iterable<Joueur>{
         return joueurs.iterator() ;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Joueur actuel : ") ;
+        sb.append(getJoueurCourant().getNom() + "\n");
+        sb.append("Joueur qui distribue : ") ;
+        sb.append(getJoueur(getJoueurQuiDistribue()).getNom() + "\n");
+
+        sb.append("\nListe des Joueurs :\n");
+        for (Joueur joueur : joueurs) {
+            sb.append(joueur);
+            sb.append("\n");
+        }
+        sb.append("\nTalon :\n");
+        sb.append(talon);
+
+        sb.append("\nPioche :\n");
+        sb.append(pioche);
+
+        return sb.toString();
+    }
+
+
 
 //    public void rejouer() {
 //        donnerCarte(getJoueurCourant());
 //        dialogue.reagir();
 //    }
+
+
 }

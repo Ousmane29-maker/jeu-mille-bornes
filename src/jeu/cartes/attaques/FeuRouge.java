@@ -30,4 +30,5 @@ public class FeuRouge extends Attaque {
     public String toString() {
         return "FeuRouge";
     }
+
 }

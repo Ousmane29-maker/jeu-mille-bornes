@@ -30,4 +30,5 @@ public class PanneDEssence extends Attaque {
     public String toString() {
         return "PanneDEssence";
     }
+
 }
