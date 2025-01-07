@@ -2,17 +2,13 @@ package jeu.fabriques;
 
 import jeu.ErreurFichier;
 import jeu.cartes.PaquetDeCartes;
-import jeu.cartes.attaques.Accident;
-import jeu.cartes.attaques.Crevaison;
-import jeu.cartes.attaques.FeuRouge;
+import jeu.cartes.attaques.*;
 import jeu.cartes.bornes.Bornes;
 import jeu.cartes.bottes.AsDuVolant;
 import jeu.cartes.bottes.CiterneDEssence;
 import jeu.cartes.bottes.Increvable;
 import jeu.cartes.bottes.Prioritaire;
-import jeu.cartes.parades.FeuVert;
-
-import java.io.IOException;
+import jeu.cartes.parades.*;
 
 public class FabriqueCartes {
 
@@ -95,5 +91,99 @@ public class FabriqueCartes {
         }
 
         return  pdc ;
+    }
+
+    public static PaquetDeCartes getPaquetStandardManuel() {
+        PaquetDeCartes pdc = new PaquetDeCartes();
+
+        // Cartes Prioritaires
+        pdc.ajouter(new Prioritaire());
+
+        // Cartes Citerne d'Essence
+        pdc.ajouter(new CiterneDEssence());
+
+        // Cartes Increvable
+        pdc.ajouter(new Increvable());
+
+        // Cartes As du Volant
+        pdc.ajouter(new AsDuVolant());
+
+        // Cartes Feu Rouge (5 cartes)
+        for (int i = 0; i < 5; i++) {
+            pdc.ajouter(new FeuRouge());
+        }
+
+        // Cartes Limitation de Vitesse (4 cartes)
+        for (int i = 0; i < 4; i++) {
+            pdc.ajouter(new LimitationDeVitesse());
+        }
+
+        // Cartes Panne d'Essence (3 cartes)
+        for (int i = 0; i < 3; i++) {
+            pdc.ajouter(new PanneDEssence());
+        }
+
+        // Cartes Crevaison (3 cartes)
+        for (int i = 0; i < 3; i++) {
+            pdc.ajouter(new Crevaison());
+        }
+
+        // Cartes Accident (3 cartes)
+        for (int i = 0; i < 3; i++) {
+            pdc.ajouter(new Accident());
+        }
+
+        // Cartes Feu Vert (14 cartes)
+        for (int i = 0; i < 14; i++) {
+            pdc.ajouter(new FeuVert());
+        }
+
+        // Cartes Fin Limitation de Vitesse (6 cartes)
+        for (int i = 0; i < 6; i++) {
+            pdc.ajouter(new FinLimitationDeVitesse());
+        }
+
+        // Cartes Essence (6 cartes)
+        for (int i = 0; i < 6; i++) {
+            pdc.ajouter(new Essence());
+        }
+
+        // Cartes Roue de Secours (6 cartes)
+        for (int i = 0; i < 6; i++) {
+            pdc.ajouter(new RoueDeSecours());
+        }
+
+        // Cartes Réparation (6 cartes)
+        for (int i = 0; i < 6; i++) {
+            pdc.ajouter(new Reparation());
+        }
+
+        // Cartes Bornes 25 (10 cartes)
+        for (int i = 0; i < 10; i++) {
+            pdc.ajouter(new Bornes(25));
+        }
+
+        // Cartes Bornes 50 (10 cartes)
+        for (int i = 0; i < 10; i++) {
+            pdc.ajouter(new Bornes(50));
+        }
+
+        // Cartes Bornes 75 (10 cartes)
+        for (int i = 0; i < 10; i++) {
+            pdc.ajouter(new Bornes(75));
+        }
+
+        // Cartes Bornes 100 (12 cartes)
+        for (int i = 0; i < 12; i++) {
+            pdc.ajouter(new Bornes(100));
+        }
+
+        // Cartes Bornes 200 (4 cartes)
+        for (int i = 0; i < 4; i++) {
+            pdc.ajouter(new Bornes(200));
+        }
+
+        // Retourner le paquet de cartes rempli
+        return pdc;
     }
 }

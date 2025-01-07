@@ -134,7 +134,7 @@ public class Jeu implements Iterable<Joueur>{
     }
 
     public void distribuer(){
-        pioche.ajouter(FabriqueCartes.getPaquetStandard()); // initialisation de la pioche
+        pioche.ajouter(FabriqueCartes.getPaquetStandardManuel()); // initialisation de la pioche
         pioche.melanger();
         for(int i = 0;  i < 7; i++){
             for (Joueur joueur : joueurs) {

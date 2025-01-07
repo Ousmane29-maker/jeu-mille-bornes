@@ -64,11 +64,26 @@ public class DialogueLigneDeCommande {
     public int definirNbBots() {
         System.out.println("=== Bienvenue dans le Jeu Mille Bornes ===");
         System.out.println("=========================================\n");
-        int nbBots;
+        int nbBots = 0;
+
+        // Boucle jusqu'à ce que l'utilisateur entre un nombre valide
         do {
             System.out.print("Entrez le nombre de bots (entre 1 et 3) : ");
-            nbBots = scanner.nextInt();
-        } while (nbBots < 1 || nbBots > 3);  // On fixe ici entre 1 et 3 bots
+
+            // Vérifier si l'entrée est un entier
+            if (scanner.hasNextInt()) {
+                nbBots = scanner.nextInt();
+                // Vérifier si le nombre est dans la plage attendue
+                if (nbBots < 1 || nbBots > 3) {
+                    System.out.println("Erreur : Veuillez entrer un nombre entre 1 et 3.");
+                }
+            } else {
+                // Si l'entrée n'est pas un entier, afficher un message d'erreur
+                System.out.println("Erreur : Veuillez entrer un nombre valide.");
+                scanner.next(); // Consommer l'entrée non valide
+            }
+        } while (nbBots < 1 || nbBots > 3);  // Répéter tant que le nombre est invalide
+
         return nbBots;
     }
 
