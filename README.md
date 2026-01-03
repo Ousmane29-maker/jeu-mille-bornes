@@ -66,9 +66,8 @@ JeuBPO/
 │   ├── dialogue/            # Interface ligne de commande
 │   └── tests/               # Tests JUnit
 ├── ressources/              # Ressources du jeu
-├── out/                     # Fichiers compilés
 ├── cartesTest.txt           # Fichier de test pour les paquets de cartes
-└── JeuBPO.iml              # Configuration IntelliJ
+└── README.md                # Documentation du projet
 ```
 
 ---
@@ -124,18 +123,22 @@ Strategie (interface)
 git clone https://github.com/Ousmane29-maker/jeu-mille-bornes.git
 cd jeu-mille-bornes
 
-# Compile
-javac -d out -sourcepath src src/**/*.java
+# Compile tous les fichiers Java
+find src -name "*.java" > sources.txt
+javac -d out @sources.txt
 
 # Lance le jeu
 java -cp out Main
+
 ```
 
 ### Avec IntelliJ IDEA
 
-1. Ouvrir le projet (`JeuBPO.iml`)
-2. Attendre l'indexation
-3. Run → Run 'Main'
+1. Ouvrir IntelliJ IDEA
+2. File → Open → sélectionner le dossier du projet
+3. Attendre l’indexation
+4. Ouvrir la classe `Main`
+5. Run → Run 'Main'
 
 ---
 
@@ -249,15 +252,6 @@ AsDuVolant
 - `Bornes KM Nombre` : Pour les cartes bornes (ex: `Bornes 75 1`)
 - `NomBotte` : Pour les bottes (pas de nombre, ex: `Increvable`)
 
-**Utilisation** :
-```java
-// Écriture d'un paquet dans un fichier
-paquet.ecrire("monPaquet.txt");
-
-// Lecture d'un paquet depuis un fichier
-paquet.lire("monPaquet.txt");
-```
-
 ---
 
 ## 🎓 Concepts Avancés Implémentés
@@ -288,7 +282,7 @@ L2 Informatique — Module BPO (Bases de la Programmation Objet)
 
 ## 📄 Licence
 
-MIT License — Projet libre de modification et d'utilisation à des fins éducatives.
+Projet libre à des fins éducatives.
 
 ---
 
